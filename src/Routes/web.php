@@ -12,6 +12,6 @@ $router->map('GET', '/test', [HomeController::class, 'test'], 'test');
 $router->map('GET', '/protected', [HomeController::class, 'protected_route'], 'protected');
 
 // Route pour le module IPv4
-$router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_index'], 'ipv4_home');
+$router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_convert'], 'ipv4_home');
 
 return $router;
