@@ -20,3 +20,27 @@ function getIPv4ClassAndMask(ipv4) {
         return null;
     }
 }
+
+document.getElementById('ipv4-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // recharge pas la page
+
+    const ipv4Address = document.getElementById('ipv4_address').value;
+    const resultDiv = document.getElementById('result');
+
+    if (validateIP(ipv4Address)) {
+        const result = getIPv4ClassAndMask(ipv4Address);
+
+        if (result) {
+            resultDiv.textContent = `Adresse IPv4 : ${ipv4Address}\nClasse : ${result.class}\nMasque : ${result.mask}\nNotation CIDR : ${result.cidr}`;
+            resultDiv.className = 'success';
+        } else {
+            resultDiv.textContent = 'Erreur : Adresse IPv4 hors plage valide.';
+            resultDiv.className = 'error';
+        }
+    } else {
+        resultDiv.textContent = 'Erreur : Adresse IPv4 invalide. Assurez-vous de la bonne syntaxe de';
+        resultDiv.className = 'error';
+    }
+
+    resultDiv.style.display = 'block';
+});
