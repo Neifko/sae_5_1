@@ -1,12 +1,21 @@
 <?php
 
 use Dotenv\Dotenv;
+use Victor\Sae51\Config\Database;
 
 // Charger les variables .env
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 session_start();
+
+// Creation de l'utilisateur admin
+$db = Database::getInstance();
+
+$result = $db->query("SELECT username FROM users WHERE username = 'admin'");
+if (count($result) === 0){
+    $db->query("INSERT INTO users (username, password, admin) VALUES (?, ?, ?)", [$_ENV['ADMIN_PWD'], password_hash($_ENV['ADMIN_UNAME'],PASSWORD_DEFAULT), true]);
+}
 
 // Configuration globale
 return [
