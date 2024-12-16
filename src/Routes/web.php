@@ -5,6 +5,7 @@ use Victor\Sae51\Controllers\HomeController;
 use Victor\Sae51\Controllers\ModuleController;
 use Victor\Sae51\Controllers\IPv4Controller;
 use Victor\Sae51\Controllers\PingController;
+use Victor\Sae51\Controllers\TcpController;
 
 $router = new AltoRouter();
 
@@ -29,6 +30,8 @@ $router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_convert'], 'ipv4_home
 
 // Route pour les modules Scapy
 $router->map('GET|POST', '/ping', [PingController::class, 'index']);
+$router->map('GET|POST', '/tcp', [TcpController::class, 'index']);
+
 
 
 return $router;
