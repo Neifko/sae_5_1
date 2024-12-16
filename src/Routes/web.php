@@ -3,6 +3,8 @@
 use Victor\Sae51\Controllers\AuthController;
 use Victor\Sae51\Controllers\HomeController;
 use Victor\Sae51\Controllers\IPv4Controller;
+use Victor\Sae51\Controllers\ModuleController;
+
 
 $router = new AltoRouter();
 
@@ -10,7 +12,9 @@ $router = new AltoRouter();
 $router->map('GET', '/', [HomeController::class, 'index'], 'home');
 $router->map('GET', '/test', [HomeController::class, 'test'], 'test');
 
-$router->map('GET', '/protected', [HomeController::class, 'protected_route'], 'protected');
+$router->map('POST', '/module_sousreseau', [HomeController::class, 'module_sousreseau'], 'module_sousreseau');
+
+$router->map('GET', '/test', [ModuleController::class, 'test'], 'test');
 
 
 $router->map('GET', '/register', [AuthController::class, 'register_form'], 'register');
