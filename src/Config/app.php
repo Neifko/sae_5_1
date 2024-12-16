@@ -6,6 +6,8 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
+session_start();
+
 // Configuration globale
 return [
     'name' => $_ENV['APP_NAME'],
