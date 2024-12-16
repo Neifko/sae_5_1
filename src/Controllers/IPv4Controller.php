@@ -10,9 +10,9 @@ class IPv4Controller
 
     public function ipv4_convert()
     {
-        # Validation côté serveur de l'adresse IPv4
+        # Validation côté serveur de l'adresse IPv4 peut etre à faire 
         #AuthMiddleware::handle();
-        
+        include __DIR__ . '/../Views/ipv4.php';
     }
 
     

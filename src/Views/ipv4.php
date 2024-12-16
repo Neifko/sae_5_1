@@ -33,7 +33,6 @@
 
     <div id="result"></div>
 
-    <!-- Inclure le fichier JavaScript -->
     <script src="/javascript/classe_ipv4.js"></script>
 </body>
 </html>
