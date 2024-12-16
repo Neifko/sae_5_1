@@ -7,6 +7,7 @@ use Victor\Sae51\Middleware\AuthMiddleware;
 
 class IPv4Controller
 {
+    
 
     public function ipv4_convert()
     {
@@ -14,6 +15,4 @@ class IPv4Controller
         #AuthMiddleware::handle();
         include __DIR__ . '/../Views/ipv4.php';
     }
-
-    
 }
