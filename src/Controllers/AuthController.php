@@ -31,21 +31,21 @@ class AuthController
                             $hashed_passwd = password_hash($password, PASSWORD_DEFAULT);
                             $db->query("INSERT INTO users (username, password) VALUES (?, ?)", [$username, $hashed_passwd]);
 
-                            Redirect::to('/login');
+                            Redirect::withMessage('/login', "Le compte a été créé avec succès.", "success");
                         } else {
-                            Redirect::withMessage('/register', "Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule et 1 chiffre.");
+                            Redirect::withMessage('/register', "Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule et 1 chiffre.", "error");
                         }
                     } else {
-                        Redirect::withMessage('/register', "Le mot de passe doit faire entre 8 et 20 caractères.");
+                        Redirect::withMessage('/register', "Le mot de passe doit faire entre 8 et 20 caractères.", "error");
                     }
                 } else {
-                    Redirect::withMessage('/register', "Le nom d'utilisateur doit faire entre 3 et 50 caractères.");
+                    Redirect::withMessage('/register', "Le nom d'utilisateur doit faire entre 3 et 50 caractères.", "error");
                 }
             } else {
-                Redirect::withMessage('/register', "Ce nom d'utilisateur est déjà prit.");
+                Redirect::withMessage('/register', "Ce nom d'utilisateur est déjà prit.", "error");
             }
         } else {
-            Redirect::withMessage('/register', "Veuillez remplir tous les champs.");
+            Redirect::withMessage('/register', "Veuillez remplir tous les champs.", "error");
         }
 
 
@@ -138,18 +138,18 @@ class AuthController
                 if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/", $new_password)) {
                     if (password_verify($old_password, $result[0]['password'])) {
                         $db->query("UPDATE users SET password = ? WHERE username = ?", [password_hash($new_password, PASSWORD_DEFAULT), $username]);
-                        Redirect::withMessage('/profile/' . $id, "Mot de passe modifié.");
+                        Redirect::withMessage('/profile/' . $id, "Mot de passe modifié.", "success");
                     } else {
-                        Redirect::withMessage('/profile/' . $id, "L'ancien mot de passe est incorrect.");
+                        Redirect::withMessage('/profile/' . $id, "L'ancien mot de passe est incorrect.", "error");
                     }
                 } else {
-                    Redirect::withMessage('/profile/' . $id, "Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule et 1 chiffre.");
+                    Redirect::withMessage('/profile/' . $id, "Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule et 1 chiffre.", "error");
                 }
             } else {
-                Redirect::withMessage('/profile/' . $id, "Le mot de passe doit faire entre 8 et 20 caractères.");
+                Redirect::withMessage('/profile/' . $id, "Le mot de passe doit faire entre 8 et 20 caractères.", "error");
             }
         } else {
-            Redirect::withMessage('/profile/' . $id, "Veuillez remplir tous les champs.");
+            Redirect::withMessage('/profile/' . $id, "Veuillez remplir tous les champs.", "error");
         }
     }
 

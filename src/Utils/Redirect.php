@@ -8,7 +8,7 @@ class Redirect {
         exit();
     }
 
-    public static function withMessage(string $route, string $message, string $type = 'success') {
+    public static function withMessage(string $route, string $message, string $type = 'info') {
         $_SESSION['flash_message'] = [
             'type' => $type,
             'content' => $message
