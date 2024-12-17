@@ -2,6 +2,9 @@
 
 use Victor\Sae51\Controllers\AuthController;
 use Victor\Sae51\Controllers\HomeController;
+use Victor\Sae51\Controllers\ModuleController;
+use Victor\Sae51\Controllers\IPv4Controller;
+use Victor\Sae51\Controllers\PingController;
 use Victor\Sae51\Controllers\MainController;
 
 $router = new AltoRouter();
@@ -29,6 +32,10 @@ $router->map('POST', '/profile/[i:id]', [AuthController::class, 'profile_update'
 
 
 
+
+
+// Route pour les modules Scapy
+$router->map('GET|POST', '/ping', [PingController::class, 'index']);
 
 
 return $router;
