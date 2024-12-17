@@ -2,10 +2,12 @@
 
 use Victor\Sae51\Controllers\AuthController;
 use Victor\Sae51\Controllers\HomeController;
+use Victor\Sae51\Controllers\IPv4Controller;
 use Victor\Sae51\Controllers\ModuleController;
 use Victor\Sae51\Controllers\TraductionIPV4Controller;
 use Victor\Sae51\Controllers\PingController;
 use Victor\Sae51\Controllers\MainController;
+use Victor\Sae51\Controllers\UserManagementController;
 
 $router = new AltoRouter();
 
@@ -34,6 +36,10 @@ $router->map('GET', '/profile/[i:id]', [AuthController::class, 'profile_form'], 
 $router->map('POST', '/profile/[i:id]', [AuthController::class, 'profile_update']);
 // Fin routes auth
 
+// Debut routes UserManagement
+$router->map('GET', '/list-users', [UserManagementController::class, 'list_all_users'], 'list_users');
+$router->map('GET', '/delete-user/[i:id]', [UserManagementController::class, 'delete_user'], 'delete_user');
+// Fin routes UserManagement
 
 // Route pour le module IPv4
 $router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_convert'], 'ipv4_home');
