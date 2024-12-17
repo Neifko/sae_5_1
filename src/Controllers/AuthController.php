@@ -53,6 +53,10 @@ class AuthController
 
     public function login_form()
     {
+        if (!empty($_SESSION['user']['id']) && !empty($_SESSION['user']['username'])){
+            Redirect::to('/dashboard');
+        }
+
         include __DIR__ . '/../Views/login.php';
 
     }
@@ -60,6 +64,10 @@ class AuthController
 
     public function login()
     {
+        if (!empty($_SESSION['user']['id']) && !empty($_SESSION['user']['username'])){
+            Redirect::to('/dashboard');
+        }
+
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
 
@@ -86,7 +94,7 @@ class AuthController
     {
         AuthMiddleware::handle();
         session_destroy();
-        Redirect::withMessage('/login', 'Déconnexion réussie.');
+        Redirect::withMessage('/', 'Déconnexion réussie.');
     }
 
     public function profile_form($id)
