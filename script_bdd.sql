@@ -7,7 +7,3 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL ,
     admin BOOLEAN DEFAULT 0 NOT NULL
 );
-
-
-
-
