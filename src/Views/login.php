@@ -14,3 +14,4 @@
 
     <input type="submit" value="Se connecter">
 </form>
+<a href="/">Retour</a>
