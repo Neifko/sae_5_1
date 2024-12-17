@@ -38,87 +38,80 @@ function applySubnets() {
     subnetFormsContainer.appendChild(calculateButton);
 }
 
-function calculateSubnets(){
+function calculateSubnets() {
     const ip_address = document.getElementById('ip_address').value.trim();
     const cidr = document.getElementById('cidr').value.trim();
 
-    if (!validateIP(ip_address)){
+    if (!validateIP(ip_address)) {
         window.alert("Adresse IP invalide");
         return;
-    } else if (!validateCIDR(cidr)){
+    } else if (!validateCIDR(cidr)) {
         window.alert("Masque invalide");
         return;
     }
 
-    // Calcul du masque
-    const subnetMask = getSubnetMask(cidr);
-
-    // Convertir l'adresse IP et le masque en binaire
-    const ipBinary = ipToBinary(ip_address);
-    const maskBinary = ipToBinary(subnetMask);
-
-    // Calcul de l'adresse réseau
-    let networkBinary = calculate_networkAddress(ipBinary, maskBinary);
-    let networkAddress = binaryToIp(networkBinary);
-
-    // Calcul de l'adresse de broadcast
-    let broadcastBinary = calculate_broadcastAddress(ipBinary, maskBinary);
-    let broadcastAddress = binaryToIp(broadcastBinary);
-
-    // Plage d'adresses utilisables
-    let usableRange = getUsableRange(networkBinary, broadcastBinary);
-
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
-
     const dataSubnet = [];
-    let networkIncrement = Math.pow(2, (32 - parseInt(cidr))) - 2; // Pour l'incrémentation des adresses réseau
+
+    // Adresse réseau initiale en binaire
+    let networkBinary = calculate_networkAddress(ipToBinary(ip_address), ipToBinary(getSubnetMask(cidr)));
+
     for (let i = 1; i <= numSubnets; i++) {
         const nameSubnet = document.getElementById(`name_subnet${i}`);
         const nbMachines = document.getElementById(`nb_machines${i}`);
 
-        if (!nameSubnet || nbMachines <= 0) {
+        if (!nameSubnet || isNaN(nbMachines.value.trim()) || parseInt(nbMachines.value.trim()) <= 0) {
             window.alert(`Nombre de machines invalide pour le sous-réseau ${i}`);
             return;
         }
 
         const name = nameSubnet.value.trim();
         const machines = parseInt(nbMachines.value.trim());
-        const hostsAvailable = calculateHostsAvailable(cidr);
+
+        // Calculer le nombre minimal de bits nécessaires pour les hôtes
+        const bitsForHosts = calculateBitsNeeded(machines);
+        const cidrOptimal = 32 - bitsForHosts;
+
+        const subnetMask = getSubnetMask(cidrOptimal);
+        const hostsAvailable = Math.pow(2,calculateBitsNeeded(machines)) - 2;
 
         if (machines > hostsAvailable) {
-            window.alert(`Le sous-réseau ${i} ne peut pas contenir autant de machines. Hôtes disponibles: ${hostsAvailable}`);
+            window.alert(`Le sous-réseau ${i} ne peut pas contenir autant de machines. Hôtes disponibles : ${hostsAvailable}`);
             return;
         }
 
-        const hostsNeeded = machines;
-        const unusedHosts = hostsAvailable - hostsNeeded;
+        // Calculer l'adresse réseau actuelle
+        const currentNetworkAddress = binaryToIp(networkBinary);
 
-        // Ajouter les données du sous-réseau dans un tableau
+        // Calculer l'adresse de broadcast
+        const broadcastBinary = calculate_broadcastAddress(networkBinary, ipToBinary(subnetMask));
+        const broadcastAddress = binaryToIp(broadcastBinary);
+
+        // Calculer la plage d'adresses utilisables
+        const usableRange = getUsableRange(networkBinary, broadcastBinary);
+
+        // Ajouter les données du sous-réseau
         dataSubnet.push({
             name,
-            hostsNeeded,
+            hostsNeeded: machines,
             hostsAvailable,
-            unusedHosts,
-            networkAddress,
-            cidr,
+            unusedHosts: hostsAvailable - machines,
+            networkAddress: currentNetworkAddress,
+            cidr: cidrOptimal,
             subnetMask,
             usableRange,
             broadcastAddress
         });
 
         // Mettre à jour l'adresse réseau pour le prochain sous-réseau
-        const networkDecimal = parseInt(networkBinary, 2);
-        networkBinary = (networkDecimal + networkIncrement).toString(2).padStart(32, '0');
-        networkAddress = binaryToIp(networkBinary);
-
-        // Calculer la nouvelle adresse de broadcast et la plage utilisable
-        broadcastBinary = calculate_broadcastAddress(networkBinary, maskBinary);
-        broadcastAddress = binaryToIp(broadcastBinary);
-        usableRange = getUsableRange(networkBinary, broadcastBinary);
+        const networkIncrement = Math.pow(2, bitsForHosts); // Taille du sous-réseau
+        const nextNetworkDecimal = parseInt(networkBinary, 2) + networkIncrement;
+        networkBinary = nextNetworkDecimal.toString(2).padStart(32, '0'); // Nouvelle adresse réseau en binaire
     }
 
     displaySubnets(dataSubnet);
 }
+
 
 // Fonction pour afficher les sous-réseaux et les informations réseau
 function displaySubnets(dataSubnet) {
@@ -191,7 +184,16 @@ function binaryToIp(binary) {
 
 // Fonction pour obtenir le masque de sous-réseau à partir du CIDR
 function getSubnetMask(cidr) {
-    const maskBinary = '1'.repeat(cidr) + '0'.repeat(32 - cidr);
+    // Vérifier que cidr est un entier valide entre 0 et 32
+    const cidrInt = parseInt(cidr, 10);
+    if (isNaN(cidrInt) || cidrInt < 0 || cidrInt > 32) {
+        console.log(cidrInt);
+        throw new Error("CIDR invalide. Il doit être un entier entre 0 et 32.");
+
+    }
+
+    // Générer le masque binaire en fonction du CIDR
+    const maskBinary = '1'.repeat(cidrInt) + '0'.repeat(32 - cidrInt);
     return binaryToIp(maskBinary);
 }
 
@@ -215,25 +217,18 @@ function calculate_broadcastAddress(ipBinary, maskBinary) {
 
 // Obtenir la plage d'adresses utilisables
 function getUsableRange(networkBinary, broadcastBinary) {
-    const startBinary = networkBinary.slice(0, -1) + '1';  // Première adresse utilisable
-    const endBinary = broadcastBinary.slice(0, -1) + '0';   // Dernière adresse utilisable
+    const startBinary = (parseInt(networkBinary, 2) + 1).toString(2).padStart(32, '0');
+    const endBinary = (parseInt(broadcastBinary, 2) - 1).toString(2).padStart(32, '0');
     return {
         start: binaryToIp(startBinary),
         end: binaryToIp(endBinary)
     };
 }
 
-// Fonction pour calculer le nombre d'hôtes disponibles par sous-réseau en fonction du CIDR
-function calculateHostsAvailable(cidr) {
-    const bitsForHosts = 32 - parseInt(cidr, 10);
-    return Math.pow(2, bitsForHosts) - 2; // Soustraction des adresses réseau et broadcast
-}
-
-// Fonction pour incrémenter l'adresse réseau pour le prochain sous-réseau
-function incrementNetworkAddress(networkBinary, cidr) {
-    const bitsForHosts = 32 - parseInt(cidr, 10);
-    const increment = Math.pow(2, bitsForHosts);
-    const networkDecimal = parseInt(networkBinary, 2);
-    const newNetworkDecimal = networkDecimal + increment;
-    return newNetworkDecimal.toString(2).padStart(32, '0');
+function calculateBitsNeeded(machines){
+    let i = 1;
+    while (Math.pow(2, i) < machines+2){
+        i++;
+    }
+    return i;
 }
