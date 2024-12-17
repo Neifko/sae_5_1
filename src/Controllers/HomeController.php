@@ -4,15 +4,16 @@ namespace Victor\Sae51\Controllers;
 
 use Victor\Sae51\Config\Database;
 use Victor\Sae51\Middleware\AuthMiddleware;
+use Victor\Sae51\Utils\Redirect;
 
 class HomeController
 {
     public function index()
     {
-        $db = Database::getInstance();
+        if (!empty($_SESSION['user']['id']) && !empty($_SESSION['user']['username'])){
+            Redirect::to('/dashboard');
+        }
 
-
-        $title = "Bienvenue sur la page d'accueil";
         include __DIR__ . '/../Views/home.php';
     }
 
