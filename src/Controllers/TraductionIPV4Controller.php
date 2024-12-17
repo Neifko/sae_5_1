@@ -8,7 +8,7 @@ use Victor\Sae51\Middleware\AuthMiddleware;
 class TraductionIPV4Controller
 {
 
-    private function azerty() : void{
+    private function traduction_ipv4_view() : void{
         $title = "Module de Traduction IPV4";
         $resultat = '';
         $formats_disponibles = [];
@@ -45,11 +45,11 @@ class TraductionIPV4Controller
 
     public function module_traduction_get()
     {
-        $this->azerty();
+        $this->traduction_ipv4_view();
     }
     public function module_traduction_post()
     {
-        $this->azerty();
+        $this->traduction_ipv4_view();
     }
 
     public function script_traduction($adresse, $choix): string
