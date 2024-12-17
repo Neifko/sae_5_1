@@ -19,7 +19,6 @@ $router->map('GET', '/dashboard', [MainController::class, 'dashboard'], 'dashboa
 $router->map('GET', '/test', [HomeController::class, 'test'], 'test');
 $router->map('GET','/module_traduction', [TraductionIPV4Controller::class, 'module_traduction_get'], 'module_traduction');
 $router->map('POST','/module_traduction', [TraductionIPV4Controller::class, 'module_traduction_post'], 'module_traduction_post');
-
 $router->map('GET', '/module_sousreseau', [ModuleController::class, 'module_sousreseau'], 'module_sousreseau');
 
 $router->map('GET', '/protected', [HomeController::class, 'protected_route'], 'protected');
