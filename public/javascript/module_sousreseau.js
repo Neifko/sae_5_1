@@ -6,6 +6,7 @@ function applySubnets() {
         alert("Veuillez entrer un nombre valide de sous-réseaux.");
         return;
     }
+    //test
 
     // Récupérer le conteneur où les nouveaux formulaires seront ajoutés
     const subnetFormsContainer = document.getElementById('subnetFormsContainer');
