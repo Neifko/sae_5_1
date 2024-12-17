@@ -34,7 +34,7 @@ def ping_latency(ip):
     """Teste la latence (ping ICMP) vers l'IP cible."""
     try:
         icmp_packet = IP(dst=ip) / ICMP()
-        response = sr1(icmp_packet, timeout=2, verbose=False)
+        response = sr1(icmp_packet, verbose=False)
         if response:
             return f"{response.time * 1000:.2f} ms"
         else:
@@ -54,7 +54,7 @@ def create_tcp_connection(target_ip, target_port):
         # Crée un paquet SYN
         syn_packet = IP(dst=target_ip) / TCP(dport=target_port, flags="S")
         # Envoie le paquet et reçoit une réponse
-        response = sr1(syn_packet, timeout=2, verbose=False)
+        response = sr1(syn_packet, verbose=False)
         
         if response and response.haslayer(TCP):
             if response[TCP].flags == "SA":
