@@ -1,3 +1,5 @@
+let nbTotHosts = 0;
+
 function applySubnets() {
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
 
@@ -57,17 +59,31 @@ function calculateSubnets() {
     // Adresse réseau initiale en binaire
     let networkBinary = calculate_networkAddress(ipToBinary(ip_address), ipToBinary(getSubnetMask(cidr)));
 
+    let tableCroissant = [];
     for (let i = 1; i <= numSubnets; i++) {
         const nameSubnet = document.getElementById(`name_subnet${i}`);
         const nbMachines = document.getElementById(`nb_machines${i}`);
+        tableCroissant.push({
+            name: nameSubnet.value.trim(),
+            machines: parseInt(nbMachines.value.trim())
+        });
+    }
 
-        if (!nameSubnet || isNaN(nbMachines.value.trim()) || parseInt(nbMachines.value.trim()) <= 0) {
+    tableCroissant.sort((a, b) => b.machines - a.machines);
+
+    for (let i = 0; i < tableCroissant.length; i++) {
+        const nameSubnet = tableCroissant[i].name;
+        const nbMachines = tableCroissant[i].machines;
+
+        if (!nameSubnet || isNaN(nbMachines) || parseInt(nbMachines) <= 0) {
             window.alert(`Nombre de machines invalide pour le sous-réseau ${i}`);
             return;
         }
 
-        const name = nameSubnet.value.trim();
-        const machines = parseInt(nbMachines.value.trim());
+        const name = nameSubnet;
+        const machines = parseInt(nbMachines);
+
+        nbTotHosts += machines;
 
         // Calculer le nombre minimal de bits nécessaires pour les hôtes
         const bitsForHosts = calculateBitsNeeded(machines);
@@ -119,8 +135,18 @@ function displaySubnets(dataSubnet) {
     const resultContainer = document.getElementById('result');
     resultContainer.innerHTML = ""; // Réinitialiser les résultats précédents
 
+    // Créer un tableau pour afficher les résultats
     const table = document.createElement('table');
-    table.innerHTML = `
+
+    // Ajouter une ligne pour le nombre total d'hôtes
+    const totalRow = document.createElement('tr');
+    totalRow.innerHTML = `
+        <td colspan="9"><strong>Nombre total de machines : ${nbTotHosts}</strong></td>
+    `;
+    table.appendChild(totalRow);
+
+    // Ajouter les autres colonnes du tableau
+    table.innerHTML += `
         <tr>
             <th>Name</th>
             <th>Hosts Needed</th>
@@ -134,6 +160,7 @@ function displaySubnets(dataSubnet) {
         </tr>
     `;
 
+    // Ajouter les sous-réseaux au tableau
     dataSubnet.forEach((subnet) => {
         const row = document.createElement('tr');
         row.innerHTML = `
