@@ -148,15 +148,15 @@ function displaySubnets(dataSubnet) {
     // Ajouter les autres colonnes du tableau
     table.innerHTML += `
         <tr>
-            <th>Name</th>
-            <th>Hosts Needed</th>
-            <th>Hosts Available</th>
-            <th>Unused Hosts</th>
+            <th>Nom du sous-réseau</th>
+            <th>Machines nécessaires</th>
+            <th>Machines disponibles</th>
+            <th>Machines non utilisées</th>
             <th>Network Address</th>
             <th>Slash</th>
             <th>Mask</th>
-            <th>Usable Range</th>
-            <th>Broadcast</th>
+            <th>Range des adresses</th>
+            <th>Adresse de broadcast</th>
         </tr>
     `;
 
