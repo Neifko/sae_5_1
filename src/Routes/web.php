@@ -2,7 +2,9 @@
 
 use Victor\Sae51\Controllers\AuthController;
 use Victor\Sae51\Controllers\HomeController;
+use Victor\Sae51\Controllers\ModuleController;
 use Victor\Sae51\Controllers\MainController;
+use Victor\Sae51\Controllers\IPv4Controller;
 
 $router = new AltoRouter();
 
@@ -14,6 +16,10 @@ $router->map('GET', '/dashboard', [MainController::class, 'dashboard'], 'dashboa
 
 // Routes de tests
 $router->map('GET', '/test', [HomeController::class, 'test'], 'test');
+
+// Route module_sousreseau
+$router->map('GET', '/module_sousreseau', [ModuleController::class, 'module_sousreseau'], 'module_sousreseau');
+
 $router->map('GET', '/protected', [HomeController::class, 'protected_route'], 'protected');
 // Fin routes de tests
 
@@ -28,7 +34,7 @@ $router->map('POST', '/profile/[i:id]', [AuthController::class, 'profile_update'
 // Fin routes auth
 
 
-
-
+// Route pour le module IPv4
+$router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_convert'], 'ipv4_home');
 
 return $router;
