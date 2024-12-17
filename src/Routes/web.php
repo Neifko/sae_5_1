@@ -2,10 +2,15 @@
 
 use Victor\Sae51\Controllers\AuthController;
 use Victor\Sae51\Controllers\HomeController;
+
+use Victor\Sae51\Controllers\IPv4Controller;
+use Victor\Sae51\Controllers\IPv6Controller;
+
 use Victor\Sae51\Controllers\ModuleController;
 use Victor\Sae51\Controllers\TraductionIPV4Controller;
 use Victor\Sae51\Controllers\PingController;
 use Victor\Sae51\Controllers\MainController;
+
 
 $router = new AltoRouter();
 
@@ -37,6 +42,9 @@ $router->map('POST', '/profile/[i:id]', [AuthController::class, 'profile_update'
 
 // Route pour le module IPv4
 $router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_convert'], 'ipv4_home');
+
+
+$router->map('GET', '/ipv6', [IPv6Controller::class, 'ipv6_convert'], 'ipv6_home');
 
 // Route pour les modules Scapy
 $router->map('GET|POST', '/ping', [PingController::class, 'index']);

@@ -38,7 +38,7 @@ document.getElementById('ipv4-form').addEventListener('submit', function (event)
             resultDiv.className = 'error';
         }
     } else {
-        resultDiv.textContent = 'Erreur : Adresse IPv4 invalide. Assurez-vous de la bonne syntaxe de';
+        resultDiv.textContent = "Erreur : Adresse IPv4 invalide. Assurez-vous de la bonne syntaxe de l'IPv4.";
         resultDiv.className = 'error';
     }
 
