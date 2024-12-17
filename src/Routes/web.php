@@ -10,6 +10,7 @@ use Victor\Sae51\Controllers\ModuleController;
 use Victor\Sae51\Controllers\TraductionIPV4Controller;
 use Victor\Sae51\Controllers\PingController;
 use Victor\Sae51\Controllers\MainController;
+use Victor\Sae51\Controllers\IPv4Controller;
 
 
 $router = new AltoRouter();
@@ -22,8 +23,13 @@ $router->map('GET', '/dashboard', [MainController::class, 'dashboard'], 'dashboa
 
 // Routes de tests
 $router->map('GET', '/test', [HomeController::class, 'test'], 'test');
+
+
+// Route module_sousreseau
+
 $router->map('GET','/module_traduction', [TraductionIPV4Controller::class, 'module_traduction_get'], 'module_traduction');
 $router->map('POST','/module_traduction', [TraductionIPV4Controller::class, 'module_traduction_post'], 'module_traduction_post');
+
 $router->map('GET', '/module_sousreseau', [ModuleController::class, 'module_sousreseau'], 'module_sousreseau');
 
 $router->map('GET', '/protected', [HomeController::class, 'protected_route'], 'protected');
@@ -48,6 +54,7 @@ $router->map('GET', '/ipv6', [IPv6Controller::class, 'ipv6_convert'], 'ipv6_home
 
 // Route pour les modules Scapy
 $router->map('GET|POST', '/ping', [PingController::class, 'index']);
+
 
 
 return $router;
