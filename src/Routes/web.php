@@ -20,15 +20,13 @@ $router->map('GET', '/dashboard', [MainController::class, 'dashboard'], 'dashboa
 
 // Routes de tests
 $router->map('GET', '/test', [HomeController::class, 'test'], 'test');
-
+$router->map('GET', '/protected', [HomeController::class, 'protected_route'], 'protected');
+// Fin routes de tests
 
 // Route module_sousreseau
 $router->map('GET','/module_traduction', [TraductionIPV4Controller::class, 'module_traduction_get'], 'module_traduction');
 $router->map('POST','/module_traduction', [TraductionIPV4Controller::class, 'module_traduction_post'], 'module_traduction_post');
 $router->map('GET', '/module_sousreseau', [ModuleController::class, 'module_sousreseau'], 'module_sousreseau');
-
-$router->map('GET', '/protected', [HomeController::class, 'protected_route'], 'protected');
-// Fin routes de tests
 
 // Routes auth modules
 $router->map('GET', '/register', [AuthController::class, 'register_form'], 'register');
@@ -47,8 +45,6 @@ $router->map('GET', '/delete-user/[i:id]', [UserManagementController::class, 'de
 
 // Route pour le module IPv4
 $router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_convert'], 'ipv4_home');
-
-
 $router->map('GET', '/ipv6', [IPv6Controller::class, 'ipv6_convert'], 'ipv6_home');
 
 // Route pour les modules Scapy
