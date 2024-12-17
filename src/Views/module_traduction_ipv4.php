@@ -1,35 +1,3 @@
-<?php
-
-use Victor\Sae51\Controllers\TraductionIPV4Controller;
-
-$resultat = '';
-$formats_disponibles = [];
-$adresse_detectee = '';
-$step = 1; // Étape par défaut : détecter le format d'entrée
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $address = $_POST['address'] ?? '';
-    $step = intval($_POST['step'] ?? 1); // Détecter l'étape actuelle (1 ou 2)
-
-    $controller = new TraductionIPV4Controller();
-
-    if ($step === 1) { // détection format d'entrée
-        $adresse_detectee = $controller->detecter_format($address);
-        if ($adresse_detectee !== "Adresse invalide") {
-            $formats_disponibles = $controller->obtenir_formats_sortie($adresse_detectee);
-            $step = 2;
-        } else {
-            $resultat = "Adresse invalide !";
-        }
-    } elseif ($step === 2) { // traduire selon le choix demandé
-        $choix_format = $_POST['choix_format'] ?? '';
-        $adresse_detectee = $_POST['adresse_detectee'];
-        $resultat = $controller->script_traduction($address, $choix_format);
-        $step = 3;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Étape 1 : Entrée de l'adresse -->
     <form action="" method="POST">
         <label for="address">Adresse IPv4 à convertir :</label>
-        <input type="text" name="address" id="address" required placeholder="Ex : 192.168.1.1"/>
+        <input type="text" name="address" id="address" required placeholder="Ex : 192.168.1.30"/>
 
         <!-- Champ pour indiquer l'étape actuelle -->
         <input type="hidden" name="step" value="1"/>

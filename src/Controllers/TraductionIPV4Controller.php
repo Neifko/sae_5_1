@@ -7,15 +7,49 @@ use Victor\Sae51\Middleware\AuthMiddleware;
 
 class TraductionIPV4Controller
 {
+
+    private function azerty() : void{
+        $title = "Module de Traduction IPV4";
+        $resultat = '';
+        $formats_disponibles = [];
+        $adresse_detectee = '';
+        $step = 1; // étape par défaut : détecter le format d'entrée
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $address = $_POST['address'] ?? '';
+            $step = intval($_POST['step'] ?? 1); // détecter l'étape actuelle (1 ou 2)
+
+            $controller = new TraductionIPV4Controller();
+
+            if ($step === 1) { // détection format d'entrée
+                $adresse_detectee = $controller->detecter_format($address);
+                if ($adresse_detectee !== "Adresse invalide") {
+                    if ($adresse_detectee !== 'Format Non Unique') {
+                        $formats_disponibles = $controller->obtenir_formats_sortie($adresse_detectee);
+                    } else { // si par exemple 12.12.12.12 -> hex et dec
+                        $formats_disponibles = $controller->obtenir_formats_sortie($adresse_detectee);
+                    }
+                    $step = 2;
+                } else {
+                    $resultat = "Adresse invalide !";
+                }
+            } elseif ($step === 2) { // traduire selon le choix demandé
+                $choix_format = $_POST['choix_format'] ?? '';
+                $adresse_detectee = $_POST['adresse_detectee'];
+                $resultat = $controller->script_traduction($address, $choix_format);
+                $step = 3;
+            }
+        }
+        include __DIR__ . '/../Views/module_traduction_ipv4.php';
+    }
+
     public function module_traduction_get()
     {
-        $title = "Module de Traduction IPV4";
-        include __DIR__ . '/../Views/module_traduction_ipv4.php';
+        $this->azerty();
     }
     public function module_traduction_post()
     {
-        $title = "Module de Traduction IPV4";
-        include __DIR__ . '/../Views/module_traduction_ipv4.php';
+        $this->azerty();
     }
 
     public function script_traduction($adresse, $choix): string
@@ -49,7 +83,6 @@ class TraductionIPV4Controller
         return "Conversion impossible avec le format choisi.";
     }
 
-
     public function detecter_format($adresse): string
     {
         $adresse_split = explode('.', $adresse);
@@ -65,6 +98,7 @@ class TraductionIPV4Controller
                 return $carry && $this->is_hexadecimal($octet);
             }, true);
 
+            if ($is_dec && $is_hex) return 'Format Non Unique';
             if ($is_dec) return 'decimal';
             if ($is_bin) return 'binary';
             if ($is_hex) return 'hexadecimal';
@@ -73,16 +107,16 @@ class TraductionIPV4Controller
     }
     public function obtenir_formats_sortie($format_detecte): array
     {
-
         $formats = [
             'decimal' => 'Décimal',
             'binary' => 'Binaire',
             'hexadecimal' => 'Hexadécimal',
         ];
-        unset($formats[$format_detecte]); // Exclure le format détecté d'origine
+        if ($format_detecte !== 'Format Non Unique') {
+            unset($formats[$format_detecte]); // exclure le format détecté d'origine si 1 seul format détecté
+        }
         return $formats;
     }
-
 
     // ################ Transformation ################
     private function dec_to_bin($octet): string
