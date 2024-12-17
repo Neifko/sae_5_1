@@ -78,7 +78,7 @@
         margin-bottom: 10px;
     }
 </style>
-
+<link rel="stylesheet" href="/css/global.css">
 </head>
 
 <body>

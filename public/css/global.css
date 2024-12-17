@@ -1,0 +1,162 @@
+/* --- Base globale --- */
+:root {
+    --primary-color: #03C490;
+    --secondary-color: #06708E;
+    --accent-color: #01A98D; 
+    --light-bg: #F4EBD6; 
+    --dark-bg: #00334A; 
+    --text-color: #124660; 
+    --muted-color: #CEDDDE;
+    --highlight-color: #F2F3C1; 
+    --success-color: #8BD59E;
+    --warning-color: #F2A93B; 
+    
+    --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Poppins', sans-serif;
+    --font-code: 'Fira Code', monospace;
+  
+    --padding: 16px;
+    --border-radius: 8px;
+  }
+  
+  /* --- Global --- */
+  body {
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: var(--muted-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    margin-bottom: 0.5em;
+  }
+  
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--accent-color);
+  }
+  
+  button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: var(--font-primary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  /* --- Layout --- */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--padding);
+  }
+  
+  header {
+    background-color: var(--dark-bg);
+    color: white;
+    padding: var(--padding);
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  footer {
+    background-color: var(--dark-bg);
+    color: var(--muted-color);
+    text-align: center;
+    padding: var(--padding);
+    font-size: 0.9rem;
+  }
+  
+  /* --- Formulaires --- */
+  form {
+    background-color: white;
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--muted-color);
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* --- Tables --- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--padding);
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid var(--muted-color);
+  }
+  
+  th {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+  
+  /* --- Codes et Interfaces Techniques --- */
+  code, pre {
+    font-family: var(--font-code);
+    background-color: var(--dark-bg);
+    color: var(--highlight-color);
+    padding: 4px 8px;
+    border-radius: var(--border-radius);
+  }
+  
+  pre {
+    overflow-x: auto;
+  }
+  
+  /* --- Boutons spécifiques --- */
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--accent-color);
+  }
+  
+  .btn-danger {
+    background-color: var(--warning-color);
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: var(--accent-color);
+  }
+  

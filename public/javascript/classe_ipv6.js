@@ -95,7 +95,7 @@ document.getElementById('simplifier-button').addEventListener('click', function 
     if (verifyIPv6(ipv6)) {
         const simplified = simplifyIPv6(ipv6);
        
-        resultDiv.innerHTML = `<p> Adresse IPv6 simplifiéeeeeeeeeeeeeeeeeeeeeeeeeeeee : ${simplified}</p>`;
+        resultDiv.innerHTML = `<p> Adresse IPv6 simplifié : ${simplified}</p>`;
     } else {
         resultDiv.innerHTML = `<p> L'adresse IPv6 n'est pas valide. </p>`;
     }
