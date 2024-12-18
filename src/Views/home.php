@@ -12,7 +12,5 @@
         <li><a href="/login">Se connecter</a> </li>
     </ul>
 </div>
-
-<p><a href="/module_traduction">Module de Traduction IPV4</a></p>
 </body>
 </html>

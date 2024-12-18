@@ -9,7 +9,7 @@ class IPv6Controller
 {
     public function ipv6_convert()
     {
-        #AuthMiddleware::handle();
+        AuthMiddleware::handle();
         include __DIR__ . '/../Views/ipv6.php';
     }
 }

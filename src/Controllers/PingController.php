@@ -1,8 +1,11 @@
 <?php
 namespace Victor\Sae51\Controllers;
 
+use Victor\Sae51\Middleware\AuthMiddleware;
+
 class PingController {
     public function index() {
+        AuthMiddleware::handle();
         // Traitement du formulaire
         $pingResult = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -14,4 +14,6 @@
 
     <input type="submit" value="Créer un compte">
 </form>
+<div>
 <a href="/">Retour</a>
+</div>

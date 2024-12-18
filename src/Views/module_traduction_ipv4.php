@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title><?php echo $title; ?></title>
+    <title><?php echo htmlspecialchars($title); ?></title>
 </head>
 <body>
-<h1><?php echo $title; ?></h1>
+<h1><?php echo htmlspecialchars($title); ?></h1>
 
 <?php if ($step === 1): ?>
     <!-- Étape 1 : Entrée de l'adresse -->
@@ -49,10 +49,10 @@
 <footer>
 
     <?php if ($step === 1): ?>
-    <p><a href="/">Revenir à l'accueil</a></p>
+    <p><a href="/dashboard">Revenir à l'accueil</a></p>
     <?php else: ?>
     <p><a href="/module_traduction">Revenir en arrière</a></p>
-    <p><a href="/">Revenir à l'accueil</a></p>
+    <p><a href="/dashboard">Revenir à l'accueil</a></p>
     <?php endif; ?>
 
 </footer>

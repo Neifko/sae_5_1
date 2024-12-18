@@ -3,7 +3,7 @@
         <tr><th>Id</th><th>Nom d'utilisateur</th><th>Supprimer</th></tr>
         <?php foreach ($users as $user): ?>
 
-        <tr><td><?= $user['id'] ?></td><td><?= $user['username'] ?></td><td><a href="/delete-user/<?= $user['id'] ?>">Supprimer</a></td></tr>
+        <tr><td><?= htmlspecialchars($user['id']) ?></td><td><?= htmlspecialchars($user['username']) ?></td><td><a href="/delete-user/<?= htmlspecialchars($user['id']) ?>">Supprimer</a></td></tr>
 
         <?php endforeach; ?>
     </table>
@@ -14,4 +14,6 @@
         <?php endif; ?>
     </div>
 </div>
+<div>
 <a href="/dashboard">Retour</a>
+    </div>

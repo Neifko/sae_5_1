@@ -81,6 +81,9 @@
 </form>
 
 <div class="result" id="result"></div>
+<div>
+    <a href="/dashboard">Retour</a>
+</div>
 
 <script src="/javascript/module_sousreseau.js"></script>
 </body>

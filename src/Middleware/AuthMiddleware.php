@@ -8,7 +8,8 @@ class AuthMiddleware
 {
     public static function handle()
     {
-        if (!isset($_SESSION['user'])) {
+        //todo : RETIRER LE FALSE
+        if (!isset($_SESSION['user']) && false) {
             http_response_code(403);
             die("Accès interdit : veuillez vous connecter.");
         }
