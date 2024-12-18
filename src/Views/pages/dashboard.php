@@ -1,4 +1,6 @@
-<div>
+<link rel="stylesheet" href="./css/dashboard.css">
+<link rel="stylesheet" href="./css/global.css">
+
     <h2>Vous êtes connecté</h2>
     <ul>
         <li><a href="/logout">Se déconnecter</a> </li>
@@ -21,5 +23,3 @@
         <li><a href="/ipv6">IPv6</a> </li>
         <li><a href="/scapy">Module Scapy</a> </li>
     </ul>
-
-</div>
