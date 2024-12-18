@@ -14,7 +14,7 @@
         <button type="submit">Ping</button>
     </form>
     <div>
-        <a href="/scapy_summary">Retour</a>
+        <a href="/scapy">Retour</a>
     </div>
 
     <?php if (!empty($pingResult)): ?>

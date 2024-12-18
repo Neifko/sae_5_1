@@ -17,6 +17,10 @@
         <button type="submit">Tester</button>
     </form>
 
+    <div>
+        <a href="/scapy">Retour</a>
+    </div>
+
     <?php if (!empty($tcpResult)): ?>
         <h2>Résultat de la connexion TCP :</h2>
         <pre><?php echo htmlspecialchars($tcpResult); ?></pre>
