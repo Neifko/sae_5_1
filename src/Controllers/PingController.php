@@ -2,6 +2,7 @@
 namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\View;
 
 class PingController {
     public function index() {
@@ -30,6 +31,6 @@ class PingController {
         }
 
         // Inclure la vue pour afficher le résultat
-        include __DIR__ . '/../Views/ping.php';
+        View::render("ping", ['pingResult' => $pingResult]);
     }
 }

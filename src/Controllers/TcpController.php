@@ -1,6 +1,8 @@
 <?php
 namespace Procrastinateur\Sae51\Controllers;
 
+use Procrastinateur\Sae51\Utils\View;
+
 class TcpController {
     public function index() {
         // Initialiser la variable pour le résultat
@@ -38,6 +40,6 @@ class TcpController {
         }
 
         // Inclure la vue pour afficher le formulaire et le résultat
-        include __DIR__ . '/../Views/tcp.php';
+        View::render("tcp", ['tcpResult' => $tcpResult]);
     }
 }

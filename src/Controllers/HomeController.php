@@ -14,8 +14,7 @@ class HomeController
             Redirect::to('/dashboard');
         }
 
-//        include __DIR__ . '/../Views/home.php';
-        View::render('home');
+        View::render('home', ['ma_var' => 'gros zboub']);
     }
 
     public function test()

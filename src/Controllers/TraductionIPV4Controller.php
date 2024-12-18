@@ -3,6 +3,7 @@
 namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\View;
 
 class TraductionIPV4Controller
 {
@@ -40,7 +41,17 @@ class TraductionIPV4Controller
                 $step = 3;
             }
         }
-        include __DIR__ . '/../Views/module_traduction_ipv4.php';
+
+        $address = $address ?? 'aa';
+        View::render('module_traduction_ipv4',
+            [
+                'adresse_detectee' => $adresse_detectee,
+                'resultat' => $resultat,
+                'formats_disponibles' => $formats_disponibles,
+                'step' => $step,
+                'title' => $title,
+                'address' => $address
+            ]);
     }
 
     public function module_traduction_get()
