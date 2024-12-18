@@ -18,7 +18,7 @@ class TcpController {
                 $tcpResult = "Port invalide. Veuillez entrer un numéro entre 1 et 65535.";
             } else {
                 // Appeler le script Python
-                $command = escapeshellcmd("python3 /var/www/sae_5_1/src/Utils/python/tcp_scapy.py $ip $port");
+                $command = escapeshellcmd("python3 ".__DIR__."/../Utils/python/tcp_scapy.py $ip $port");
                 $tcpResult = shell_exec("$command 2>&1");
             }
         }
