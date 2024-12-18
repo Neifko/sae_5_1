@@ -7,6 +7,7 @@ use Victor\Sae51\Controllers\IPv6Controller;
 use Victor\Sae51\Controllers\ModuleController;
 use Victor\Sae51\Controllers\TraductionIPV4Controller;
 use Victor\Sae51\Controllers\PingController;
+use Victor\Sae51\Controllers\TcpController;
 use Victor\Sae51\Controllers\MainController;
 use Victor\Sae51\Controllers\UserManagementController;
 
@@ -49,6 +50,8 @@ $router->map('GET', '/ipv6', [IPv6Controller::class, 'ipv6_convert'], 'ipv6_home
 
 // Route pour les modules Scapy
 $router->map('GET|POST', '/ping', [PingController::class, 'index']);
+$router->map('GET|POST', '/tcp', [TcpController::class, 'index']);
+
 
 
 return $router;

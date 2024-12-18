@@ -22,7 +22,7 @@ class PingController {
 
             // Si l'IP est valide, exécuter le script Python
             if ($pingResult === '') {
-                $pingResult = shell_exec("python3 /var/www/sae_5_1/src/Utils/python/ping_scapy.py $ip 2>&1");
+                $pingResult = shell_exec("python3 ".__DIR__."/../Utils/python/ping_scapy.py $ip 2>&1");
             }
         }
 
