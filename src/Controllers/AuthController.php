@@ -5,12 +5,13 @@ namespace Procrastinateur\Sae51\Controllers;
 use Procrastinateur\Sae51\Config\Database;
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
 use Procrastinateur\Sae51\Utils\Redirect;
+use Procrastinateur\Sae51\Utils\View;
 
 class AuthController
 {
     public function register_form()
     {
-        include __DIR__ . '/../Views/register.php';
+        View::render('register');
     }
 
     public function register()
@@ -57,8 +58,7 @@ class AuthController
             Redirect::to('/dashboard');
         }
 
-        include __DIR__ . '/../Views/login.php';
-
+        View::render('login');
     }
 
 
@@ -112,7 +112,7 @@ class AuthController
             die("Accès interdit");
         }
 
-        include __DIR__ . '/../Views/profile.php';
+        View::render('profile', ['username' => $username]);
     }
 
     public function profile_update($id)

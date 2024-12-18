@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Module IPv4</title>
+
     <style>
     #result {
         margin-top: 20px;
@@ -79,9 +75,7 @@
     }
 </style>
 
-</head>
 
-<body>
     <h1>Connaitre le masque de l'IPv4</h1>
     <p>Entrez une adresse IPv4 pour connaître sa classe et son masque associé.</p>
     
@@ -97,5 +91,4 @@
     </div>
 
     <script src="/javascript/classe_ipv4.js"></script>
-</body>
-</html>
+

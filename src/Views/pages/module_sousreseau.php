@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Calculateur VLSM</title>
     <style>
         body {
@@ -57,8 +53,7 @@
             margin-bottom: 10px;
         }
     </style>
-</head>
-<body>
+
 <h1>Calculateur de sous-réseaux VLSM</h1>
 <form id="vlsmForm" method="POST">
     <!-- Formulaire avec champ IP / CIDR côte à côte -->
@@ -86,5 +81,4 @@
 </div>
 
 <script src="/javascript/module_sousreseau.js"></script>
-</body>
-</html>
+
