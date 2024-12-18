@@ -5,6 +5,33 @@ function verifyIPv6(ipv6) {
     return ipv6Regex.test(ipv6);
 }
 
+function classifyIPv6(ipv6) {
+    if (!verifyIPv6(ipv6)) {
+        return "Adresse IPv6 non valide.";
+    }
+
+    const extendedIPv6 = extendIPv6(ipv6).toUpperCase(); 
+    const simplifiedIPv6 = simplifyIPv6(ipv6).toUpperCase(); 
+
+   
+    if (extendedIPv6.startsWith("FE80:") || simplifiedIPv6.startsWith("FE80:")) {
+        return "Adresse Link-Local.";
+    }
+    const firstHexGroup = parseInt(extendedIPv6.split(":")[0], 16); 
+    if (firstHexGroup >= 0x2000 && firstHexGroup <= 0x3FFF) {
+        return "Adresse Globale.";
+    }
+
+    if (extendedIPv6.startsWith("FD") || simplifiedIPv6.startsWith("FD")) {
+        return "Adresse Locale Unique (LUA).";
+    }
+
+    return "Adresse IPv6 non classifiable (ou autre).";
+}
+
+
+
+
 function extendIPv6(ipv6) {
     const segments = ipv6.split('::');
     const left = segments[0].split(':').filter(Boolean);
@@ -95,7 +122,7 @@ document.getElementById('simplifier-button').addEventListener('click', function 
     if (verifyIPv6(ipv6)) {
         const simplified = simplifyIPv6(ipv6);
        
-        resultDiv.innerHTML = `<p> Adresse IPv6 simplifiéeeeeeeeeeeeeeeeeeeeeeeeeeeee : ${simplified}</p>`;
+        resultDiv.innerHTML = `<p> Adresse IPv6 simplifié : ${simplified}</p>`;
     } else {
         resultDiv.innerHTML = `<p> L'adresse IPv6 n'est pas valide. </p>`;
     }
@@ -115,3 +142,12 @@ document.getElementById('etendre-button').addEventListener('click', function (ev
     }
 });
 }
+
+document.getElementById('classify-button').addEventListener('click', function (event) {
+    event.preventDefault();
+    var ipv6 = document.getElementById('ipv6').value;
+    const resultDiv = document.getElementById('resultDiv');
+
+    const classification = classifyIPv6(ipv6);
+    resultDiv.innerHTML = `<p>${classification}</p>`;
+});
