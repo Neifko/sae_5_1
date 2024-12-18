@@ -83,6 +83,7 @@ function calculateSubnets() {
         const name = nameSubnet;
         const machines = parseInt(nbMachines);
 
+        console.log(nbTotHosts)
         nbTotHosts += machines;
 
         // Calculer le nombre minimal de bits nécessaires pour les hôtes
@@ -178,6 +179,7 @@ function displaySubnets(dataSubnet) {
     });
 
     resultContainer.appendChild(table);
+    nbTotHosts = 0;
 }
 
 // Fonction pour valider l'adresse IP
