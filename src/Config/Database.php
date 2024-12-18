@@ -1,6 +1,6 @@
 <?php
 
-namespace Victor\Sae51\Config;
+namespace Procrastinateur\Sae51\Config;
 
 use PDO;
 use PDOException;

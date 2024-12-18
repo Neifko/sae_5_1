@@ -1,8 +1,8 @@
 <?php
 
-namespace Victor\Sae51\Middleware;
+namespace Procrastinateur\Sae51\Middleware;
 
-use Victor\Sae51\Config\Database;
+use Procrastinateur\Sae51\Config\Database;
 
 class AuthMiddleware
 {

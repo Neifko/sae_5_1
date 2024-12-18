@@ -1,7 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
-use Victor\Sae51\Config\Database;
+use Procrastinateur\Sae51\Config\Database;
 
 // Charger les variables .env
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
