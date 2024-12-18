@@ -5,5 +5,6 @@
     <ul>
         <li><a href="/register">Se créer un compte</a> </li>
         <li><a href="/login">Se connecter</a> </li>
+        <?= $ma_var ?>
     </ul>
 </div>

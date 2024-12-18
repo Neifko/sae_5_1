@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Simplification et Extension IPv6</title>
-</head>
-<body>
+
     <h1>Simplification et Extension d'une adresse IPv6</h1>
     <form id="ipv6-form">
         <label for="ipv6">Entrez une adresse IPv6 :</label>
@@ -19,5 +13,3 @@
     </div>
 
     <script src="/javascript/classe_ipv6.js"></script>
-</body>
-</html>

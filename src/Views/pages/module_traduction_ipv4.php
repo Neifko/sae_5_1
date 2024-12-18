@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title><?php echo htmlspecialchars($title); ?></title>
-</head>
-<body>
+
 <h1><?php echo htmlspecialchars($title); ?></h1>
 
 <?php if ($step === 1): ?>
@@ -46,7 +41,7 @@
     <?php endif; ?>
 <?php endif; ?>
 
-<footer>
+<div>
 
     <?php if ($step === 1): ?>
     <p><a href="/dashboard">Revenir à l'accueil</a></p>
@@ -55,6 +50,4 @@
     <p><a href="/dashboard">Revenir à l'accueil</a></p>
     <?php endif; ?>
 
-</footer>
-</body>
-</html>
+</div>
