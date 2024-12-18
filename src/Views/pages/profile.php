@@ -1,3 +1,4 @@
+
 <div>
     <p>Vous êtes <?= htmlspecialchars($username) ?></p>
 </div>
@@ -16,6 +17,9 @@
 
     <input type="submit" value="Changer de mot de passe">
 </form>
+<div>
+    <a href="/logout">Se déconnecter</a>
+</div>
 <div>
 <a href="/dashboard">Retour</a>
 </div>
