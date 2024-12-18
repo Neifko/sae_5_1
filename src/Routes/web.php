@@ -1,15 +1,15 @@
 <?php
 
-use Victor\Sae51\Controllers\AuthController;
-use Victor\Sae51\Controllers\HomeController;
-use Victor\Sae51\Controllers\IPv4Controller;
-use Victor\Sae51\Controllers\IPv6Controller;
-use Victor\Sae51\Controllers\ModuleController;
-use Victor\Sae51\Controllers\TraductionIPV4Controller;
-use Victor\Sae51\Controllers\PingController;
-use Victor\Sae51\Controllers\TcpController;
-use Victor\Sae51\Controllers\MainController;
-use Victor\Sae51\Controllers\UserManagementController;
+use Procrastinateur\Sae51\Controllers\AuthController;
+use Procrastinateur\Sae51\Controllers\HomeController;
+use Procrastinateur\Sae51\Controllers\IPv4Controller;
+use Procrastinateur\Sae51\Controllers\IPv6Controller;
+use Procrastinateur\Sae51\Controllers\ModuleController;
+use Procrastinateur\Sae51\Controllers\TraductionIPV4Controller;
+use Procrastinateur\Sae51\Controllers\PingController;
+use Procrastinateur\Sae51\Controllers\TcpController;
+use Procrastinateur\Sae51\Controllers\MainController;
+use Procrastinateur\Sae51\Controllers\UserManagementController;
 
 $router = new AltoRouter();
 

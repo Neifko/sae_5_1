@@ -1,5 +1,5 @@
 <?php
-namespace Victor\Sae51\Controllers;
+namespace Procrastinateur\Sae51\Controllers;
 
 class TcpController {
     public function index() {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Victor\Sae51;
+namespace Procrastinateur\Sae51;
 
 use AltoRouter;
 

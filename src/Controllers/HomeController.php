@@ -1,10 +1,9 @@
 <?php
 
-namespace Victor\Sae51\Controllers;
+namespace Procrastinateur\Sae51\Controllers;
 
-use Victor\Sae51\Config\Database;
-use Victor\Sae51\Middleware\AuthMiddleware;
-use Victor\Sae51\Utils\Redirect;
+use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\Redirect;
 
 class HomeController
 {

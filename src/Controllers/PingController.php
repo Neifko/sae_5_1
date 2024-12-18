@@ -1,7 +1,7 @@
 <?php
-namespace Victor\Sae51\Controllers;
+namespace Procrastinateur\Sae51\Controllers;
 
-use Victor\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Middleware\AuthMiddleware;
 
 class PingController {
     public function index() {

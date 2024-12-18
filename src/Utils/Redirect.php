@@ -1,6 +1,6 @@
 <?php
 
-namespace Victor\Sae51\Utils;
+namespace Procrastinateur\Sae51\Utils;
 
 class Redirect {
     public static function to(string $route) {
