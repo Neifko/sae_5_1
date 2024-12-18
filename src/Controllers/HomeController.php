@@ -4,6 +4,7 @@ namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
 use Procrastinateur\Sae51\Utils\Redirect;
+use Procrastinateur\Sae51\Utils\View;
 
 class HomeController
 {
@@ -13,7 +14,8 @@ class HomeController
             Redirect::to('/dashboard');
         }
 
-        include __DIR__ . '/../Views/home.php';
+//        include __DIR__ . '/../Views/home.php';
+        View::render('home');
     }
 
     public function test()
