@@ -1,27 +1,25 @@
-from scapy.all import IP, TCP, ICMP, sr1, send
+from scapy.all import IP, TCP, sr1
 import socket
 import sys
+import time
 
-def validate_ip(ip):
-    """Valide si l'IP est une adresse IPv4 valide."""
+def tcp_latency(ip, port):
+    """Teste la latence (connexion TCP) vers l'IP cible et le port."""
     try:
-        socket.inet_aton(ip)
-        return True
-    except:
-        return False
+        start_time = time.time()  # Enregistrement du temps de départ
+        # Crée un paquet SYN pour initier la connexion
+        syn_packet = IP(dst=ip) / TCP(dport=port, flags="S")
+        response = sr1(syn_packet, verbose=False, timeout=2)
 
-def is_private_ip(ip):
-    """Détermine si une adresse IP est privée."""
-    private_ranges = [
-        ('10.0.0.0', '10.255.255.255'),
-        ('172.16.0.0', '172.31.255.255'),
-        ('192.168.0.0', '192.168.255.255')
-    ]
-    ip_as_int = int.from_bytes(socket.inet_aton(ip), 'big')
-    for start, end in private_ranges:
-        if int.from_bytes(socket.inet_aton(start), 'big') <= ip_as_int <= int.from_bytes(socket.inet_aton(end), 'big'):
-            return True
-    return False
+        if response and response.haslayer(TCP):
+            # Si la réponse contient un flag "SA" (SYN-ACK), cela signifie que le port est ouvert
+            end_time = time.time()  # Enregistrement du temps de fin
+            latency = (end_time - start_time) * 1000  # Latence en millisecondes
+            return f"{latency:.2f} ms"
+        else:
+            return "Aucune réponse (timeout ou filtré)"
+    except Exception as e:
+        return f"Erreur : {e}"
 
 def get_hostname(ip):
     """Essaye de résoudre le nom d'hôte de l'adresse IP."""
@@ -30,69 +28,56 @@ def get_hostname(ip):
     except:
         return "Inconnu"
 
-def ping_latency(ip):
-    """Teste la latence (ping ICMP) vers l'IP cible."""
+def resolve_ip(target):
+    """Résout un nom de domaine en adresse IP si nécessaire."""
     try:
-        icmp_packet = IP(dst=ip) / ICMP()
-        response = sr1(icmp_packet, verbose=False)
-        if response:
-            return f"{response.time * 1000:.2f} ms"
-        else:
-            return "Aucune réponse (timeout)"
-    except:
-        return "Ping échoué"
+        # Si c'est un nom de domaine, le résoudre en IP
+        ip = socket.gethostbyname(target)
+        return ip
+    except socket.gaierror:
+        return None  # L'adresse IP n'a pas pu être résolue
 
-def create_tcp_connection(target_ip, target_port):
-    """Teste une connexion TCP sur une IP et un port donnés."""
-    if not validate_ip(target_ip):
-        return f"Erreur : {target_ip} n'est pas une adresse IP valide."
-    
-    if target_port < 1 or target_port > 65535:
-        return f"Erreur : {target_port} n'est pas un port valide. (Doit être entre 1 et 65535)"
-    
+def is_valid_ip(ip):
+    """Vérifie si l'adresse est une adresse IP valide."""
     try:
-        # Crée un paquet SYN
-        syn_packet = IP(dst=target_ip) / TCP(dport=target_port, flags="S")
-        # Envoie le paquet et reçoit une réponse
-        response = sr1(syn_packet, verbose=False)
-        
-        if response and response.haslayer(TCP):
-            if response[TCP].flags == "SA":
-                # Envoie un ACK pour établir la connexion (optionnel)
-                ack_packet = IP(dst=target_ip) / TCP(dport=target_port, flags="A", seq=response.ack, ack=response.seq + 1)
-                send(ack_packet, verbose=False)
-                return f"Port ouvert : Connexion réussie et établie sur {target_ip}:{target_port}"
-            else:
-                return f"Port fermé ou filtré sur {target_ip}:{target_port}"
-        else:
-            return f"Aucune réponse de {target_ip}:{target_port} (timeout ou filtré)"
-    except Exception as e:
-        return f"Erreur : {e}"
+        socket.inet_aton(ip)  # Vérifie si c'est une IP valide
+        return True
+    except socket.error:
+        return False
 
 if __name__ == "__main__":
+    # Vérification des arguments (IP ou domaine et port doivent être passés en arguments)
     if len(sys.argv) != 3:
-        print("Usage: python tcp_connect.py <IP cible> <Port cible>")
+        print("Erreur : Usage: python scapy_tcp.py <IP cible ou domaine> <Port cible>")
         sys.exit(1)
 
-    target_ip = sys.argv[1]
+    target = sys.argv[1]  # IP ou nom d'hôte
     try:
         target_port = int(sys.argv[2])
     except ValueError:
-        print("Erreur : Le port doit être un entier.")
+        print("Erreur : Le port doit être un entier valide.")
         sys.exit(1)
-    
-    # Validation de l'adresse IP
-    if not validate_ip(target_ip):
-        print(f"Erreur : {target_ip} n'est pas une adresse IP valide.")
-        sys.exit(1)
-    
-    # Informations sur l'adresse IP
-    print(f"Adresse cible : {target_ip}")
-    print(f"Port cible : {target_port}")
-    print(f"Type d'adresse : {'Privée' if is_private_ip(target_ip) else 'Publique'}")
-    print(f"Nom d'hôte : {get_hostname(target_ip)}")
-    print(f"Latence (ping) : {ping_latency(target_ip)}")
-    
-    # Test de connexion TCP
-    result = create_tcp_connection(target_ip, target_port)
-    print(result)
+
+    # Résoudre l'IP si l'entrée est un nom de domaine
+    if is_valid_ip(target):  # Si c'est déjà une IP
+        target_ip = target
+    else:
+        target_ip = resolve_ip(target)  # Résoudre le domaine en IP
+        if not target_ip:
+            print("Erreur : Impossible de résoudre l'hôte en adresse IP.")
+            sys.exit(1)
+
+    # Test de la latence (connexion TCP)
+    latency = tcp_latency(target_ip, target_port)
+
+    # Vérification si une réponse a été reçue
+    if "Aucune réponse" not in latency:
+        print("Connexion réussie")
+        print(f"Adresse IP : {target_ip}:{target_port}")
+        print(f"Nom d'Hôte : {get_hostname(target_ip)}")
+        print(f"Latence : {latency}")
+    else:
+        print("Aucune réponse")
+        print(f"Adresse IP : {target_ip}:{target_port}")
+        print(f"Nom d'Hôte : {get_hostname(target_ip)}")
+        print(f"Latence : {latency}")
