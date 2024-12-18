@@ -1,0 +1,26 @@
+/* Style pour le header */
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #04c490;
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header div img {
+    height: 50px;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+.header div h1 {
+    font-size: 30px;
+    margin: 0;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: center;
+}
+
+
