@@ -18,7 +18,7 @@
 <hr>
 
 <div class="imgAccueil">
-    <img src="./images/imageAccueil1.jpg" alt="images">
+    <img src="./images/imageAccueil.jpg" alt="images">
 
 </div>
 
