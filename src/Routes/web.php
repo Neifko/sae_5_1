@@ -8,6 +8,7 @@ use Procrastinateur\Sae51\Controllers\ModuleController;
 use Procrastinateur\Sae51\Controllers\TraductionIPV4Controller;
 use Procrastinateur\Sae51\Controllers\PingController;
 use Procrastinateur\Sae51\Controllers\TcpController;
+use Procrastinateur\Sae51\Controllers\NetworkController;
 use Procrastinateur\Sae51\Controllers\MainController;
 use Procrastinateur\Sae51\Controllers\UserManagementController;
 
@@ -53,6 +54,8 @@ $router->map('GET', '/scapy', [MainController::class, 'scapy_summary']);
 $router->map('GET|POST', '/ping', [PingController::class, 'index']);
 $router->map('GET|POST', '/tcp', [TcpController::class, 'index']);
 
+$router->map('GET', '/network', [NetworkController::class, 'index']);
+$router->map('GET', '/network/update', [NetworkController::class, 'update']);
 
 // Fin des routes du modules Scapy
 
