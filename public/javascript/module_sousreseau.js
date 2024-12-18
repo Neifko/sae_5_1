@@ -80,7 +80,7 @@ function calculateSubnets() {
         const nbMachines = tableCroissant[i].machines;
 
         if (!nameSubnet || isNaN(nbMachines) || parseInt(nbMachines) <= 0) {
-            window.alert(`Nombre de machines invalide pour le sous-réseau ${i}`);
+            window.alert(`Nombre de machines invalide pour le sous-réseau ${i + 1}`);
             return;
         }
 
