@@ -92,6 +92,9 @@
     </form>
 
     <div id="result"></div>
+    <div>
+        <a href="/dashboard">Retour</a>
+    </div>
 
     <script src="/javascript/classe_ipv4.js"></script>
 </body>

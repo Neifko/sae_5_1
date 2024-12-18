@@ -49,9 +49,12 @@ $router->map('GET', '/ipv4', [IPv4Controller::class, 'ipv4_convert'], 'ipv4_home
 $router->map('GET', '/ipv6', [IPv6Controller::class, 'ipv6_convert'], 'ipv6_home');
 
 // Route pour les modules Scapy
+$router->map('GET', '/scapy', [MainController::class, 'scapy_summary']);
 $router->map('GET|POST', '/ping', [PingController::class, 'index']);
 $router->map('GET|POST', '/tcp', [TcpController::class, 'index']);
 
+
+// Fin des routes du modules Scapy
 
 
 return $router;

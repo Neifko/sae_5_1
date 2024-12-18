@@ -9,6 +9,7 @@ class TraductionIPV4Controller
 {
 
     private function traduction_ipv4_view() : void{
+        AuthMiddleware::handle();
         $title = "Module de Traduction IPV4";
         $resultat = '';
         $formats_disponibles = [];

@@ -16,4 +16,6 @@
 
     <input type="submit" value="Changer de mot de passe">
 </form>
+<div>
 <a href="/dashboard">Retour</a>
+</div>

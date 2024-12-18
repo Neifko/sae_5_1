@@ -14,4 +14,10 @@ class MainController
 
         include __DIR__ . "/../Views/dashboard.php";
     }
+
+    public function scapy_summary()
+    {
+        AuthMiddleware::handle();
+        include __DIR__ . "/../Views/scapy_summary.php";
+    }
 }

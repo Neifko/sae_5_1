@@ -13,6 +13,9 @@
         <input type="text" id="host" name="host" placeholder="www.free.fr" required>
         <button type="submit">Ping</button>
     </form>
+    <div>
+        <a href="/scapy_summary">Retour</a>
+    </div>
 
     <?php if (!empty($pingResult)): ?>
         <h2>Résultat du ping :</h2>
