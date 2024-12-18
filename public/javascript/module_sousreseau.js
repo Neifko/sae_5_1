@@ -1,4 +1,6 @@
 let nbTotHosts = 0;
+let totalHostsAvailable = 0;
+let verifHosts = true;
 
 function applySubnets() {
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
@@ -44,6 +46,8 @@ function applySubnets() {
 function calculateSubnets() {
     const ip_address = document.getElementById('ip_address').value.trim();
     const cidr = document.getElementById('cidr').value.trim();
+
+    calculateTotalHosts(cidr);
 
     if (!validateIP(ip_address)) {
         window.alert("Adresse IP invalide");
@@ -93,7 +97,7 @@ function calculateSubnets() {
         const hostsAvailable = Math.pow(2,calculateBitsNeeded(machines)) - 2;
 
         if (machines > hostsAvailable) {
-            window.alert(`Le sous-réseau ${i} ne peut pas contenir autant de machines. Hôtes disponibles : ${hostsAvailable}`);
+            window.alert(`Le sous-réseau ${nameSubnet}  ne peut pas contenir autant de machines. Hôtes disponibles : ${hostsAvailable}`);
             return;
         }
 
@@ -126,6 +130,10 @@ function calculateSubnets() {
         networkBinary = nextNetworkDecimal.toString(2).padStart(32, '0'); // Nouvelle adresse réseau en binaire
     }
 
+    if (nbTotHosts > totalHostsAvailable){
+        verifHosts = false;
+    }
+
     displaySubnets(dataSubnet);
 }
 
@@ -138,12 +146,27 @@ function displaySubnets(dataSubnet) {
     // Créer un tableau pour afficher les résultats
     const table = document.createElement('table');
 
-    // Ajouter une ligne pour le nombre total d'hôtes
-    const totalRow = document.createElement('tr');
-    totalRow.innerHTML = `
-        <td colspan="9"><strong>Nombre total de machines : ${nbTotHosts}</strong></td>
+    // Ajouter une ligne pour le nombre total de machines disponibles sur le réseau
+    const totalHostsRow = document.createElement('tr');
+    totalHostsRow.innerHTML = `
+        <td colspan="9"><strong>Nombre total de machines disponibles sur le réseau : ${totalHostsAvailable}</strong></td>
     `;
-    table.appendChild(totalRow);
+    table.appendChild(totalHostsRow);
+
+    // Ajouter une ligne pour le nombre total de machines demandées
+    const totalRequestedRow = document.createElement('tr');
+    totalRequestedRow.innerHTML = `
+        <td colspan="9"><strong>Nombre total de machines demandées : ${nbTotHosts}</strong></td>
+    `;
+    table.appendChild(totalRequestedRow);
+
+    if (verifHosts === false){
+        const totalRequestedRow = document.createElement('tr');
+        totalRequestedRow.innerHTML = `
+        <td colspan="9"><strong>Les nombres de machines entrés ne sont pas adaptés à ce réseau. Voici une solution possible : </strong></td>
+    `;
+        table.appendChild(totalRequestedRow);
+    }
 
     // Ajouter les autres colonnes du tableau
     table.innerHTML += `
@@ -179,6 +202,7 @@ function displaySubnets(dataSubnet) {
 
     resultContainer.appendChild(table);
     nbTotHosts = 0;
+    totalHostsAvailable = 0;
 }
 
 // Fonction pour valider l'adresse IP
@@ -255,9 +279,17 @@ function getUsableRange(networkBinary, broadcastBinary) {
 }
 
 function calculateBitsNeeded(machines){
-    let i = 1;
-    while (Math.pow(2, i) < machines+2){
+    let i = 0;
+    let cumul = 0;
+    while (cumul < machines + 2){
+        cumul += Math.pow(2, i);
+        console.log(cumul + " " + i);
         i++;
     }
     return i;
+}
+
+function calculateTotalHosts(cidr) {
+    const bitsForHosts = 32 - parseInt(cidr, 10); // Bits pour les hôtes
+    totalHostsAvailable = Math.pow(2, bitsForHosts) - 2; // 2^bits - 2
 }
