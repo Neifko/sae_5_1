@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="./css/index.css">
-<link rel="stylesheet" href="./css/global.css">
+<link rel="stylesheet" href="/css/index.css">
 <title>Application Web Pédagogique</title>
 
 <p class="login_signin">
