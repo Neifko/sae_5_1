@@ -5,6 +5,6 @@
         <li><a href="/tcp">Module TCP</a> </li>
     </ul>
     <div>
-        <a href="/dahsboard">Retour</a>
+        <a href="/dashboard">Retour</a>
     </div>
 </div>
