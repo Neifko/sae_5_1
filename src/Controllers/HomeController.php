@@ -14,7 +14,7 @@ class HomeController
             Redirect::to('/dashboard');
         }
 
-        View::render('home', ['ma_var' => 'gros zboub']);
+        View::render('home');
     }
 
     public function test()
