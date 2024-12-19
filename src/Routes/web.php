@@ -58,7 +58,7 @@ $router->map('GET|POST', '/tcp', [TcpController::class, 'index']);
 $router->map('GET', '/network', [NetworkController::class, 'index']);
 $router->map('GET', '/network/update', [NetworkController::class, 'update']);
 
-$router->map('POST', '/ethernet', [EthernetController::class, 'index']);
+$router->map('GET|POST', '/ethernet', [EthernetController::class, 'index']);
 
 // Fin des routes du modules Scapy
 
