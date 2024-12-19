@@ -5,55 +5,90 @@ function verifyIPv6(ipv6) {
     return ipv6Regex.test(ipv6);
 }
 
+function containsIPv4(ipv6) {
+    const ipv4InIPv6Regex = /::(?:[fF]{4}:)?((25[0-5]|(2[0-4][0-9])|(1[0-9][0-9])|([1-9]?[0-9]))\.){3}(25[0-5]|(2[0-4][0-9])|(1[0-9][0-9])|([1-9]?[0-9]))$/;
+    return ipv4InIPv6Regex.test(ipv6);
+}
+
 function classifyIPv6(ipv6) {
     if (!verifyIPv6(ipv6)) {
         return "Adresse IPv6 non valide.";
     }
 
-    const extendedIPv6 = extendIPv6(ipv6).toUpperCase(); 
-    const simplifiedIPv6 = simplifyIPv6(ipv6).toUpperCase(); 
+    let classifications = "";
 
-   
-    if (extendedIPv6.startsWith("FE80:") || simplifiedIPv6.startsWith("FE80:")) {
-        return "Adresse Link-Local.";
+    if (containsIPv4(ipv6)) {
+        classifications += "Adresse IPv6 contenant une adresse IPv4 intégrée. ";
+        const ipv4 = ipv6.split(":").pop();
+        classifications += `Adresse IPv4 : ${ipv4}. `;
     }
-    const firstHexGroup = parseInt(extendedIPv6.split(":")[0], 16); 
+
+    const extendedIPv6 = extendIPv6(ipv6).extendedIPv6.toUpperCase();
+    const simplifiedIPv6 = simplifyIPv6(ipv6).simplifiedIPv6.toUpperCase();
+
+    if (extendedIPv6.startsWith("FE80:") || simplifiedIPv6.startsWith("FE80:")) {
+        classifications += "Adresse IPv6 Link-Local. ";
+    }
+
+    const firstHexGroup = parseInt(extendedIPv6.split(":")[0], 16);
     if (firstHexGroup >= 0x2000 && firstHexGroup <= 0x3FFF) {
-        return "Adresse Globale.";
+        classifications += "Adresse IPv6 Globale. ";
     }
 
     if (extendedIPv6.startsWith("FD") || simplifiedIPv6.startsWith("FD")) {
-        return "Adresse Locale Unique (LUA).";
+        classifications += "Adresse IPv6 Locale Unique (LUA). ";
     }
 
-    return "Adresse IPv6 non classifiable (ou autre).";
+    if (!classifications) {
+        classifications = "Adresse IPv6 non classifiable (ou autre).";
+    }
+
+    return classifications.trim();
 }
-
-
 
 
 function extendIPv6(ipv6) {
+    let classification = "";
+
+    let ipv4Part = "";
+    if (containsIPv4(ipv6)) {
+        classification += "Adresse IPv6 contenant une adresse IPv4 intégrée. ";
+        ipv4Part = ipv6.split(":").pop(); 
+        classification += `Adresse IPv4 : ${ipv4Part}. `;
+    }
+
     const segments = ipv6.split('::');
     const left = segments[0].split(':').filter(Boolean);
     const right = segments[1] ? segments[1].split(':').filter(Boolean) : [];
-    const missing = 8 - (left.length + right.length);
+
+    let missing = 8 - (left.length + right.length);
+    if (ipv4Part) {
+        missing +=1;
+    }
+
     const fullAddress = [...left, ...Array(missing).fill('0000'), ...right];
-    return fullAddress.map(segment => segment.padStart(4, '0')).join(':');
+
+    let extendedIPv6 = fullAddress.map(segment => segment.padStart(4, '0')).join(':');
+
+    if (ipv4Part && !ipv6.endsWith(ipv4Part)) {
+        extendedIPv6 += `:${ipv4Part}`;
+    }
+
+    return { extendedIPv6, classification };  
 }
 
+
+
 function simplifyIPv6(ipv6) {
-    const segments = ipv6.split(':').map(segment => segment.replace(/^0+/, '') || '0');
+    let classification = "";
 
-    // gestion si l'adresse deja simplifié 
-    const originalSegments = ipv6.split(':');
-    let isSimplified = true;
-
-    for (let i = 0; i < originalSegments.length; i++) {
-        if (originalSegments[i] !== segments[i] && originalSegments[i] !== '' && segments[i] !== '0') {
-            isSimplified = false;
-            break;
-        }
+    if (containsIPv4(ipv6)) {
+        classification += "Adresse IPv6 contenant une adresse IPv4 intégrée. ";
+        const ipv4 = ipv6.split(":").pop();  // Prend la partie IPv4
+        classification += `Adresse IPv4 : ${ipv4}. `;
     }
+
+    const segments = ipv6.split(':').map(segment => segment.replace(/^0+/, '') || '0');
 
     let bestStart = -1, bestLength = 0, currentStart = -1, currentLength = 0;
 
@@ -81,11 +116,9 @@ function simplifyIPv6(ipv6) {
     }
 
     let simplifiedIPv6 = segments.join(':');
+    simplifiedIPv6 = simplifiedIPv6.replace(/(:{2,})/, '::');  
 
-    // gestion remplacer la séquence de "00" par "::"
-    simplifiedIPv6 = simplifiedIPv6.replace(/(:{2,})/, '::');  // Remplacer la séquence de "00" par "::"
-
-    // gestion de commence ou se termine par ::
+    // Gestion des cas où l'adresse commence ou finit par "::"
     if (simplifiedIPv6.startsWith(':')) {
         simplifiedIPv6 = '::' + simplifiedIPv6.substring(1);
     }
@@ -93,12 +126,11 @@ function simplifyIPv6(ipv6) {
         simplifiedIPv6 = simplifiedIPv6.substring(0, simplifiedIPv6.length - 1) + '::';
     }
 
-    // gestion de que des 0 
     if (simplifiedIPv6 === '') {
         simplifiedIPv6 = '::';
     }
 
-    // gestion de ::
+    // Si l'adresse initiale contient "::", on traite les deux parties avant et après "::"
     if (ipv6.includes("::")) {
         let [beforeDoubleColon, afterDoubleColon] = ipv6.split("::");
         if (beforeDoubleColon) {
@@ -107,47 +139,51 @@ function simplifyIPv6(ipv6) {
         if (afterDoubleColon) {
             afterDoubleColon = afterDoubleColon.split(':').map(segment => segment.replace(/^0+/, '') || '0').join(':');
         }
-        return beforeDoubleColon + "::" + afterDoubleColon;
+        return { simplifiedIPv6: beforeDoubleColon + "::" + afterDoubleColon, classification };
     }
 
-    return simplifiedIPv6;
+    return { simplifiedIPv6, classification };
 }
+
+
 
 function init(){
-document.getElementById('simplifier-button').addEventListener('click', function (event) {
-    event.preventDefault();
-    var ipv6 = document.getElementById('ipv6').value;
-    const resultDiv = document.getElementById('resultDiv');
+    document.getElementById('simplifier-button').addEventListener('click', function (event) {
+        event.preventDefault();
+        var ipv6 = document.getElementById('ipv6').value;
+        const resultDiv = document.getElementById('resultDiv');
+    
+        if (verifyIPv6(ipv6)) {
+            const { simplifiedIPv6, classification } = simplifyIPv6(ipv6);
+            resultDiv.innerHTML = `<p>Adresse IPv6 simplifiée : ${simplifiedIPv6}</p><p>${classification}</p>`;
+        } else {
+            resultDiv.innerHTML = `<p>L'adresse IPv6 n'est pas valide. </p>`;
+        }
+    });
+    
 
-    if (verifyIPv6(ipv6)) {
-        const simplified = simplifyIPv6(ipv6);
-       
-        resultDiv.innerHTML = `<p> Adresse IPv6 simplifié : ${simplified}</p>`;
-    } else {
-        resultDiv.innerHTML = `<p> L'adresse IPv6 n'est pas valide. </p>`;
-    }
-});
+    document.getElementById('etendre-button').addEventListener('click', function (event) {
+        event.preventDefault();
+        var ipv6 = document.getElementById('ipv6').value;
+        const resultDiv = document.getElementById('resultDiv');
 
-document.getElementById('etendre-button').addEventListener('click', function (event) {
-    event.preventDefault();
-    var ipv6 = document.getElementById('ipv6').value;
-    const resultDiv = document.getElementById('resultDiv');
+        if (verifyIPv6(ipv6)) {
+            const { extendedIPv6, classification } = extendIPv6(ipv6);
+            resultDiv.innerHTML = `<p>Adresse IPv6 étendue : ${extendedIPv6}</p><p>${classification}</p>`;
+        } else {
+            resultDiv.innerHTML = `<p>L'adresse IPv6 n'est pas valide. </p>`;
+        }
+    });
 
-    if (verifyIPv6(ipv6)) {
-        const extended = extendIPv6(ipv6);
+    document.getElementById('classify-button').addEventListener('click', function (event) {
+        event.preventDefault();
+        var ipv6 = document.getElementById('ipv6').value;
+        const resultDiv = document.getElementById('resultDiv');
 
-        resultDiv.innerHTML = `<p> Adresse IPv6 étendue : ${extended}</p>`;
-    } else {
-        resultDiv.innerHTML = `<p> L'adresse IPv6 n'est pas valide. </p>`;
-    }
-});
+        const classifications = classifyIPv6(ipv6);
+        resultDiv.innerHTML = `<p>${classifications}</p>`;
+    });
 }
 
-document.getElementById('classify-button').addEventListener('click', function (event) {
-    event.preventDefault();
-    var ipv6 = document.getElementById('ipv6').value;
-    const resultDiv = document.getElementById('resultDiv');
+window.onload = init;
 
-    const classification = classifyIPv6(ipv6);
-    resultDiv.innerHTML = `<p>${classification}</p>`;
-});
