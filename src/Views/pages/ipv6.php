@@ -102,9 +102,7 @@
     </form>
     
     <div id="resultDiv"></div>
-    <div>
-        <a href="/dashboard">Retour</a>
-    </div>
+
 
     <script src="/javascript/classe_ipv6.js"></script>
 </body>
