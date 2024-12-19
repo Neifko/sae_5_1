@@ -5,6 +5,7 @@ namespace Procrastinateur\Sae51\Controllers;
 use Procrastinateur\Sae51\Config\Database;
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
 use Procrastinateur\Sae51\Utils\Redirect;
+use Procrastinateur\Sae51\Utils\View;
 
 class UserManagementController
 {
@@ -13,7 +14,7 @@ class UserManagementController
         AuthMiddleware::isAdmin();
         $db = Database::getInstance();
         $users = $db->query("SELECT * FROM users");
-        include __DIR__ . "/../Views/list_users.php";
+        View::render('list_users', ['users' => $users]);
     }
 
     public function delete_user($id)

@@ -3,12 +3,13 @@
 namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\View;
 
 class IPv6Controller
 {
     public function ipv6_convert()
     {
         AuthMiddleware::handle();
-        include __DIR__ . '/../Views/ipv6.php';
+        View::render('ipv6');
     }
 }
