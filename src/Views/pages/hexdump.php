@@ -7,7 +7,7 @@
 
 <?php if (isset($result)): ?>
     <h2>Résultat</h2>
-    <pre><?= htmlspecialchars($result) ?></pre>
+    <pre><?= htmlspecialchars(json_encode($result, JSON_PRETTY_PRINT)) ?></pre>
 <?php endif; ?>
 
 <form method="post" action="/hexdump/process">
@@ -23,7 +23,6 @@
 
     <br><br>
 
-    <!-- Formulaire dynamique -->
     <div id="capture" class="action-form" style="display: none;">
         <label for="interface">Interface réseau :</label>
         <input type="text" name="interface" id="interface">
@@ -59,7 +58,6 @@
         }
     }
 
-    // Si une action est déjà sélectionnée
     <?php if (isset($selected_action)): ?>
     toggleForm('<?= $selected_action ?>');
     <?php endif; ?>

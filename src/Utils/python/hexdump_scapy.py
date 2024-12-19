@@ -5,7 +5,7 @@ import json
 import sys
 import os
 
-hexdump_dir = os.path.join(os.getcwd(), '..', '..', 'Views', 'data', 'hexdumpFiles')
+hexdump_dir = os.path.join(os.getcwd(), '..', 'Views', 'data', 'hexdumpFiles')
 
 def output_json(data, name):
     """
