@@ -16,5 +16,12 @@
     <div>
         <h1>Application Web Pédagogique</h1>
     </div>
+    <?php if (!preg_match('/^(\/|\/dashboard)$/', $_SERVER['REQUEST_URI'])): ?>
+        <div id="boutonRetourHeader">
+            <button>
+                <a href="/">Retour</a>
+            </button>
+        </div>
+    <?php endif; ?>
 </div>
 <hr>

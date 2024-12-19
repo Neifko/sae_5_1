@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto;
+    justify-content: space-between;
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
@@ -110,6 +111,18 @@
         width: 50px;
         height: 50px;
     }
+}
+
+.left-column {
+    flex: 0 0 auto; /* La colonne gauche garde sa taille initiale */
+    display: flex;
+    flex-direction: column; /* Pour empiler les éléments si besoin */
+    align-items: center; /* Centrer le contenu horizontalement */
+    padding-top: 10%;
+}
+
+.right-column {
+    flex: 1; /* La colonne droite prend le reste de l'espace */
 }
 
 /* Modules Grid */

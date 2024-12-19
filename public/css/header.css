@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #04c490;
+    background-color: var(--primary-color);
     color: white;
     padding: 15px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -23,4 +23,29 @@
     text-align: center;
 }
 
+#boutonRetourHeader {
+    button {
+        background-color: white; /* Fond blanc par défaut */
+        color: var(--primary-color); /* Couleur du texte par défaut */
+        border: none; /* Supprime les bordures */
+        padding: 10px 20px; /* Espacement interne */
+        font-family: sans-serif; /* Police */
+        font-size: medium; /* Taille du texte */
+        border-radius: var(--border-radius); /* Coins arrondis */
+        cursor: pointer; /* Curseur de type "main" */
+        transition: background-color 0.3s, color 0.3s; /* Animation fluide */
+    }
+
+    button a {
+        text-decoration: none; /* Supprime le soulignement */
+        color: inherit; /* Hérite de la couleur du bouton */
+        display: block; /* Le lien occupe tout l'espace du bouton */
+    }
+
+    /* Styles au survol */
+    button:hover {
+        background-color: white; /* Fond de la couleur primaire */
+        color: var(--primary-color); /* Texte blanc pour contraste */
+    }
+}
 

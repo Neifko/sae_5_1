@@ -1,6 +1,6 @@
 
 <div>
-    <p>Vous êtes <?= htmlspecialchars($username) ?></p>
+    <p style="color: white">Vous êtes <?= htmlspecialchars($username) ?></p>
 </div>
 <form action="" method="post">
     <label for="old-password">Ancien mot de passe</label>
@@ -18,8 +18,12 @@
     <input type="submit" value="Changer de mot de passe">
 </form>
 <div>
-    <a href="/logout">Se déconnecter</a>
+    <p>
+        <a href="/logout">Se déconnecter</a>
+    </p>
 </div>
 <div>
-<a href="/dashboard">Retour</a>
+    <p>
+        <a href="/dashboard">Retour</a>
+    </p>
 </div>

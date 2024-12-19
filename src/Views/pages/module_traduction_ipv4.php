@@ -32,7 +32,7 @@
         <input type="submit" value="Convertir"/>
     </form>
 
-
+<div>
 <?php elseif ($step === 3): ?>
     <!-- Résultat -->
     <?php if (!empty($resultat)): ?>
@@ -40,14 +40,11 @@
                 :<br></strong> <?php echo htmlspecialchars($resultat); ?></p>
     <?php endif; ?>
 <?php endif; ?>
-
+</div>
 <div>
 
-    <?php if ($step === 1): ?>
-    <p><a href="/dashboard">Revenir à l'accueil</a></p>
-    <?php else: ?>
+    <?php if ($step !== 1): ?>
     <p><a href="/module_traduction">Revenir en arrière</a></p>
-    <p><a href="/dashboard">Revenir à l'accueil</a></p>
     <?php endif; ?>
 
 </div>
