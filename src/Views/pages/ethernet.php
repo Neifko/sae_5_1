@@ -1,52 +1,80 @@
 <?php
-// Détection de l'adresse MAC du serveur
-$server_ip = $_SERVER['SERVER_ADDR'];
-$server_mac = exec("arp -n | grep $server_ip | awk '{print $3}'"); // Commande pour récupérer l'adresse MAC sur un système Unix/Linux
+function getServerMacAddress() {
+    $mac_address = null;
+
+    if (stristr(PHP_OS, 'WIN')) {
+        // Commande pour Windows
+        $output = [];
+        exec('getmac', $output);
+        foreach ($output as $line) {
+            if (preg_match('/([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}/', $line, $matches)) {
+                $mac_address = $matches[0]; // Prend la première adresse MAC trouvée
+                break;
+            }
+        }
+    } else {
+        // Commande pour Linux/Unix
+        $output = [];
+        exec("ip addr show", $output);
+        foreach ($output as $line) {
+            if (preg_match('/link\/ether ([A-Fa-f0-9:]{17})/', $line, $matches)) {
+                $mac_address = $matches[1]; // Prend la première adresse MAC trouvée
+                break;
+            }
+        }
+    }
+
+    return $mac_address ?? 'Adresse MAC introuvable';
+}
+
+// Exemple d'utilisation
+$server_mac = getServerMacAddress();
 ?>
 <h1>Créer une trame Ethernet</h1>
     <form action="" method="post">
         <div class="field">
-            <label for="preamble">5.1 – Préambule</label>
-            <input type="text" id="preamble" name="preamble" value="10101010" required>
+            <label for="preamble">Préambule</label>
+            <input type="text" id="preamble" name="preamble" value="10101010101010101010101010101010101010101010101010101010" required pattern="^(10101010){7}$" title="Le préambule doit être composé de 7 octets (10101010 répété 7 fois).">
             <p class="description">7 octets - Synchronisation de l’envoi. Chaque octet vaut 10101010.</p>
         </div>
         <div class="field">
-            <label for="sfd">5.2 – SFD</label>
-            <input type="text" id="sfd" name="sfd" value="10101011" required>
+            <label for="sfd">SFD</label>
+            <input type="text" id="sfd" name="sfd" value="10101011" required pattern="^10101011$" title="Le SFD doit être exactement égal à 10101011 (1 octet).">
             <p class="description">1 octet - Indique que le début de la trame va commencer.</p>
         </div>
         <div class="field">
-            <label for="dst_mac">5.3 – Adresse destination</label>
-            <input type="text" id="dst_mac" name="dst_mac" value="FF-FF-FF-FF-FF-FF" required>
+            <label for="dst_mac">Adresse destination</label>
+            <input type="text" id="dst_mac" name="dst_mac" value="FF-FF-FF-FF-FF-FF" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$" title="L'adresse MAC doit être au format XX-XX-XX-XX-XX-XX où X est une valeur hexadécimale.">
             <p class="description">6 octets - Adresse MAC du destinataire ou adresse de broadcast.</p>
         </div>
         <div class="field">
-            <label for="src_mac">5.4 – Adresse source</label>
-            <input type="text" id="src_mac" name="src_mac" value="<?php echo $server_mac; ?>" readonly required>
+            <label for="src_mac">Adresse source</label>
+            <input type="text" id="src_mac" name="src_mac" value="<?php echo $server_mac; ?>" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$">
             <p class="description">6 octets - Adresse MAC du serveur qui héberge cette page.</p>
         </div>
         <div class="field">
-            <label for="ether_type">5.5 – Ether Type</label>
+            <label for="ether_type">Ether Type</label>
             <select id="ether_type" name="ether_type" required>
-                <option value="0x0800">IPv4 (0x0800)</option>
-                <option value="0x86DD">IPv6 (0x86DD)</option>
+                <option value="0x6000">DEC (0x6000)</option>
+                <option value="0x0609">DEC (0x0609)</option>
+                <option value="0x0600">XNS (0x0600)</option>
+                <option value="0x0800" selected>IPv4 (0x0800)</option>
                 <option value="0x0806">ARP (0x0806)</option>
+                <option value="0x8019">Domain (0x8019)</option>
                 <option value="0x8035">RARP (0x8035)</option>
-                <option value="0x8100">802.1Q VLAN (0x8100)</option>
                 <option value="0x809B">AppleTalk (0x809B)</option>
-                <option value="0x0600">Xerox NS (XNS) (0x0600)</option>
-                <option value="0x0805">X.25 (0x0805)</option>
+                <option value="0x86DD">IPv6 (0x86DD)</option>
             </select>
-            <p class="description">2 octets - Sélectionnez le protocole (exemple : IPv4, IPv6, ARP).</p>
+            <p class="description">2 octets - Sélectionnez le protocole (exemple : IPv4, ARP, IPv6).</p>
         </div>
         <div class="field">
-            <label for="data">5.7 – Données</label>
-            <input type="text" id="data" name="data" required>
-            <p class="description">46–1500 octets - Contient les données de la couche 3 (exemple : datagramme IP).</p>
+            <label for="data">Données</label>
+            <textarea id="data" name="data" minlength="46" maxlength="1500" placeholder="Entrez ici les données à transmettre..." ></textarea>
+            <p class="description">46–1500 octets - Contient les données de la couche 3 (exemple : datagramme IP). Complétez avec du padding si nécessaire.</p>
         </div>
         <div class="field">
-            <label for="fcs">5.8 – FCS</label>
-            <input type="text" id="fcs" name="fcs" required>
+            <label for="fcs">FCS</label>
+            <input type="text" id="fcs" name="fcs" pattern="^[0-9A-Fa-f]{8}$" title="Le FCS doit être une séquence hexadécimale de 4 octets (8 caractères).">
             <p class="description">4 octets - Séquence de contrôle de trame (calcul polynomial CRC).</p>
         </div>
         <button type="submit">Créer Trame Ethernet</button>
