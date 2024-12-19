@@ -4,19 +4,17 @@
     <!-- Colonne de gauche -->
     <div class="left-column">
         <div class="dashboard-block profil">
-            <h2>Vous êtes connecté</h2>
+            <h2>Bienvenue sur le site <br><?= htmlspecialchars($username) ?></h2>
             <a href="/profile/<?= htmlspecialchars($user_id) ?>">
                 <img src="./images/user-interface.png" alt="Image Profil">
                 Profil
             </a>
         </div>
 
-        <div class="dashboard-block flash-message">
-            <?php if (isset($_SESSION['flash_message'])): ?>
-                <?= htmlspecialchars($_SESSION['flash_message']['content']) ?>
-                <?php unset($_SESSION['flash_message']); ?>
-            <?php endif; ?>
-        </div>
+        <?php if (isset($_SESSION['flash_message'])): ?>
+            <?= htmlspecialchars($_SESSION['flash_message']['content']) ?>
+            <?php unset($_SESSION['flash_message']); ?>
+        <?php endif; ?>
     </div>
 
     <!-- Colonne de droite -->

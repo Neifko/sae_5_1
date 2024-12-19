@@ -11,7 +11,7 @@
 
 <div class="header">
     <div>
-        <img src="./images/logo.png" alt="logo procrastinateurs">
+        <img id="logoProcrastinateurs" src="./images/logoProcrastinateurs.png" alt="logo procrastinateurs">
     </div>
     <div>
         <h1>Application Web Pédagogique</h1>

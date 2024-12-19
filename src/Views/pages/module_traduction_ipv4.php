@@ -1,5 +1,5 @@
-
-<h1><?php echo htmlspecialchars($title); ?></h1>
+<link rel="stylesheet" href="/css/pages.css">
+<h2><?php echo htmlspecialchars($title); ?></h2>
 
 <?php if ($step === 1): ?>
     <!-- Étape 1 : Entrée de l'adresse -->

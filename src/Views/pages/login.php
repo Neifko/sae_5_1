@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/login.css">
+
 <form action="" method="post">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" id="username" name="username">

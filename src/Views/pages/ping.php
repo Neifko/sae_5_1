@@ -1,17 +1,16 @@
+<link rel="stylesheet" href="/css/pages.css">
+<h2>Ping avec Scapy</h2>
 
-    <h1>Ping avec Scapy</h1>
-
+<div>
     <form action="/ping" method="post">
         <label for="host">Adresse IP ou URL :</label>
         <input type="text" id="host" name="host" placeholder="www.free.fr" required>
         <button type="submit">Ping</button>
     </form>
-    <div>
-        <a href="/scapy">Retour</a>
-    </div>
+</div>
 
-    <?php if (!empty($pingResult)): ?>
-        <h2>Résultat du ping :</h2>
-        <pre><?php echo htmlspecialchars($pingResult); ?></pre>
-    <?php endif; ?>
 
+<?php if (!empty($pingResult)): ?>
+    <h2>Résultat du ping :</h2>
+    <pre><?php echo htmlspecialchars($pingResult); ?></pre>
+<?php endif; ?>

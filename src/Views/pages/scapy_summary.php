@@ -1,11 +1,10 @@
+<link rel="stylesheet" href="/css/pages.css">
+
 <div>
-    <h3>Sommaire module scapy</h3>
-    <ul>
-        <li><a href="/ping">Module Ping</a> </li>
-        <li><a href="/tcp">Module TCP</a> </li>
-        <li><a href="/network">Module Configuration Réseau</a> </li>
-    </ul>
-    <div>
-        <a href="/dashboard">Retour</a>
+    <h2>Sommaire module scapy</h2>
+    <div id="centerVertical">
+        <a href="/ping">Module Ping</a><br>
+        <a href="/tcp">Module TCP</a><br>
+        <a href="/network">Module Configuration Réseau</a>
     </div>
 </div>
