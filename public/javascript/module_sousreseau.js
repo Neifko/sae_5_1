@@ -94,7 +94,7 @@ function calculateSubnets() {
         const cidrOptimal = 32 - bitsForHosts;
 
         const subnetMask = getSubnetMask(cidrOptimal);
-        const hostsAvailable = Math.pow(2,calculateBitsNeeded(machines)) - 2;
+        const hostsAvailable = Math.pow(2, bitsForHosts) - 2;
 
         if (machines > hostsAvailable) {
             window.alert(`Le sous-réseau ${nameSubnet}  ne peut pas contenir autant de machines. Hôtes disponibles : ${hostsAvailable}`);
@@ -124,13 +124,15 @@ function calculateSubnets() {
             broadcastAddress
         });
 
-        // Mettre à jour l'adresse réseau pour le prochain sous-réseau
+        // Calculer l'incrément exact pour passer au sous-réseau suivant
         const networkIncrement = Math.pow(2, bitsForHosts); // Taille du sous-réseau
         const nextNetworkDecimal = parseInt(networkBinary, 2) + networkIncrement;
-        networkBinary = nextNetworkDecimal.toString(2).padStart(32, '0'); // Nouvelle adresse réseau en binaire
+
+        // Ajuster l'adresse réseau suivante
+        networkBinary = nextNetworkDecimal.toString(2).padStart(32, '0');
     }
 
-    if (nbTotHosts > totalHostsAvailable){
+    if (nbTotHosts > totalHostsAvailable) {
         verifHosts = false;
     }
 
@@ -142,6 +144,13 @@ function calculateSubnets() {
 function displaySubnets(dataSubnet) {
     const resultContainer = document.getElementById('result');
     resultContainer.innerHTML = ""; // Réinitialiser les résultats précédents
+
+    const errorContainer = document.getElementById('errorContainer'); // Conteneur des erreurs
+
+    // Réinitialiser les messages d'erreur
+    if (errorContainer) {
+        errorContainer.innerHTML = '';
+    }
 
     // Créer un tableau pour afficher les résultats
     const table = document.createElement('table');
@@ -160,12 +169,13 @@ function displaySubnets(dataSubnet) {
     `;
     table.appendChild(totalRequestedRow);
 
-    if (verifHosts === false){
-        const totalRequestedRow = document.createElement('tr');
-        totalRequestedRow.innerHTML = `
-        <td colspan="9"><strong>Les nombres de machines entrés ne sont pas adaptés à ce réseau. Voici une solution possible : </strong></td>
-    `;
-        table.appendChild(totalRequestedRow);
+    // Vérifier si les hôtes demandés dépassent les hôtes disponibles
+    if (verifHosts === false) {
+        const errorRow = document.createElement('tr');
+        errorRow.innerHTML = `
+            <td colspan="9" style="color: red;"><strong>Les nombres de machines entrés ne sont pas adaptés à ce réseau. Voici une solution possible :</strong></td>
+        `;
+        table.appendChild(errorRow);
     }
 
     // Ajouter les autres colonnes du tableau
