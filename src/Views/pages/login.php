@@ -1,3 +1,4 @@
+
 <form action="" method="post">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" id="username" name="username">
@@ -14,8 +15,3 @@
 
     <input type="submit" value="Se connecter">
 </form>
-<div>
-
-
-<a href="/">Retour</a>
-</div>

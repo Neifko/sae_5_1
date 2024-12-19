@@ -1,9 +1,13 @@
+<link rel="stylesheet" href="/css/index.css">
+<title>Application Web Pédagogique</title>
 
-<h1>Accueil</h1>
-<p>Ceci est une page générée avec PHP.</p>
-<div>
-    <ul>
-        <li><a href="/register">Se créer un compte</a> </li>
-        <li><a href="/login">Se connecter</a> </li>
-    </ul>
-</div>
+<p class="login_signin">
+    <a href="./login">Se connecter</a>
+    /
+    <a href="./register">S'inscrire</a>
+</p>
+
+
+<div class="imgAccueil">
+    <img src="./images/imageAccueil.jpg" alt="images">
+</div
