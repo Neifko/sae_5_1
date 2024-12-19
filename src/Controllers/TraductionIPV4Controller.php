@@ -15,6 +15,7 @@ class TraductionIPV4Controller
         $formats_disponibles = [];
         $adresse_detectee = '';
         $step = 1; // étape par défaut : détecter le format d'entrée
+        $erreur = "";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $address = $_POST['address'] ?? '';
@@ -32,7 +33,7 @@ class TraductionIPV4Controller
                     }
                     $step = 2;
                 } else {
-                    $resultat = "Adresse invalide !";
+                    $erreur = "L'adresse saisie est invalide. Veuillez entrer une adresse IPv4 correcte.";
                 }
             } elseif ($step === 2) { // traduire selon le choix demandé
                 $choix_format = $_POST['choix_format'] ?? '';
@@ -50,7 +51,8 @@ class TraductionIPV4Controller
                 'formats_disponibles' => $formats_disponibles,
                 'step' => $step,
                 'title' => $title,
-                'address' => $address
+                'address' => $address,
+                'erreur' => $erreur
             ]);
     }
 
@@ -125,6 +127,9 @@ class TraductionIPV4Controller
         ];
         if ($format_detecte !== 'Format Non Unique') {
             unset($formats[$format_detecte]); // exclure le format détecté d'origine si 1 seul format détecté
+        }
+        else{
+            unset($formats['binary']);
         }
         return $formats;
     }
