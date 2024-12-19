@@ -12,7 +12,6 @@
 
         <input type="submit" value="Détecter le format"/>
     </form>
-
 <?php elseif ($step === 2): ?>
     <!-- Étape 2 : Choix du format de sortie -->
     <form action="" method="POST">
@@ -33,7 +32,7 @@
         <input type="submit" value="Convertir"/>
     </form>
 
-
+<div>
 <?php elseif ($step === 3): ?>
     <!-- Résultat -->
     <?php if (!empty($resultat)): ?>
@@ -41,20 +40,11 @@
                 :<br></strong> <?php echo htmlspecialchars($resultat); ?></p>
     <?php endif; ?>
 <?php endif; ?>
-
-<?php if (!empty($erreur)): ?>
-    <div style="color: red; font-weight: bold;" class="erreur">
-        <?= htmlspecialchars($erreur) ?>
-    </div>
-<?php endif; ?>
-
+</div>
 <div>
 
-    <?php if ($step === 1): ?>
-    <p><a href="/dashboard">Revenir à l'accueil</a></p>
-    <?php else: ?>
+    <?php if ($step !== 1): ?>
     <p><a href="/module_traduction">Revenir en arrière</a></p>
-    <p><a href="/dashboard">Revenir à l'accueil</a></p>
     <?php endif; ?>
 
 </div>
