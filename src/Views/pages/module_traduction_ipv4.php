@@ -12,6 +12,7 @@
 
         <input type="submit" value="Détecter le format"/>
     </form>
+
 <?php elseif ($step === 2): ?>
     <!-- Étape 2 : Choix du format de sortie -->
     <form action="" method="POST">
@@ -39,6 +40,12 @@
         <p><strong>Résultat pour l'adresse <?php echo htmlspecialchars($address); ?>
                 :<br></strong> <?php echo htmlspecialchars($resultat); ?></p>
     <?php endif; ?>
+<?php endif; ?>
+
+<?php if (!empty($erreur)): ?>
+    <div style="color: red; font-weight: bold;" class="erreur">
+        <?= htmlspecialchars($erreur) ?>
+    </div>
 <?php endif; ?>
 
 <div>
