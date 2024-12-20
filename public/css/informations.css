@@ -1,0 +1,102 @@
+/* Style pour l'icône dans le coin supérieur droit */
+.hint {
+    height: 40px;
+    width: 40px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+    padding: 5px;
+}
+
+.fa-info {
+    font-size: 1.5em; /* Ajuste la taille de l'icône */
+    display: inline-block;
+    text-align: middle;
+    line-height: 1; /* Garantit que l'icône est bien centrée verticalement */
+}
+
+.hint > span {
+    font-size: 2em;
+}
+
+/* Style pour le texte déroulant */
+.hint > p {
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height 0.3s ease;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 1.2em;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+/* Lorsque l'icône est cliquée, on fait apparaître le texte */
+#hint-click:checked + .hint > p {
+    max-height: 999px; 
+    padding: 20px;
+}
+
+/* Cacher l'élément de contrôle pour éviter qu'il soit visible */
+#hint-click {
+    display: none;
+}
+
+/* Lorsqu'on clique, la bulle prend toute la taille de l'écran */
+#hint-click:checked + .hint {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    padding: 30px;
+    justify-content: center; /* Permet au texte de commencer du haut */
+    align-items: flex-start; /* Permet au texte de commencer à partir du haut */
+}
+
+/* Style du texte déroulé dans la bulle */
+#hint-click:checked + .hint > p {
+    max-height: 999px;
+    width: calc(100vw - 10vw);
+    padding: 30px;
+    font-size: 1.2em;
+    text-align: left;
+    line-height: 1.6;
+    border-radius: 0;
+    overflow-y: auto; /* Permet le défilement du texte si nécessaire */
+    color: white;
+}
+
+/* Style du formulaire */
+.form-container {
+    margin-top: 100px; 
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+.form-container label, .form-container input, .form-container button {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+}
+
+.form-container input, .form-container button {
+    padding: 10px;
+    font-size: 1rem;
+}
