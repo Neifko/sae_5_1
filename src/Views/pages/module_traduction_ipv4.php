@@ -1,5 +1,5 @@
-
-<h1><?php echo htmlspecialchars($title); ?></h1>
+<link rel="stylesheet" href="/css/pages.css">
+<h2><?php echo htmlspecialchars($title); ?></h2>
 
 <?php if ($step === 1): ?>
     <!-- Étape 1 : Entrée de l'adresse -->
@@ -12,7 +12,6 @@
 
         <input type="submit" value="Détecter le format"/>
     </form>
-
 <?php elseif ($step === 2): ?>
     <!-- Étape 2 : Choix du format de sortie -->
     <form action="" method="POST">
@@ -33,7 +32,6 @@
         <input type="submit" value="Convertir"/>
     </form>
 
-
 <?php elseif ($step === 3): ?>
     <!-- Résultat -->
     <?php if (!empty($resultat)): ?>
@@ -53,14 +51,10 @@
     <?php unset($_SESSION['flash_message']); ?>
 <?php endif; ?>
 
-
 <div>
 
-    <?php if ($step === 1): ?>
-    <p><a href="/dashboard">Revenir à l'accueil</a></p>
-    <?php else: ?>
+    <?php if ($step !== 1): ?>
     <p><a href="/module_traduction">Revenir en arrière</a></p>
-    <p><a href="/dashboard">Revenir à l'accueil</a></p>
     <?php endif; ?>
 
 </div>

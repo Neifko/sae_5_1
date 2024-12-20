@@ -1,6 +1,15 @@
+
 <div>
-    <p>Vous êtes <?= htmlspecialchars($username) ?></p>
+    <p style="color: white">Vous êtes connecté <?= htmlspecialchars($username) ?></p>
 </div>
+
+<?php if ($username === 'admin'):?>
+<div>
+    <p>
+        <a href="/list-users">Voir la liste des utilisateurs</a>
+    </p>
+</div>
+<?php endif ?>
 <form action="" method="post">
     <label for="old-password">Ancien mot de passe</label>
     <input type="password" id="old-password" name="old-password">
@@ -24,5 +33,7 @@
     <input type="submit" value="Changer de mot de passe">
 </form>
 <div>
-<a href="/dashboard">Retour</a>
+    <p>
+        <a href="/logout">Se déconnecter</a>
+    </p>
 </div>

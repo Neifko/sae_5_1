@@ -60,7 +60,7 @@ function extendIPv6(ipv6) {
     let ipv4Part = "";
     if (containsIPv4(ipv6)) {
         classification += "Adresse IPv6 contenant une adresse IPv4 intégrée. ";
-        ipv4Part = ipv6.split(":").pop(); 
+        ipv4Part = ipv6.split(":").pop();
         classification += `Adresse IPv4 : ${ipv4Part}. `;
     }
 
@@ -81,7 +81,7 @@ function extendIPv6(ipv6) {
         extendedIPv6 += `:${ipv4Part}`;
     }
 
-    return { extendedIPv6, classification };  
+    return { extendedIPv6, classification };
 }
 
 
@@ -123,7 +123,7 @@ function simplifyIPv6(ipv6) {
     }
 
     let simplifiedIPv6 = segments.join(':');
-    simplifiedIPv6 = simplifiedIPv6.replace(/(:{2,})/, '::');  
+    simplifiedIPv6 = simplifiedIPv6.replace(/(:{2,})/, '::');
 
     // Gestion des cas où l'adresse commence ou finit par "::"
     if (simplifiedIPv6.startsWith(':')) {
@@ -159,7 +159,7 @@ function init(){
         event.preventDefault();
         var ipv6 = document.getElementById('ipv6').value;
         const resultDiv = document.getElementById('resultDiv');
-    
+
         if (verifyIPv6(ipv6)) {
             const { simplifiedIPv6, classification } = simplifyIPv6(ipv6);
             resultDiv.innerHTML = `<p>Adresse IPv6 simplifiée : ${simplifiedIPv6}</p><p>${classification}</p>`;
@@ -170,7 +170,7 @@ function init(){
             showError(textContent, className, title)
         }
     });
-    
+
 
     document.getElementById('etendre-button').addEventListener('click', function (event) {
         event.preventDefault();
@@ -207,3 +207,4 @@ function showError(textContent, className, title){
         text: textContent
     });
 }
+

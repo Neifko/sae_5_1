@@ -1,58 +1,6 @@
-
+<link rel="stylesheet" href="css/moduleSousReseau.css">
     <title>Calculateur VLSM</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        input, button {
-            padding: 8px;
-            margin: 10px 0;
-        }
-        /* Limiter la largeur des champs input */
-        input, button {
-            width: 250px;  /* Ajustez cette largeur selon vos besoins */
-        }
 
-        /* Formulaire avec champ IP / CIDR côte à côte */
-        .form-group {
-            display: flex;
-            align-items: center;
-            gap: 10px; /* Espacement entre les champs */
-        }
-        .form-group input {
-            width: 120px; /* Réduit la largeur de chaque champ */
-        }
-        .form-group label {
-            margin: 0;
-        }
-
-        .result {
-            margin-top: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        table, th, td {
-            border: 1px solid #000;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        .subnet-form {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-        }
-    </style>
 
 <h1>Calculateur de sous-réseaux VLSM</h1>
 <form id="vlsmForm" method="POST">
@@ -76,9 +24,7 @@
 </form>
 
 <div class="result" id="result"></div>
-<div>
-    <a href="/dashboard">Retour</a>
-</div>
+
 
 <script src="/javascript/module_sousreseau.js"></script>
 

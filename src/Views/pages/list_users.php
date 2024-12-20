@@ -20,6 +20,3 @@
         <?php endif; ?>
     </div>
 </div>
-<div>
-<a href="/dashboard">Retour</a>
-    </div>

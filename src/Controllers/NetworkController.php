@@ -2,9 +2,13 @@
 
 namespace Procrastinateur\Sae51\Controllers;
 
+use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\View;
+
 class NetworkController {
     public function index() {
 
+        AuthMiddleware::handle();
         // Chemin vers le fichier JSON
         $jsonPath = __DIR__ . '/../Views/data/network_info.json';
 
@@ -15,8 +19,7 @@ class NetworkController {
             $networkData = [];
         }
 
-        // Charger la vue
-        require __DIR__ . '/../Views/network.php';
+        View::render('network', ['networkData' => $networkData]);
     }
 
     public function update() {
