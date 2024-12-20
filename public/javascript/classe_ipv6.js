@@ -157,7 +157,7 @@ function simplifyIPv6(ipv6) {
 function init(){
     document.getElementById('simplifier-button').addEventListener('click', function (event) {
         event.preventDefault();
-        var ipv6 = document.getElementById('ipv6').value;
+        var ipv6 = document.getElementById('ipv6').value.trim();
         const resultDiv = document.getElementById('resultDiv');
 
         if (verifyIPv6(ipv6)) {
@@ -174,7 +174,7 @@ function init(){
 
     document.getElementById('etendre-button').addEventListener('click', function (event) {
         event.preventDefault();
-        var ipv6 = document.getElementById('ipv6').value;
+        var ipv6 = document.getElementById('ipv6').value.trim();
         const resultDiv = document.getElementById('resultDiv');
 
         if (verifyIPv6(ipv6)) {
