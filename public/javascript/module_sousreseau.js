@@ -20,7 +20,7 @@ function applySubnets() {
             text: 'Adresse IP invalide'
         });
         return;
-    } else if (!validateCIDR(cidr)) {
+    } else if (validateCIDR(cidr) === false) {
         Swal.fire({
             icon: 'error',
             title: 'Erreur',
@@ -247,15 +247,20 @@ function validateIP(ip){
 
 // Fonction pour valider le CIDR
 function validateCIDR(cidr) {
-    const cidrInt = parseInt(cidr, 10);
-    if (cidrInt <= 0) {
-        return false;
-    } else if (cidrInt > 32) {
+    // Vérifier si le CIDR contient uniquement des chiffres
+    const regex = /^[0-9]+$/; // Autorise uniquement les chiffres
+    if (!regex.test(cidr)) {
         return false;
     }
+
+    // Convertir en entier et vérifier la plage
+    const cidrInt = parseInt(cidr, 10);
+    if (isNaN(cidrInt) || cidrInt < 0 || cidrInt > 32) {
+        return false;
+    }
+
     return true;
 }
-
 // Convertir l'adresse IP en binaire
 function ipToBinary(ip) {
     return ip.split('.').map(num => {
