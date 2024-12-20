@@ -1,10 +1,10 @@
 import argparse
 import json
-from scapy.all import hexdump, sniff, IP, Ether, rdpcap, wrpcap, Packet
+from scapy.all import hexdump, sniff, IP, Ether, Packet
 
-def capture_packets(interface, output_file="capture.json"):
+def capture_packets(interface):
     """
-    Capture les paquets réseau sur une interface donnée et les sauvegarde dans un fichier JSON.
+    Capture les paquets réseau sur une interface donnée et affiche les résultats.
     """
     packets = sniff(iface=interface, count=10)  # Capture de 10 paquets pour cet exemple
     results = []
@@ -13,13 +13,11 @@ def capture_packets(interface, output_file="capture.json"):
             "summary": packet.summary(),
             "hexdump": hexdump(packet, dump=True)
         })
-    with open(output_file, "w") as f:
-        json.dump(results, f, indent=4)
-    print(f"Paquets capturés sauvegardés dans {output_file}")
+    print(json.dumps(results, indent=4))
 
-def analyze_data(raw_data, output_file="simple_analyze.json"):
+def analyze_data(raw_data):
     """
-    Analyse les données brutes (en hexadécimal) et les sauvegarde dans un fichier JSON.
+    Analyse les données brutes (en hexadécimal) et affiche les résultats.
     """
     try:
         packet = Ether(bytes.fromhex(raw_data.replace(" ", "")))
@@ -27,28 +25,25 @@ def analyze_data(raw_data, output_file="simple_analyze.json"):
             "summary": packet.summary(),
             "hexdump": hexdump(packet, dump=True)
         }
-        with open(output_file, "w") as f:
-            json.dump(result, f, indent=4)
-        print(f"Analyse des données brutes sauvegardée dans {output_file}")
+        print(json.dumps(result, indent=4))
     except Exception as e:
-        print(f"Erreur lors de l'analyse des données : {e}")
+        error_message = {"error": f"Erreur lors de l'analyse des données : {str(e)}"}
+        print(json.dumps(error_message, indent=4))
 
-def create_sample_packet(dst_ip, output_file="packet.json"):
+def create_sample_packet(dst_ip):
     """
-    Crée un exemple de paquet IP vers une adresse donnée.
+    Crée un exemple de paquet IP vers une adresse donnée et affiche les résultats.
     """
     packet = IP(dst=dst_ip) / b"Exemple de données"
     result = {
         "summary": packet.summary(),
         "hexdump": hexdump(packet, dump=True)
     }
-    with open(output_file, "w") as f:
-        json.dump(result, f, indent=4)
-    print(f"Exemple de paquet sauvegardé dans {output_file}")
+    print(json.dumps(result, indent=4))
 
-def compare_data(data1, data2, output_file="double_analyze.json"):
+def compare_data(data1, data2):
     """
-    Compare deux ensembles de données brutes en hexadécimal et les sauvegarde dans un fichier JSON.
+    Compare deux ensembles de données brutes en hexadécimal et affiche les résultats.
     """
     try:
         packet1 = Ether(bytes.fromhex(data1.replace(" ", "")))
@@ -64,11 +59,10 @@ def compare_data(data1, data2, output_file="double_analyze.json"):
             },
             "comparison": "Les paquets sont identiques." if packet1 == packet2 else "Les paquets sont différents."
         }
-        with open(output_file, "w") as f:
-            json.dump(result, f, indent=4)
-        print(f"Résultat de la comparaison sauvegardé dans {output_file}")
+        print(json.dumps(result, indent=4))
     except Exception as e:
-        print(f"Erreur lors de la comparaison des données : {e}")
+        error_message = {"error": f"Erreur lors de la comparaison des données : {str(e)}"}
+        print(json.dumps(error_message, indent=4))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Hexdump Scapy Utility")
@@ -82,7 +76,7 @@ if __name__ == "__main__":
     parser_analyze = subparsers.add_parser("analyze", help="Analyse des données brutes")
     parser_analyze.add_argument("--data", required=True, help="Données brutes (hexadécimal) à analyser")
 
-    # Création d'un exemple de paquet
+    # Création d’un exemple de paquet
     parser_sample = subparsers.add_parser("sample", help="Créer un exemple de paquet")
     parser_sample.add_argument("--dst_ip", required=True, help="Adresse IP de destination")
 
