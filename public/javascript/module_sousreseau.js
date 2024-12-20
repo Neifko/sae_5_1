@@ -33,7 +33,10 @@ function applySubnets() {
         return;
     }
 
-    let limite = numSubnets * 2;
+    let limite = 0;
+    limite = numSubnets * 2;
+    totalHostsAvailable = 0;
+    calculateTotalHosts(cidr)
 
     if (limite > totalHostsAvailable){
         Swal.fire({
