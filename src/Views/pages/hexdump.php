@@ -50,12 +50,10 @@
         <button type="submit">Exécuter</button>
     </form>
 
+    <div>
     <?php if (!empty($result)): ?>
         <h2>Résultats :</h2>
         <pre><?php echo htmlspecialchars(json_encode($result, JSON_PRETTY_PRINT)); ?></pre>
     <?php endif; ?>
-    
-    <div>
-        <a href="/scapy">Retour</a>
     </div>
 </div>
