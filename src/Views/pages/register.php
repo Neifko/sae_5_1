@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/pages.css">
 <form action="" method="post">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" id="username" name="username">
@@ -14,6 +15,3 @@
 
     <input type="submit" value="Créer un compte">
 </form>
-<div>
-<a href="/">Retour</a>
-</div>
