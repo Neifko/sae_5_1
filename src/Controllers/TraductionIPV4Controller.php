@@ -3,6 +3,7 @@
 namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\Redirect;
 use Procrastinateur\Sae51\Utils\View;
 
 class TraductionIPV4Controller
@@ -33,7 +34,9 @@ class TraductionIPV4Controller
                     }
                     $step = 2;
                 } else {
-                    $erreur = "L'adresse saisie est invalide. Veuillez entrer une adresse IPv4 correcte.";
+                    Redirect::withMessage('/module_traduction', 'Adresse saisie invalide. Veuillez entrer une adresse IPv4 correcte.', 'error');
+
+                    // $erreur = "L'adresse saisie est invalide. Veuillez entrer une adresse IPv4 correcte.";
                 }
             } elseif ($step === 2) { // traduire selon le choix demandé
                 $choix_format = $_POST['choix_format'] ?? '';
@@ -51,8 +54,7 @@ class TraductionIPV4Controller
                 'formats_disponibles' => $formats_disponibles,
                 'step' => $step,
                 'title' => $title,
-                'address' => $address,
-                'erreur' => $erreur
+                'address' => $address
             ]);
     }
 

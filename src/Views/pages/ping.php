@@ -9,6 +9,15 @@
     </form>
 </div>
 
+    <?php if (!empty($error)): ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: <?php echo json_encode($error); ?>
+            });
+        </script>
+
 <div class="pingTcpResult">
     <?php if (!empty($pingResult)): ?>
         <h2>Résultat du ping :</h2>

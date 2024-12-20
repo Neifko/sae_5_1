@@ -9,6 +9,16 @@
         <input type="number" id="port" name="port" required>
         <button type="submit">Tester</button>
     </form>
+
+    <?php if (!empty($error)): ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: <?php echo json_encode($error); ?>
+            });
+        </script>
+
 <div class="pingTcpResult">
     <?php if (!empty($tcpResult)): ?>
         <h2>Résultat de la connexion TCP :</h2>

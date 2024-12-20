@@ -32,7 +32,6 @@
         <input type="submit" value="Convertir"/>
     </form>
 
-<div>
 <?php elseif ($step === 3): ?>
     <!-- Résultat -->
     <?php if (!empty($resultat)): ?>
@@ -40,7 +39,18 @@
                 :<br></strong> <?php echo htmlspecialchars($resultat); ?></p>
     <?php endif; ?>
 <?php endif; ?>
-</div>
+
+<?php if (isset($_SESSION['flash_message'])): ?>
+    <script>
+        Swal.fire({
+            icon: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>",
+            type: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>", // 'success', 'error', etc.
+            text: "<?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>"
+        })
+    </script>
+    <?php unset($_SESSION['flash_message']); ?>
+<?php endif; ?>
+
 <div>
 
     <?php if ($step !== 1): ?>

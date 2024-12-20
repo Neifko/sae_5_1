@@ -34,13 +34,23 @@ document.getElementById('ipv4-form').addEventListener('submit', function (event)
             resultDiv.textContent = `Adresse IPv4 : ${ipv4Address}\nClasse : ${result.class}\nMasque : ${result.mask}\nNotation CIDR : ${result.cidr}`;
             resultDiv.className = 'success';
         } else {
-            resultDiv.textContent = 'Erreur : Adresse IPv4 hors plage valide.';
-            resultDiv.className = 'error';
+            let textContent = 'Adresse IPv4 hors plage valide.'
+            let className = 'error';
+            showError(textContent, className)
         }
     } else {
-        resultDiv.textContent = "Erreur : Adresse IPv4 invalide. Assurez-vous de la bonne syntaxe de l'IPv4.";
-        resultDiv.className = 'error';
+        let textContent = "Adresse IPv4 invalide. Assurez-vous de la bonne syntaxe de l'IPv4.";
+        let className = 'error';
+        showError(textContent, className)
     }
 
     resultDiv.style.display = 'block';
 });
+
+function showError(textContent, className){
+    Swal.fire({
+        icon: className,
+        title: 'Erreur',
+        text: textContent
+    });
+}
