@@ -1,12 +1,11 @@
 /* Conteneur principal */
 .dashboard-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
-    max-width: 1200px;
+    width: 30%;
     margin: 10% auto;
     box-sizing: border-box;
     background-color: white;
@@ -14,45 +13,23 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes pour les modules */
+    gap: 20px;
+    width: 75%;
+}
+
 /* Bloc général */
 .dashboard-block {
     background-color: #ffffff;
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-/* Profil */
-.profil h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.profil a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profil a:hover {
-    color: #0056b3;
-}
-
-.profil img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    border: 2px solid #ddd;
 }
 
 /* Liste des liens */
@@ -74,7 +51,7 @@
     color: #333;
     background-color: #f1f1f1;
     padding: 15px;
-    height: 50px; /* Hauteur initiale */
+    height: auto; /* Hauteur initiale */
     border-radius: 5px;
     text-align: center;
     display: flex;
@@ -92,36 +69,11 @@
 }
 
 
-/* Flash Message */
-.flash-message {
-    background-color: #fffae6;
-    color: #856404;
-    padding: 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive ajustements */
-@media (max-width: 768px) {
-    .profil img {
-        width: 50px;
-        height: 50px;
-    }
-}
-
-.left-column {
-    flex: 0 0 auto; /* La colonne gauche garde sa taille initiale */
-    display: flex;
-    flex-direction: column; /* Pour empiler les éléments si besoin */
-    align-items: center; /* Centrer le contenu horizontalement */
-    padding-top: 10%;
-}
-
 .right-column {
-    flex: 1; /* La colonne droite prend le reste de l'espace */
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Modules Grid */

@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="/css/pages.css">
 <div>
     <p style="color: white">Vous êtes connecté <?= htmlspecialchars($username) ?></p>
 </div>
