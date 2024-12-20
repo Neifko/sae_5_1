@@ -31,6 +31,7 @@ function getServerMacAddress() {
 $server_mac = getServerMacAddress();
 ?>
 <h1>Créer une trame Ethernet</h1>
+<p>Les valeurs par défaut permette de créer une trame ethernet basic</p>
     <form action="" method="post">
         <div class="field">
             <label for="preamble">Préambule</label>

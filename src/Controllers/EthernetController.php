@@ -3,6 +3,7 @@
 namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\Redirect;
 use Procrastinateur\Sae51\Utils\View;
 
 class EthernetController
@@ -94,9 +95,7 @@ class EthernetController
 
         // Gestion des erreurs ou sauvegarde
         if (!empty($errors)) {
-            header('Content-Type: application/json');
-            echo json_encode(['status' => 'error', 'errors' => $errors]);
-            exit;
+            Redirect::withMessage('/ethernet', json_encode(['status' => 'error', 'errors' => $errors]),"error");
         }
 
         // Enregistrement dans un fichier JSON
@@ -105,7 +104,7 @@ class EthernetController
 
         // Réponse réussie
 //        header('Content-Type: application/json');
-        echo json_encode(['status' => 'success', 'message' => 'Trame sauvegardée avec succès.', 'file' => $jsonFile]);
+        echo json_encode(['status' => 'success', 'message' => 'Trame sauvegardée avec succès.', 'file' => $jsonFile]) . "<br>";
 
         $result = shell_exec("python3 " . __DIR__ . "/../Utils/python/ethernet_scapy.py 2>&1");
 
