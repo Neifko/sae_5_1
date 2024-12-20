@@ -130,9 +130,6 @@ class TraductionIPV4Controller
         if ($format_detecte !== 'Format Non Unique') {
             unset($formats[$format_detecte]); // exclure le format détecté d'origine si 1 seul format détecté
         }
-        else{
-            unset($formats['binary']);
-        }
         return $formats;
     }
 
