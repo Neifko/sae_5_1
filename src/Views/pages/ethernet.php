@@ -31,6 +31,7 @@ function getServerMacAddress()
 // Exemple d'utilisation
 $server_mac = getServerMacAddress();
 ?>
+<link rel="stylesheet" href="/css/ethernet.css">
 <h1>Créer une trame Ethernet</h1>
 <p>Les valeurs par défaut permette de créer une trame ethernet basic. Si vous ne cochez pas la case <code>Données personnalisées</code>
 Vous devez mettre une adresse ipv4 dans <code>IPv4 pour le ping</code> et le script va effectuer un ping avec ce que vous avez
@@ -114,9 +115,6 @@ Si vous cochez la case données personnalisées alors le contenu de trame ethern
         <?php unset($_SESSION['flash_message']); ?>
     <?php endif; ?>
 </div>
-<div>
-    <a href="/scapy">Retour</a>
-</div>
 <div><?php if (!empty($result)): ?>
         <p><?= $success_msg ?></p>
     <?php endif; ?>
@@ -129,3 +127,4 @@ Si vous cochez la case données personnalisées alors le contenu de trame ethern
         </p>
     </div>
 <?php endif; ?>
+<hr class="voirEnDessous">
