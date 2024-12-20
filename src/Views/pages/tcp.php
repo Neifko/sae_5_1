@@ -1,5 +1,5 @@
-
-    <h1>Test de Connexion TCP</h1>
+<link rel="stylesheet" href="/css/pages.css">
+    <h2>Test de Connexion TCP</h2>
 
     <!-- Formulaire pour entrer l'adresse IP et le port -->
     <form action="/tcp" method="post">
@@ -10,10 +10,6 @@
         <button type="submit">Tester</button>
     </form>
 
-    <div>
-        <a href="/scapy">Retour</a>
-    </div>
-
     <?php if (!empty($error)): ?>
         <script>
             Swal.fire({
@@ -23,8 +19,11 @@
             });
         </script>
 
-    <?php elseif (!empty($pingResult)): ?>
-        <h2>Résultat de la connection TCP :</h2>
-        <pre><?php echo htmlspecialchars($pingResult); ?></pre>
+<div class="pingTcpResult">
+    <?php if (!empty($tcpResult)): ?>
+        <h2>Résultat de la connexion TCP :</h2>
+        <pre><?php echo htmlspecialchars($tcpResult); ?></pre>
     <?php endif; ?>
+</div>
+
 

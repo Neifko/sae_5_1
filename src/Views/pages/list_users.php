@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/pages.css">
+
 <div>
     <table>
         <tr><th>Id</th><th>Nom d'utilisateur</th><th>Supprimer</th></tr>

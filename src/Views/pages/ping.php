@@ -18,7 +18,10 @@
             });
         </script>
 
-    <?php elseif (!empty($pingResult)): ?>
+<div class="pingTcpResult">
+    <?php if (!empty($pingResult)): ?>
         <h2>Résultat du ping :</h2>
         <pre><?php echo htmlspecialchars($pingResult); ?></pre>
     <?php endif; ?>
+</div>
+

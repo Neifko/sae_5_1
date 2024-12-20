@@ -94,8 +94,18 @@ div p {
 }
 
 #centerVertical {
-    text-align: center; /* Facultatif pour centrer le texte horizontalement */
+    text-align: center;
     color: white;
     background-color: #00334A;
     margin: 0 30%;
+}
+
+#formatDetecteIPV4 p {
+    display: block;
+    margin-bottom: 8px;
+    color: #06708E;
+}
+
+.pingTcpResult{
+    margin-top: 18%;
 }

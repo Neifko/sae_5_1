@@ -32,6 +32,3 @@
     <p>Aucune donnée réseau disponible. Veuillez mettre à jour les informations.</p>
 <?php endif; ?>
 
-<div>
-    <a href="/scapy">Retour</a>
-</div>
