@@ -72,7 +72,7 @@ Si vous avez choisi une installation customisée, il faut entrer le nom des fonc
 * `configure_permissions` : Configuration des permissions des fichiers
 * `install_scapy` : Installation de Scapy
 
-les fonctions `install_mariadb` et  `configure_database` vont demander de saisir des mots de passe 
+les fonctions `install_mariadb` et  `configure_database` vont demander de choisir des mots de passes.
 
 
 ## Installation sur Windows
