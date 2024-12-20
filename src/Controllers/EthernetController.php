@@ -109,7 +109,7 @@ class EthernetController
 
         $result = shell_exec("python3 " . __DIR__ . "/../Utils/python/ethernet_scapy.py 2>&1");
 
-        echo $result;
+        View::render('ethernet', ['result' => $result]);
     }
 
 }

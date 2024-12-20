@@ -94,4 +94,8 @@ $server_mac = getServerMacAddress();
     <div>
         <a href="/scapy">Retour</a>
     </div>
-
+<?php if (!empty($result)): ?>
+<div>
+    <?= $result ?>
+</div>
+<?php endif; ?>
