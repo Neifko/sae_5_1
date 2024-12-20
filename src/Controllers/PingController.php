@@ -14,7 +14,7 @@ class PingController {
             $host = trim($_POST['host']);
 
             // Validation de l'adresse IP ou de l'URL
-            if (filter_var($host, FILTER_VALIDATE_IP)) {
+            if (filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
                 $ip = $host;
             } elseif (filter_var($host, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)) {
                 $ip = gethostbyname($host);
