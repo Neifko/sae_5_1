@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+"""
+File ping_scapy.py : sae_5_1/src/Utils/python/ping_scapy.py
+"""
+
+
 import sys
 from scapy.all import sr1, IP, ICMP
 import socket
