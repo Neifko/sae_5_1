@@ -94,10 +94,10 @@ class HexdumpController
             }
     
         } catch (\Exception $e) {
-            View::render('hexdump', ['error' => $e->getMessage()]);
+            // View::render('hexdump', ['error' => $e->getMessage()]);
             return;
         }
-    
+
         View::render('hexdump', [
             'result' => $result,
             'actions' => [
