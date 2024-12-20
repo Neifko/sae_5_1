@@ -14,8 +14,9 @@
     </form>
 <?php elseif ($step === 2): ?>
     <!-- Étape 2 : Choix du format de sortie -->
-    <form id="formatDetecteIPV4" action="" method="POST">
-        <p> Format détecté : <strong><?php echo ucfirst($adresse_detectee); ?></strong></p>
+    <form action="" method="POST">
+        <p> Format détecté : <strong><?php echo ucfirst($adresse_detectee); ?></strong><br>
+        Ip demandée : <strong><?php echo ucfirst($address); ?></strong></p>
 
         <label for="choix_format">Choisissez le format de conversion :</label>
         <select name="choix_format" id="choix_format" required>
