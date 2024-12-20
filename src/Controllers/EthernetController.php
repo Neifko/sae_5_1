@@ -72,10 +72,10 @@ class EthernetController
             $data['data'] = $_POST['data'];
         }
 
-        if (!isset($_POST['havepaylaoad']) && $_POST['havepaylaoad']){
-            $data['havepaylaoad'] = true;
+        if (isset($_POST['havepayload']) && $_POST['havepayload']){
+            $data['havepayload'] = true;
         } else {
-            $data['havepaylaoad'] = false;
+            $data['havepayload'] = false;
         }
 
         if (!isset($_POST['ip_ping']) || !preg_match('/^(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])$/', $_POST['ip_ping'])) {
@@ -99,9 +99,12 @@ class EthernetController
         file_put_contents($jsonFile, json_encode($data, JSON_PRETTY_PRINT));
 
         // Réponse réussie
-        header('Content-Type: application/json');
+//        header('Content-Type: application/json');
         echo json_encode(['status' => 'success', 'message' => 'Trame sauvegardée avec succès.', 'file' => $jsonFile]);
 
+        $result = shell_exec("python3 " . __DIR__ . "/../Utils/python/ethernet_scapy.py 2>&1");
+
+        echo $result;
     }
 
 }
