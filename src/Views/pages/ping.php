@@ -10,7 +10,18 @@
         <a href="/scapy">Retour</a>
     </div>
 
-    <?php if (!empty($pingResult)): ?>
+    <?php if (!empty($error)): ?>
+        <h2>Erreur</h2>
+        <pre><?php echo htmlspecialchars($error); ?></pre>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: <?php echo json_encode($error); ?>
+            });
+        </script>
+
+    <?php elseif (!empty($pingResult)): ?>
         <h2>Résultat du ping :</h2>
         <pre><?php echo htmlspecialchars($pingResult); ?></pre>
     <?php endif; ?>
