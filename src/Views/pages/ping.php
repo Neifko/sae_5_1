@@ -10,7 +10,6 @@
 </div>
 
     <?php if (!empty($error)): ?>
-        <h2>Erreur</h2>
         <script>
             Swal.fire({
                 icon: "error",
