@@ -44,12 +44,12 @@ $server_mac = getServerMacAddress();
         </div>
         <div class="field">
             <label for="dst_mac">Adresse destination</label>
-            <input type="text" id="dst_mac" name="destination_mac" value="FF-FF-FF-FF-FF-FF" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$" title="L'adresse MAC doit être au format XX-XX-XX-XX-XX-XX où X est une valeur hexadécimale.">
+            <input type="text" id="dst_mac" name="destination_mac" value="FF-FF-FF-FF-FF-FF" required pattern="^([0-9A-Fa-f]{2}[-:]){5}[0-9A-Fa-f]{2}$" title="L'adresse MAC doit être au format XX-XX-XX-XX-XX-XX où X est une valeur hexadécimale.">
             <p class="description">6 octets - Adresse MAC du destinataire ou adresse de broadcast.</p>
         </div>
         <div class="field">
             <label for="src_mac">Adresse source</label>
-            <input type="text" id="src_mac" name="source_mac" value="<?php echo $server_mac; ?>" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$">
+            <input type="text" id="src_mac" name="source_mac" value="<?php echo $server_mac; ?>" required pattern="^([0-9A-Fa-f]{2}[-:]){5}[0-9A-Fa-f]{2}$">
             <p class="description">6 octets - Adresse MAC du serveur qui héberge cette page.</p>
         </div>
         <div class="field">
