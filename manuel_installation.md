@@ -1,8 +1,8 @@
 # Manuel d'installation de l'Application Web Réseau
 
 ## Table des Matières
-1. Introduction 
-2. Installation sur Debian
+1. [Introduction](#Introduction) 
+2. [Installation sur Debian](#Installation-sur-Debian)
    * Prérequis
    * Script d'installation automatique
    * Détails des étapes du script
@@ -15,7 +15,7 @@
 
 
 
-## Introduction 
+# Introduction 
 
 Cette application web propose plusieurs modules pour explorer les notions de réseau informatique, tels que :
 
@@ -26,7 +26,7 @@ Cette application web propose plusieurs modules pour explorer les notions de ré
 * Simplification d’adresses IPv6.
 * Affichage et explication des paramètres d'une interface réseau.
 
-## Installation sur Debian
+# Installation sur Debian
 
 ### Prérequis
 * Un système Debian à jour.
