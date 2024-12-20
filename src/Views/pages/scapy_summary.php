@@ -22,6 +22,12 @@
                     <li><a href="/network">Module Configuration Réseau</a></li>
                 </ul>
             </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/hexdump">Module Hexdump</a></li>
+                </ul>
+            </div>
         </div>
+
     </div>
 </div>

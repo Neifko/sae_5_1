@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+"""
+File ping_scapy.py : sae_5_1/src/Utils/python/ping_scapy.py
+"""
+
+
 import sys
 from scapy.all import sr1, IP, ICMP
 import socket
@@ -14,7 +18,7 @@ def ping(ip):
 
         if reply:
             ttl = reply.ttl
-            time_ms = reply.time * 1000
+            time_ms = reply.time 
             return f"TTL={ttl}, Temps={time_ms:.2f} ms"
         else:
             return "Aucune réponse. Le ping a échoué."
