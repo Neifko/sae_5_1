@@ -2,6 +2,7 @@
 namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Middleware\AuthMiddleware;
+use Procrastinateur\Sae51\Utils\Redirect;
 use Procrastinateur\Sae51\Utils\View;
 
 class PingController {
@@ -18,10 +19,14 @@ class PingController {
             } elseif (filter_var($host, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)) {
                 $ip = gethostbyname($host);
                 if ($ip === $host) {
-                    $pingResult = "Impossible de résoudre l'URL : $host";
+                    $error = "Impossible de résoudre l'URL ou adresse IP : $host";
+                    View::render("ping", ['error' => $error]);
+                    return;
                 }
             } else {
-                $pingResult = "Entrée invalide. Veuillez entrer une adresse IP ou une URL valide.";
+                $error = "Entrée invalide. Veuillez entrer une adresse IP ou une URL valide.";
+                View::render("ping", ['error' => $error]);
+                return;
             }
 
             // Si l'IP est valide, exécuter le script Python

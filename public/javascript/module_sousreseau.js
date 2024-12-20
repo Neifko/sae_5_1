@@ -4,13 +4,45 @@ let verifHosts = true;
 
 function applySubnets() {
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
+    const ip_address = document.getElementById('ip_address').value.trim();
+    const cidr = document.getElementById('cidr').value.trim();
 
     // Vérifier si le nombre de sous-réseaux est valide
     if (isNaN(numSubnets) || numSubnets <= 0) {
-        alert("Veuillez entrer un nombre valide de sous-réseaux.");
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Veuillez entrer un nombre valide de sous-réseaux.'
+        });
         return;
     }
-    //test
+
+    if (!validateIP(ip_address)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Adresse IP invalide'
+        });
+        return;
+    } else if (validateCIDR(cidr) === false) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Masque invalide'
+        });
+        return;
+    }
+
+    let limite = numSubnets * 2;
+
+    if (limite > totalHostsAvailable){
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Trop de sous-réseaux'
+        });
+        return;
+    }
 
     // Récupérer le conteneur où les nouveaux formulaires seront ajoutés
     const subnetFormsContainer = document.getElementById('subnetFormsContainer');
@@ -48,14 +80,7 @@ function calculateSubnets() {
     const cidr = document.getElementById('cidr').value.trim();
 
     calculateTotalHosts(cidr);
-
-    if (!validateIP(ip_address)) {
-        window.alert("Adresse IP invalide");
-        return;
-    } else if (!validateCIDR(cidr)) {
-        window.alert("Masque invalide");
-        return;
-    }
+    nbTotHosts = 0;
 
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
     const dataSubnet = [];
@@ -80,7 +105,11 @@ function calculateSubnets() {
         const nbMachines = tableCroissant[i].machines;
 
         if (!nameSubnet || isNaN(nbMachines) || parseInt(nbMachines) <= 0) {
-            window.alert(`Nombre de machines invalide pour le sous-réseau ${i + 1}`);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'Nombre de machines invalide pour le sous-réseau ' +  (i+1)
+            });
             return;
         }
 
@@ -97,7 +126,11 @@ function calculateSubnets() {
         const hostsAvailable = Math.pow(2, bitsForHosts) - 2;
 
         if (machines > hostsAvailable) {
-            window.alert(`Le sous-réseau ${nameSubnet}  ne peut pas contenir autant de machines. Hôtes disponibles : ${hostsAvailable}`);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'Le sous-réseau ' + nameSubnet + ' ne peut pas contenir autant de machines. Hôtes disponibles : ' + hostsAvailable
+            });
             return;
         }
 
@@ -142,6 +175,7 @@ function calculateSubnets() {
 
 // Fonction pour afficher les sous-réseaux et les informations réseau
 function displaySubnets(dataSubnet) {
+    const cidr = document.getElementById('cidr').value.trim();
     const resultContainer = document.getElementById('result');
     resultContainer.innerHTML = ""; // Réinitialiser les résultats précédents
 
@@ -171,6 +205,11 @@ function displaySubnets(dataSubnet) {
 
     // Vérifier si les hôtes demandés dépassent les hôtes disponibles
     if (verifHosts === false) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Les nombres de machines entrés sont trop grands pour le masque réseau /'  + cidr + '. Une solution alternative est affichée.'
+        });
         const errorRow = document.createElement('tr');
         errorRow.innerHTML = `
             <td colspan="9" style="color: red;"><strong>Les nombres de machines entrés ne sont pas adaptés à ce réseau. Voici une solution possible :</strong></td>
@@ -223,15 +262,20 @@ function validateIP(ip){
 
 // Fonction pour valider le CIDR
 function validateCIDR(cidr) {
-    const cidrInt = parseInt(cidr, 10);
-    if (cidrInt <= 0) {
-        return false;
-    } else if (cidrInt > 32) {
+    // Vérifier si le CIDR contient uniquement des chiffres
+    const regex = /^[0-9]+$/; // Autorise uniquement les chiffres
+    if (!regex.test(cidr)) {
         return false;
     }
+
+    // Convertir en entier et vérifier la plage
+    const cidrInt = parseInt(cidr, 10);
+    if (isNaN(cidrInt) || cidrInt < 0 || cidrInt > 32) {
+        return false;
+    }
+
     return true;
 }
-
 // Convertir l'adresse IP en binaire
 function ipToBinary(ip) {
     return ip.split('.').map(num => {
@@ -252,7 +296,6 @@ function getSubnetMask(cidr) {
     if (isNaN(cidrInt) || cidrInt < 0 || cidrInt > 32) {
         console.log(cidrInt);
         throw new Error("CIDR invalide. Il doit être un entier entre 0 et 32.");
-
     }
 
     // Générer le masque binaire en fonction du CIDR

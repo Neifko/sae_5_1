@@ -1,25 +1,58 @@
-<div>
-    <h2>Vous êtes connecté</h2>
-    <ul>
-        <li><a href="/logout">Se déconnecter</a> </li>
-        <li><a href="/profile/<?= htmlspecialchars($user_id) ?>">Profil</a> </li>
-        <li><a href="/list-users">Liste des utilisateurs</a> </li>
-    </ul>
+<link rel="stylesheet" href="/css/dashboard.css">
 
-    <div>
+<div class="dashboard-container">
+    <!-- Colonne de gauche -->
+    <div class="left-column">
+        <div class="dashboard-block profil">
+            <h2>Bienvenue sur le site <br><?= htmlspecialchars($username) ?></h2>
+            <a href="/profile/<?= htmlspecialchars($user_id) ?>">
+                <img src="./images/user-interface.png" alt="Image Profil">
+                Profil
+            </a>
+        </div>
+
         <?php if (isset($_SESSION['flash_message'])): ?>
-            <?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>
-            <?php unset($_SESSION['flash_message']); ?>
+            <script>
+                Swal.fire({
+                    icon: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>",
+                    type: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>", // 'success', 'error', etc.
+                    text: "<?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>"
+                })
+            </script>
         <?php endif; ?>
+
+
     </div>
 
-    <ul>
-
-        <li><a href="/module_traduction">Module de Traduction IPV4</a></li>
-        <li><a href="/module_sousreseau">Module sous réseau</a> </li>
-        <li><a href="/ipv4">IPv4</a> </li>
-        <li><a href="/ipv6">IPv6</a> </li>
-        <li><a href="/scapy">Module Scapy</a> </li>
-    </ul>
-
+    <!-- Colonne de droite -->
+    <div class="right-column">
+        <div class="modules-grid">
+            <!-- Modules -->
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/module_traduction">Module de traduction IPv4</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/module_sousreseau">Module sous-réseaux</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/ipv4">IPv4</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/ipv6">IPv6</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/scapy">Module Scapy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

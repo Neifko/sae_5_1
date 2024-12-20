@@ -10,6 +10,7 @@ use Procrastinateur\Sae51\Controllers\PingController;
 use Procrastinateur\Sae51\Controllers\TcpController;
 use Procrastinateur\Sae51\Controllers\NetworkController;
 use Procrastinateur\Sae51\Controllers\EthernetController;
+use Procrastinateur\Sae51\Controllers\HexdumpController;
 use Procrastinateur\Sae51\Controllers\MainController;
 use Procrastinateur\Sae51\Controllers\UserManagementController;
 
@@ -60,6 +61,8 @@ $router->map('GET', '/network/update', [NetworkController::class, 'update']);
 
 $router->map('GET', '/ethernet', [EthernetController::class, 'index']);
 $router->map('POST', '/ethernet', [EthernetController::class, 'compute']);
+$router->map('GET', '/hexdump', [HexdumpController::class, 'index']);
+$router->map('POST', '/hexdump/process', [HexdumpController::class, 'process']);
 
 // Fin des routes du modules Scapy
 

@@ -1,0 +1,112 @@
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #06708E;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #06708E;
+}
+input, button {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #CEDDDE;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #124660;
+}
+
+input:focus, button:focus {
+    outline: none;
+    border-color: #03C490;
+}
+
+button {
+    background-color: #03C490;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #01A98D;
+}
+#resultDiv.success {
+    border-color: green;
+    color: green;
+}
+
+#resultDiv.error {
+    border-color: red;
+    color: red;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group input {
+    width: 120px;
+}
+
+.form-group label {
+    margin: 0;
+}
+
+p {
+    color: white;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+}
+
+div p {
+    margin-bottom: 8px;
+    color: white;
+}
+
+#centerVertical {
+    text-align: center;
+    color: white;
+    background-color: var(--secondary-color);
+    margin: 0 30%;
+    border-radius: 10px;
+}
+
+.ipv6Extend {
+    margin-top: 22%;
+}
+
+.pingTcpResult{
+    margin-top: 22%;
+}

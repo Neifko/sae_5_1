@@ -16,6 +16,8 @@ class TcpController {
             // Validation du port
             if ($port < 1 || $port > 65535) {
                 $tcpResult = "Port invalide. Veuillez entrer un numéro entre 1 et 65535.";
+                View::render("tcp", ['error' => $tcpResult]);
+                return;
             } else {
                 // Vérifier si l'IP est valide ou si c'est un domaine
                 if (filter_var($ip, FILTER_VALIDATE_IP)) {
@@ -27,6 +29,8 @@ class TcpController {
                     if ($resolved_ip === $ip) {
                         // Si le nom de domaine ne peut pas être résolu
                         $tcpResult = "Nom de domaine invalide ou non résolu.";
+                        View::render("tcp", ['error' => $tcpResult]);
+                        return;
                     }
                 }
 

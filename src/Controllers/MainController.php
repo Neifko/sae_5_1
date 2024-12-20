@@ -12,8 +12,9 @@ class MainController
         AuthMiddleware::handle();
 
         $user_id = $_SESSION['user']['id'];
+        $username = $_SESSION['user']['username'];
 
-        View::render("dashboard", ['user_id' => $user_id]);
+        View::render("dashboard", ['user_id' => $user_id, 'username' => $username]);
     }
 
     public function scapy_summary()

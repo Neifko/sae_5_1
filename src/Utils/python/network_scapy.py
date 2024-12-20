@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+"""
+File network_scapy.py : sae_5_1/src/Utils/python/network_scapy.py
+"""
+
+
 import os
 import json
 from scapy.all import get_if_addr, get_if_hwaddr, get_if_list

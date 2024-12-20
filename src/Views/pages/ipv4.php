@@ -1,94 +1,41 @@
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/informations.css">
 
-    <style>
-    #result {
-        margin-top: 20px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        display: none;
-    }
-    #result.success {
-        border-color: green;
-        color: green;
-    }
-    #result.error {
-        border-color: red;
-        color: red;
-    }
+<h2>Connaitre le masque de l'IPv4</h2>
 
-    body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-    }
+<form id="ipv4-form" action="/ipv4/convert" method="POST">
+    <label for="">Entrez une adresse IPv4 pour connaître sa classe et son masque associé.</label>
+    <label for="ipv4_address">Adresse IPv4 :</label>
+    <input type="text" id="ipv4_address" name="ipv4_address" placeholder="ex : 192.168.1.1" required>
+    <button type="submit">Convertir</button>
+</form>
 
-    label {
-        display: block;
-        margin-bottom: 8px;
-    }
-
-    input, button {
-        padding: 8px;
-        margin: 10px 0;
-    }
-
-    input, button {
-        width: 250px;
-    }
-
-    .form-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .form-group input {
-        width: 120px;
-    }
-
-    .form-group label {
-        margin: 0;
-    }
-
-    .result {
-        margin-top: 20px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
-    table, th, td {
-        border: 1px solid #000;
-    }
-
-    th, td {
-        padding: 8px;
-        text-align: left;
-    }
-
-    .subnet-form {
-        margin-top: 20px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-    }
-</style>
-
-
-    <h1>Connaitre le masque de l'IPv4</h1>
-    <p>Entrez une adresse IPv4 pour connaître sa classe et son masque associé.</p>
-    
-    <form id="ipv4-form" action="/ipv4/convert" method="POST">
-        <label for="ipv4_address">Adresse IPv4 :</label>
-        <input type="text" id="ipv4_address" name="ipv4_address" placeholder="ex : 192.168.1.1" required>
-        <button type="submit">Convertir</button>
-    </form>
-
-    <div id="result"></div>
-    <div>
-        <a href="/dashboard">Retour</a>
+<!-- Hint Information, fixed on the right -->
+<label for="hint-click">
+    <input type="checkbox" id="hint-click">
+    <div class="hint">
+        <span class="fa-info">i</span>
+        <p>
+            L’IPv4 (Internet Protocol version 4) est un protocole utilisé pour identifier les appareils sur un réseau
+            via une adresse composée de quatre nombres séparés par des points (ex. : <code>192.168.1.1</code>).<br>
+            <br>
+            Chaque adresse appartient à une classe (A, B, C, etc.), définissant sa plage et son masque par défaut.<br>
+            <br>
+            Fonctionnement du module :<br>
+            - Le module attend en entrée une adress ipv4 sans le masque ("/")<br>
+            - Le module calcule la classe<br>
+            - Le module calcule le masque<br>
+            - Le module fournit une notation CIDR<br>
+            
+        </p>
     </div>
+</label>
 
-    <script src="/javascript/classe_ipv4.js"></script>
+<div id="centerVertical">
+    <div id="result"></div>
+</div>
+
+
+
+<script src="/javascript/classe_ipv4.js"></script>
 

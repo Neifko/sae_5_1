@@ -1,0 +1,155 @@
+/* Conteneur principal */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 10% auto;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Bloc général */
+.dashboard-block {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Profil */
+.profil h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.profil a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profil a:hover {
+    color: #0056b3;
+}
+
+.profil img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+/* Liste des liens */
+.dashboard-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-links li {
+    margin: 10px 0;
+}
+
+.dashboard-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 15px;
+    height: 50px; /* Hauteur initiale */
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ddd;
+    transition: height 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Transition pour la hauteur */
+}
+
+.dashboard-links a:hover {
+    height: 200%; /* Hauteur augmentée lors du survol */
+    background-color: #007bff;
+    color: #fff;
+    background-image: linear-gradient(to right, #007bff, #0056b3); /* Ajout d'un gradient */
+}
+
+
+/* Flash Message */
+.flash-message {
+    background-color: #fffae6;
+    color: #856404;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive ajustements */
+@media (max-width: 768px) {
+    .profil img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.left-column {
+    flex: 0 0 auto; /* La colonne gauche garde sa taille initiale */
+    display: flex;
+    flex-direction: column; /* Pour empiler les éléments si besoin */
+    align-items: center; /* Centrer le contenu horizontalement */
+    padding-top: 10%;
+}
+
+.right-column {
+    flex: 1; /* La colonne droite prend le reste de l'espace */
+}
+
+/* Modules Grid */
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Styles pour les boutons dans les modules */
+.modules-grid .dashboard-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 15px; /* Ajustement du padding pour une taille uniforme */
+    height: 50px; /* Hauteur fixe pour tous les boutons */
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ddd; /* Ajout de la bordure */
+    transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
+}
+
+.modules-grid .dashboard-links a:hover {
+    background-color: #007bff;
+    color: #fff;
+    background-image: linear-gradient(to right, #007bff, #0056b3); /* Ajout du gradient */
+}
