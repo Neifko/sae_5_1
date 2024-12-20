@@ -1,5 +1,4 @@
 label {
-    display: block;
     margin-bottom: 8px;
 }
 
@@ -31,6 +30,7 @@ input, button {
 
 .result {
     margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 table {
