@@ -4,59 +4,57 @@
 1. [Introduction](#Introduction) 
 2. [Installation sur Debian](#Installation-sur-Debian)
    * Prérequis
-   * Script d'installation automatique
-   * Détails des étapes du script
-   * Installation manuelle
-
-3. Installation sur Windows
+   * Etapes d'installation
+   * Installation customisée
+3. [Installation sur Windows](#Installation-sur-Windows)
    * Prérequis
    * Instructions
-4. Accès à l'Application
-
+4. [Accès à l'Application](#Accès-à-l'Application)
 
 
 # Introduction 
 
 Cette application web propose plusieurs modules pour explorer les notions de réseau informatique, tels que :
 
-* Identification de la classe d’une adresse IPv4 et son écriture CIDR.
-* Traduction entre les formats d’adresse IPv4 (hexadécimal, binaire, décimal pointé).
-* Sous-réseaux logiques (notation CIDR, technique VLSM).
-* Composition d'une trame Ethernet avec la librairie Python Scapy.
-* Simplification d’adresses IPv6.
-* Affichage et explication des paramètres d'une interface réseau.
+* L'identification de la classe d’une adresse IPv4 et son écriture CIDR.
+* La traduction entre les formats d’adresse IPv4 (hexadécimal, binaire, décimal pointé).
+* La décomposition d'un réseau en sous-réseaux logiques (notation CIDR, technique VLSM).
+* La composition d'une trame Ethernet avec la librairie Python Scapy.
+* La simplification d’adresses IPv6.
+* L'affichage et explication des paramètres d'une interface réseau.
 
 # Installation sur Debian
 
 ### Prérequis
 * Un système Debian à jour.
-* Accès root pour les opérations d’installation. (machines debian : adminetu /   3tudiant@1nfo-)
+* Accès root pour les opérations d’installation. 
 * Connexion internet active.
 
-### Script d'installation automatique
+### Etapes d'installation
 
 Un script Bash est fourni pour automatiser les étapes d'installation du projet (`script_installation.sh`).
-
-### Instructions installation automatique 
+ 
 <span style="color: #FF8000">ATTENTION : le script fais déjà tout le travail nécessaire du clonage du projet git (il faudra juste utiliser la manuel et le script d'installation).</span>
 
 Ainsi, pour installer sur debian, il faut : 
-1. Créez un fichier local pour le script d'installation (touch install_app.sh):
+1. Faire une copie du script d'installation **script_installation.sh** nommée **install_app.sh** :
+```shell
+cp script_installation.sh install_app.sh
 ```
-nano install_app.sh
-```
-2. Collez le contenu du script fourni dans le zip.
-3. Rendez le script exécutable si besoin :
-```
+2. Rendez le script exécutable si besoin :
+```shell
 chmod +x install_app.sh
 ```
-4. Exécutez le script :
-``` 
+3. Exécutez le script :
+```shell
 sudo ./install_app.sh
 ```
-5. Suivre les instructions à l’écran, notamment pour saisir les mots de passe requis.
+3. Deux possibilités vont s'ouvrir à  vous :
+    * Entrez ```ALL``` pour tout installer 
+    * Entrez ```N``` (ou autre - ce que vous voulez) pour faire une installation customisée (voir [ici](#Installation-customisée))
+4. Suivre les instructions à l’écran, notamment pour saisir les mots de passe requis.
 
-### Instructions installation plus manuelle
+### Instruction customisée
 
 Le script d'installation contient des fonctions qu'il faut executer dans l'ordre, on peut choisir une option `installation fonction par fonction` pour une installation plus manuelle : 
 * `update_system`
