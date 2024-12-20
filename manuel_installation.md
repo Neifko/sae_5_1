@@ -1,4 +1,5 @@
 # Manuel d'installation de l'Application Web Réseau
+## Réalisé par Victor, Ostap, Alexis, Yassine et Xavier
 
 ## Table des Matières
 1. [Introduction](#Introduction) 
@@ -54,21 +55,24 @@ source install_app.sh
     * Entrez ```N``` (ou autre - ce que vous voulez) pour faire une installation customisée (voir categorie en dessous)
 4. Suivre les instructions à l’écran, notamment pour saisir les mots de passe requis.
 
+***Note : Il est préférable d'entrer ALL pour réussir l'installation***
+
 ### Instruction customisée
 
-Le script d'installation contient des fonctions qu'il faut executer dans l'ordre, on peut choisir une option `installation fonction par fonction` pour une installation plus manuelle : 
-* `update_system`
-* `install_web_server`
-* `install_mariadb`
-* `install_pip`
-* `clone_project`
-* `configure_database`
-* `install_composer`
-* `configure_apache`
-* `configure_permissions`
-* `install_scapy`
+Si vous avez choisi une installation customisée, il faut entrer le nom des fonctions suivantes une à une et dans l'ordre indiqué.
 
-les fonctions `install_mariadb` et  `configure_database` utilisent des variables pour stocker les mot de passes, SI BESOIN il faut eventuellement modifier cette partie pour les saisir directement.
+* `update_system` : Mise à jour du système
+* `install_web_server` : Installation du serveur web Apache et PHP
+* `install_mariadb` : Installation de MariaDB
+* `install_pip` : Installation de pip pour Python 3
+* `clone_project` : Clonage du projet depuis GitHub
+* `configure_database` : Configuration de la base de données
+* `install_composer` : Installation de Composer
+* `configure_apache` : Configuration d'Apache
+* `configure_permissions` : Configuration des permissions des fichiers
+* `install_scapy` : Installation de Scapy
+
+les fonctions `install_mariadb` et  `configure_database` vont demander de saisir des mots de passe 
 
 
 ## Installation sur Windows
@@ -152,8 +156,8 @@ Accédez au projet via `localhost` en s'assurant que XAMPP tourne bien `Apache` 
     http://adresse_ip_machine_debian
     ```
     Pour connaître l'adresse IP de la machine, exécutez la commande suivante :
-    ```
-    ip a
+    ```shell
+    ip a s
     ```
 
 2. Sur Windows :
