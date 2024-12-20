@@ -18,6 +18,7 @@
                 text: <?php echo json_encode($error); ?>
             });
         </script>
+    <?php endif; ?>
 
 <div class="pingTcpResult">
     <?php if (!empty($tcpResult)): ?>
@@ -25,5 +26,4 @@
         <pre><?php echo htmlspecialchars($tcpResult); ?></pre>
     <?php endif; ?>
 </div>
-
 
