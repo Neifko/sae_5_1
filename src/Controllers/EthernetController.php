@@ -87,6 +87,8 @@ class EthernetController
             $data['ip_ping'] = $_POST['ip_ping'];
         }
 
+        $data['action'] = $_POST['action'] ?? 'ping';
+
         // FCS (4 octets, généré ou laissé vide pour Scapy)
         $data['fcs'] = $_POST['fcs'] ?? ''; // Peut être vide, Scapy le générera automatiquement si nécessaire
 
