@@ -12,9 +12,16 @@
         </div>
 
         <?php if (isset($_SESSION['flash_message'])): ?>
-            <?= htmlspecialchars($_SESSION['flash_message']['content']) ?>
-            <?php unset($_SESSION['flash_message']); ?>
+            <script>
+                Swal.fire({
+                    icon: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>",
+                    type: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>", // 'success', 'error', etc.
+                    text: "<?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>"
+                })
+            </script>
         <?php endif; ?>
+
+
     </div>
 
     <!-- Colonne de droite -->
@@ -23,12 +30,12 @@
             <!-- Modules -->
             <div class="dashboard-block">
                 <ul class="dashboard-links">
-                    <li><a href="/module_traduction">Module de Traduction IPV4</a></li>
+                    <li><a href="/module_traduction">Module de traduction IPv4</a></li>
                 </ul>
             </div>
             <div class="dashboard-block">
                 <ul class="dashboard-links">
-                    <li><a href="/module_sousreseau">Module sous réseau</a></li>
+                    <li><a href="/module_sousreseau">Module sous-réseaux</a></li>
                 </ul>
             </div>
             <div class="dashboard-block">

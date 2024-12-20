@@ -34,6 +34,7 @@
     <p>Aucune donnée réseau disponible. Veuillez mettre à jour les informations.</p>
 <?php endif; ?>
 
+
 <!-- Hint Information, fixed on the right -->
 <label for="hint-click">
         <input type="checkbox" id="hint-click">
@@ -57,6 +58,4 @@
             </p>
         </div>
     </label>
-<div>
-    <a href="/scapy">Retour</a>
-</div>
+

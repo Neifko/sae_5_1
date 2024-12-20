@@ -86,6 +86,8 @@ th, td {
 
 p {
     color: white;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
 }
 
 div p {
@@ -94,8 +96,17 @@ div p {
 }
 
 #centerVertical {
-    text-align: center; /* Facultatif pour centrer le texte horizontalement */
+    text-align: center;
     color: white;
-    background-color: #00334A;
+    background-color: var(--secondary-color);
     margin: 0 30%;
+    border-radius: 10px;
+}
+
+.ipv6Extend {
+    margin-top: 22%;
+}
+
+.pingTcpResult{
+    margin-top: 22%;
 }

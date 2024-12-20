@@ -17,7 +17,8 @@
 <?php elseif ($step === 2): ?>
     <!-- Étape 2 : Choix du format de sortie -->
     <form action="" method="POST">
-        <p>Format détecté : <strong><?php echo ucfirst($adresse_detectee); ?></strong></p>
+        <p> Format détecté : <strong><?php echo ucfirst($adresse_detectee); ?></strong><br>
+        Ip demandée : <strong><?php echo ucfirst($address); ?></strong></p>
 
         <label for="choix_format">Choisissez le format de conversion :</label>
         <select name="choix_format" id="choix_format" required>
@@ -34,14 +35,14 @@
         <input type="submit" value="Convertir"/>
     </form>
 
-<div>
 <?php elseif ($step === 3): ?>
     <!-- Résultat -->
     <?php if (!empty($resultat)): ?>
-        <p><strong>Résultat pour l'adresse <?php echo htmlspecialchars($address); ?>
+        <p id="centerVertical"><strong>Résultat pour l'adresse <?php echo htmlspecialchars($address); ?>
                 :<br></strong> <?php echo htmlspecialchars($resultat); ?></p>
     <?php endif; ?>
 <?php endif; ?>
+
 
 </div>
     <!-- Hint Information, fixed on the right -->
@@ -75,6 +76,19 @@
             </p>
         </div>
     </label>
+
+<?php if (isset($_SESSION['flash_message'])): ?>
+    <script>
+        Swal.fire({
+            icon: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>",
+            type: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>", // 'success', 'error', etc.
+            text: "<?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>"
+        })
+    </script>
+    <?php unset($_SESSION['flash_message']); ?>
+<?php endif; ?>
+
+
 <div>
 
     <?php if ($step !== 1): ?>

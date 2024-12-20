@@ -11,6 +11,7 @@
     </form>
 </div>
 
+
     <!-- Hint Information, fixed on the right -->
     <label for="hint-click">
         <input type="checkbox" id="hint-click">
@@ -38,7 +39,21 @@
         </div>
     </label>
 
-<?php if (!empty($pingResult)): ?>
-    <h2>Résultat du ping :</h2>
-    <pre><?php echo htmlspecialchars($pingResult); ?></pre>
-<?php endif; ?>
+    <?php if (!empty($error)): ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: <?php echo json_encode($error); ?>
+            });
+        </script>
+    <?php endif; ?>
+
+<div class="pingTcpResult">
+    <?php if (!empty($pingResult)): ?>
+        <h2>Résultat du ping :</h2>
+        <pre><?php echo htmlspecialchars($pingResult); ?></pre>
+    <?php endif; ?>
+</div>
+
+

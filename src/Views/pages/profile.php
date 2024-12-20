@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="/css/pages.css">
 <div>
     <p style="color: white">Vous êtes connecté <?= htmlspecialchars($username) ?></p>
 </div>
@@ -18,9 +18,16 @@
 
     <div>
         <?php if (isset($_SESSION['flash_message'])): ?>
-            <?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>
+            <script>
+                Swal.fire({
+                    icon: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>",
+                    type: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>", // 'success', 'error', etc.
+                    text: "<?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>"
+                })
+            </script>
             <?php unset($_SESSION['flash_message']); ?>
         <?php endif; ?>
+
     </div>
 
     <input type="submit" value="Changer de mot de passe">

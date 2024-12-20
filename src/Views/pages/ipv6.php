@@ -9,6 +9,7 @@
         <button type="submit" id="etendre-button">Etendre</button>
         <button id="classify-button">Classifier</button>
     </form>
+
     <!-- Hint Information, fixed on the right -->
 <label for="hint-click">
     <input type="checkbox" id="hint-click">
@@ -36,7 +37,8 @@
     </div>
 </label>
 
-    <div id="resultDiv"></div>
+  <div class="ipv6Extend" id="resultDiv"></div>
+
 
 
     <script src="/javascript/classe_ipv6.js"></script>
