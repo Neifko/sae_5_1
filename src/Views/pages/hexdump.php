@@ -3,29 +3,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             const actionSelect = document.getElementById('action');
             const additionalFields = document.getElementById('additional-fields');
-
+            
+            // Template pour l'action 'capture' et 'sample'
             const fieldTemplates = {
                 capture: `
                     <label for="interface">Interface réseau :</label>
                     <input type="text" name="interface" id="interface" required>
                 `,
-                analyze: `
-                    <label for="data">Données brutes :</label>
-                    <textarea name="data" id="data" required></textarea>
-                `,
                 sample: `
                     <label for="dst_ip">Adresse IP de destination :</label>
                     <input type="text" name="dst_ip" id="dst_ip" required>
-                `,
-                compare: `
-                    <label for="data1">Données 1 :</label>
-                    <textarea name="data1" id="data1" required></textarea>
-                    <label for="data2">Données 2 :</label>
-                    <textarea name="data2" id="data2" required></textarea>
-                `,
-                pcap: `
-                    <label for="file">Télécharger un fichier .pcap :</label>
-                    <input type="file" name="file" id="file" accept=".pcap" required>
                 `
             };
 

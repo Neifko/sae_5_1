@@ -21,9 +21,6 @@ def capture_packets(interface):
     print(json.dumps(results, indent=4))
 
 def analyze_data(raw_data):
-    """
-    Analyse les données brutes (en hexadécimal) et affiche les résultats.
-    """
     try:
         packet = Ether(bytes.fromhex(raw_data.replace(" ", "")))
         result = {
@@ -36,9 +33,6 @@ def analyze_data(raw_data):
         print(json.dumps(error_message, indent=4))
 
 def analyze_pcap(file_path):
-    """
-    Analyse un fichier .pcap et affiche les résultats sous forme de hexdump.
-    """
     try:
         packets = rdpcap(file_path)
         results = []
@@ -51,6 +45,7 @@ def analyze_pcap(file_path):
     except Exception as e:
         error_message = {"error": f"Erreur lors de l'analyse du fichier pcap : {str(e)}"}
         print(json.dumps(error_message, indent=4))
+
 
 def create_sample_packet(dst_ip):
     """
@@ -68,28 +63,6 @@ def create_sample_packet(dst_ip):
         print(json.dumps(error_message, indent=4))
 
 
-def compare_data(data1, data2):
-    """
-    Compare deux ensembles de données brutes en hexadécimal et affiche les résultats.
-    """
-    try:
-        packet1 = Ether(bytes.fromhex(data1.replace(" ", "")))
-        packet2 = Ether(bytes.fromhex(data2.replace(" ", "")))
-        result = {
-            "packet1": {
-                "summary": packet1.summary(),
-                "hexdump": hexdump(packet1, dump=True)
-            },
-            "packet2": {
-                "summary": packet2.summary(),
-                "hexdump": hexdump(packet2, dump=True)
-            },
-            "comparison": "Les paquets sont identiques." if packet1 == packet2 else "Les paquets sont différents."
-        }
-        print(json.dumps(result, indent=4))
-    except Exception as e:
-        error_message = {"error": f"Erreur lors de la comparaison des données : {str(e)}"}
-        print(json.dumps(error_message, indent=4))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Hexdump Scapy Utility")
@@ -123,7 +96,5 @@ if __name__ == "__main__":
         analyze_pcap(args.file)
     elif args.command == "sample":
         create_sample_packet(args.dst_ip)
-    elif args.command == "compare":
-        compare_data(args.data1, args.data2)
     else:
         parser.print_help()
