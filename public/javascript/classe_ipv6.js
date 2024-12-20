@@ -190,7 +190,7 @@ function init(){
 
     document.getElementById('classify-button').addEventListener('click', function (event) {
         event.preventDefault();
-        var ipv6 = document.getElementById('ipv6').value;
+        var ipv6 = document.getElementById('ipv6').value.trim();
         const resultDiv = document.getElementById('resultDiv');
 
         const classifications = classifyIPv6(ipv6);
