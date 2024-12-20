@@ -3,10 +3,10 @@
 
     <!-- Formulaire pour entrer l'adresse IP et le port -->
     <form action="/tcp" method="post">
-        <label for="ip">Adresse IP :</label>
-        <input type="text" id="ip" name="ip" required>
+        <label for="ip">Adresse IP ou URL ou Domaine :</label>
+        <input type="text" id="ip" name="ip" placeholder="(ex : github.com)" required>
         <label for="port">Port :</label>
-        <input type="number" id="port" name="port" required>
+        <input type="number" id="port" name="port" placeholder="(ex : 22)" required>
         <button type="submit">Tester</button>
     </form>
 
