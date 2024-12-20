@@ -17,7 +17,7 @@ class HexdumpController
             View::render("hexdump", ['error' => $error]);
             throw new \Exception('VScript non accessible.');
         }
-}
+    }
 
     public function index()
     {
