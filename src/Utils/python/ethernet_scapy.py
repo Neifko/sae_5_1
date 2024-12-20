@@ -1,9 +1,9 @@
 import json
 import os
-from scapy.all import Ether, sendp, srp, sniff, IP, ICMP
+from scapy.all import Ether, sendp, srp, sniff, IP, ICMP, ARP
 
 
-def create_ethernet_frame_from_json(json_file):
+def create_ethernet_frame_from_json(json_file, interface="eth0"):
     try:
         # Lecture du fichier JSON
         with open(json_file, 'r') as file:
@@ -22,16 +22,17 @@ def create_ethernet_frame_from_json(json_file):
         havepayload = bool(data['havepayload'])
         payload = data['data']  # Les données (payload)
 
-
-        # Construction de la trame Ethernet
-        frame = Ether(dst=destination_mac, src=source_mac, type=ethertype)
-
         if (havepayload):
-            frame = frame / bytes(payload, 'utf-8')
+            frame = Ether(dst=destination_mac, src=source_mac, type=ethertype) / bytes(payload, 'utf-8')
         else:
             action = data['action']
             if (action == "ping"):
                 ip_ping = data['ip_ping']
+
+                destination_mac = get_mac(ip_ping, iface=interface)
+
+                # Construction de la trame Ethernet
+                frame = Ether(dst=destination_mac, src=source_mac, type=ethertype)
 
                 # Construction du paquet IP + ICMP
                 ip_packet = IP(dst=ip_ping)
@@ -59,9 +60,35 @@ def convert_mac_format(mac_address):
         return mac_address.replace("-", ":").lower()
     return mac_address.lower()
 
+def get_mac(ip, iface="eth0"):
+    """
+    Résout l'adresse MAC d'une IP donnée via une requête ARP.
+
+    :param ip: Adresse IP cible (str).
+    :param iface: Interface réseau utilisée (par défaut "eth0").
+    :return: Adresse MAC correspondante (str) ou None si non résolue.
+    """
+    # Construction de la requête ARP
+    arp_request = ARP(pdst=ip)  # ARP pour l'IP cible
+    broadcast = Ether()  # Broadcast Ethernet
+    packet = broadcast / arp_request
+
+    # Envoi et réception de la requête ARP
+    answered, unanswered = srp(packet, timeout=2, iface=iface, verbose=False)
+
+    for sent, received in answered:
+        # Retourne l'adresse MAC du destinataire (ARP response)
+        return received.hwsrc
+
+    # Si aucune réponse reçue
+    return None
+
 def main(directory):
+    # Spécifiez l'interface réseau pour l'envoi de la trame
+    interface = "eth0"  # Remplacez par le nom de votre interface réseau
+
     # Création de la trame Ethernet depuis le fichier JSON
-    ethernet_frame = create_ethernet_frame_from_json(directory)
+    ethernet_frame = create_ethernet_frame_from_json(directory, interface)
 
     if ethernet_frame:
         # Affichage de la trame Ethernet
@@ -71,9 +98,6 @@ def main(directory):
         # Envoi de la trame (optionnel, commenter si non nécessaire)
         # sendp(ethernet_frame, iface="eth0")  # Spécifiez l'interface réseau si nécessaire
         print("Trame prête à être envoyée.")
-
-        # Spécifiez l'interface réseau pour l'envoi de la trame
-        interface = "eth0"  # Remplacez par le nom de votre interface réseau
 
         try:
             # Envoi de la trame Ethernet
