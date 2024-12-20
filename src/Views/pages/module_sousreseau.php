@@ -1,10 +1,7 @@
 <link rel="stylesheet" href="css/moduleSousReseau.css">
 <link rel="stylesheet" href="/css/informations.css">
 
-    <title>Calculateur VLSM</title>
-
-
-<h1>Calculateur de sous-réseaux VLSM</h1>
+<h2>Calculateur de sous-réseaux VLSM</h2>
 <form id="vlsmForm" method="POST">
     <!-- Formulaire avec champ IP / CIDR côte à côte -->
     <div class="form-group">

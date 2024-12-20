@@ -1,5 +1,5 @@
 <?php
-$result = $_SESSION['result_hexdump'];
+$result = $_SESSION['result_hexdump'] ?? '';
 ?>
 
 <link rel="stylesheet" href="/css/informations.css">
