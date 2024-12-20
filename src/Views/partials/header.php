@@ -32,13 +32,13 @@
                 <a href="/">Retour</a>
             </button>
         </div>
-    <?php elseif (!in_array($_SERVER['REQUEST_URI'], ['/dashboard','/login', '/register', '/ping', '/tcp', '/network', '/hexdump'])): // si connecte et page non login ?>
+    <?php elseif (!in_array($_SERVER['REQUEST_URI'], ['/dashboard','/login', '/register', '/ping', '/tcp', '/network', '/hexdump', '/ethernet'])): // si connecte et page non login ?>
         <div id="boutonRetourHeader">
             <button>
                 <a href="/">Retour</a>
             </button>
         </div>
-    <?php elseif (in_array($_SERVER['REQUEST_URI'], ['/ping', '/tcp', '/network', '/hexdump'])): ?>
+    <?php elseif (in_array($_SERVER['REQUEST_URI'], ['/ping', '/tcp', '/network', '/hexdump', '/ethernet'])): ?>
         <div id="boutonRetourHeader">
             <button>
                 <a href="/scapy">Retour</a>
