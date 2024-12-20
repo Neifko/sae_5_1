@@ -110,11 +110,11 @@ class EthernetController
 
         // Réponse réussie
 //        header('Content-Type: application/json');
-        echo json_encode(['status' => 'success', 'message' => 'Trame sauvegardée avec succès.', 'file' => $jsonFile]) . "<br>";
+        $success_msg =  json_encode(['status' => 'success', 'message' => 'Trame sauvegardée avec succès.', 'file' => $jsonFile]);
 
         $result = shell_exec("python3 " . __DIR__ . "/../Utils/python/ethernet_scapy.py 2>&1");
 
-        View::render('ethernet', ['result' => $result]);
+        View::render('ethernet', ['result' => $result, 'success_msg' => $success_msg]);
     }
 
 }
