@@ -77,12 +77,12 @@ if __name__ == "__main__":
 
     # Vérification si une réponse a été reçue
     if "Aucune réponse" not in latency:
-        print("Connexion réussie")
+        print("Connexion possible")
         print(f"Adresse IP : {target_ip}:{target_port}")
         print(f"Nom d'Hôte : {get_hostname(target_ip)}")
         print(f"Latence : {latency}")
     else:
-        print("Aucune réponse")
+        print("Connexion impossible")
         print(f"Adresse IP : {target_ip}:{target_port}")
         print(f"Nom d'Hôte : {get_hostname(target_ip)}")
         print(f"Latence : {latency}")

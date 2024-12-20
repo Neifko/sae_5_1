@@ -33,6 +33,17 @@ function applySubnets() {
         return;
     }
 
+    let limite = numSubnets * 2;
+
+    if (limite > totalHostsAvailable){
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Trop de sous-réseaux'
+        });
+        return;
+    }
+
     // Récupérer le conteneur où les nouveaux formulaires seront ajoutés
     const subnetFormsContainer = document.getElementById('subnetFormsContainer');
     subnetFormsContainer.innerHTML = ''; // Réinitialiser les formulaires existants

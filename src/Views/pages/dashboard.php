@@ -30,12 +30,12 @@
             <!-- Modules -->
             <div class="dashboard-block">
                 <ul class="dashboard-links">
-                    <li><a href="/module_traduction">Module de Traduction IPV4</a></li>
+                    <li><a href="/module_traduction">Module de traduction IPv4</a></li>
                 </ul>
             </div>
             <div class="dashboard-block">
                 <ul class="dashboard-links">
-                    <li><a href="/module_sousreseau">Module sous réseau</a></li>
+                    <li><a href="/module_sousreseau">Module sous-réseaux</a></li>
                 </ul>
             </div>
             <div class="dashboard-block">
