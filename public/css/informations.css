@@ -2,32 +2,37 @@
 .hint {
     height: 40px;
     width: 40px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 15px;
     position: fixed;
     right: 20px;
     top: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
     cursor: pointer;
     transition: 0.2s ease;
     padding: 5px;
 }
 
+/* Ajouter le fond autour de l'icône, pas directement sur l'icône */
+.hint::before {
+    content: ''; /* Contenu vide pour créer un pseudo-élément */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 51, 74, 0.85); /* Le fond coloré autour de l'icône */
+    border-radius: 15px; /* Assure que le fond est également arrondi */
+    z-index: -1; /* Met le fond derrière l'icône */
+}
+
+/* Style de l'icône */
 .fa-info {
     font-size: 1.5em; /* Ajuste la taille de l'icône */
-    display: inline-block;
-    text-align: middle;
-    line-height: 1; /* Garantit que l'icône est bien centrée verticalement */
+    color: white;     /* L'icône elle-même reste blanche */
 }
 
-.hint > span {
-    font-size: 2em;
-}
-
-/* Style pour le texte déroulant */
+/* Style pour le texte déroulant sans fond noir */
 .hint > p {
     overflow: hidden;
     max-height: 0px;
@@ -35,15 +40,15 @@
     margin: 0;
     padding: 0 10px;
     font-size: 1.2em;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: white;
+    color: white; /* Couleur du texte */
     border-radius: 10px;
     margin-top: 5px;
+    background-color: transparent; /* Fond transparent pour le texte */
 }
 
 /* Lorsque l'icône est cliquée, on fait apparaître le texte */
 #hint-click:checked + .hint > p {
-    max-height: 999px; 
+    max-height: 999px;
     padding: 20px;
 }
 
@@ -77,26 +82,5 @@
     border-radius: 0;
     overflow-y: auto; /* Permet le défilement du texte si nécessaire */
     color: white;
-}
-
-/* Style du formulaire */
-.form-container {
-    margin-top: 100px; 
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
-}
-
-.form-container label, .form-container input, .form-container button {
-    margin-bottom: 10px;
-    display: block;
-    width: 100%;
-}
-
-.form-container input, .form-container button {
-    padding: 10px;
-    font-size: 1rem;
+    background-color: transparent; /* Fond transparent dans la bulle également */
 }

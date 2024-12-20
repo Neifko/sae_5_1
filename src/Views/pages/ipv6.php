@@ -22,10 +22,10 @@
             <br>
             Classification des adresses IPv6 :<br>
             - Les adresses IPv6 peuvent être classées en plusieurs catégories :<br>
-                - **Link-Local** : Ce type d'adresse est utilisé pour la communication au sein d'un même réseau local, souvent avec une portée limitée à un seul segment de réseau (ex. : <code>fe80::1</code>).<br>
-                - **Globale** : Ce type d'adresse est destiné à l'Internet global, et est routable à travers tous les réseaux. Exemple : <code>2001:0db8::/32</code>.<br>
-                - **Locale Unique (LUA)** : Ce type d'adresse est réservé pour des usages privés, généralement pour des réseaux internes. Exemple : <code>fd00::/8</code>.<br>
-                - **Non-classifiable** : Certaines adresses IPv6 ne rentrent dans aucune des catégories ci-dessus et sont donc non classifiables.<br>
+                - Link-Local : Ce type d'adresse est utilisé pour la communication au sein d'un même réseau local, souvent avec une portée limitée à un seul segment de réseau (ex. : <code>fe80::1</code>).<br>
+                - Globale : Ce type d'adresse est destiné à l'Internet global, et est routable à travers tous les réseaux. Exemple : <code>2001:0db8::/32</code>.<br>
+                - Locale Unique (LUA) : Ce type d'adresse est réservé pour des usages privés, généralement pour des réseaux internes. Exemple : <code>fd00::/8</code>.<br>
+                - Non-classifiable : Certaines adresses IPv6 ne rentrent dans aucune des catégories ci-dessus et sont donc non classifiables.<br>
             <br>
             Fonctionnement du module :<br>
             - Le module attend en entrée une adresse IPv6 sous sa forme simplifiée ou étendue.<br>
