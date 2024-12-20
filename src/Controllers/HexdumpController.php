@@ -19,8 +19,6 @@ class HexdumpController
 
     public function index()
     {
-        session_start();
-
         $error = $_SESSION['error'] ?? null;
         $result = $_SESSION['result'] ?? null;
         $selected_action = $_SESSION['selected_action'] ?? null;
