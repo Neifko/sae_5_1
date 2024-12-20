@@ -9,7 +9,11 @@ function applySubnets() {
 
     // Vérifier si le nombre de sous-réseaux est valide
     if (isNaN(numSubnets) || numSubnets <= 0) {
-        alert("Veuillez entrer un nombre valide de sous-réseaux.");
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Veuillez entrer un nombre valide de sous-réseaux.'
+        });
         return;
     }
 
@@ -281,7 +285,6 @@ function getSubnetMask(cidr) {
     if (isNaN(cidrInt) || cidrInt < 0 || cidrInt > 32) {
         console.log(cidrInt);
         throw new Error("CIDR invalide. Il doit être un entier entre 0 et 32.");
-
     }
 
     // Générer le masque binaire en fonction du CIDR
