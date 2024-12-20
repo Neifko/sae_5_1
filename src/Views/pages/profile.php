@@ -4,7 +4,7 @@
 </div>
 
 <?php if ($username === 'admin'):?>
-<div>
+<div class="boutonSeDecoEtListeEtu">
     <p>
         <a href="/list-users">Voir la liste des utilisateurs</a>
     </p>
@@ -32,7 +32,7 @@
 
     <input type="submit" value="Changer de mot de passe">
 </form>
-<div>
+<div class="boutonSeDecoEtListeEtu">
     <p>
         <a href="/logout">Se déconnecter</a>
     </p>

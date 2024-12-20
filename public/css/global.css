@@ -30,13 +30,21 @@ body {
 
 div p {
   text-align: center;
-  background-color: var(--text-color);
+  background-color: var(--dark-bg);
   margin: 10px auto 10px auto;
   width: 25%;
 }
 
 .footerPInvisible {
     background-color: var(--dark-bg);
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #06708E;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -34,7 +34,7 @@ function getServerMacAddress()
 $server_mac = getServerMacAddress();
 ?>
 <link rel="stylesheet" href="/css/ethernet.css">
-<h1>Créer une trame Ethernet</h1>
+<h2>Créer une trame Ethernet</h2>
 <p>Les valeurs par défaut permette de créer une trame ethernet basic. Si vous ne cochez pas la case <code>Données personnalisées</code>
 Vous devez mettre une adresse ipv4 dans <code>IPv4 pour le ping</code> et le script va effectuer un ping avec ce que vous avez
 renseigné. L'adresse mac destination sera recuperer a l'aide de l'adresse ipv4 grace à un arp.

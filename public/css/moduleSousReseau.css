@@ -54,3 +54,11 @@ th, td {
     border: 1px solid #ccc;
     margin-bottom: 10px;
 }
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #06708E;
+    margin-bottom: 20px;
+    text-align: center;
+}
