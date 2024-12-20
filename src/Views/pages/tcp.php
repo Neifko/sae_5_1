@@ -14,8 +14,17 @@
         <a href="/scapy">Retour</a>
     </div>
 
-    <?php if (!empty($tcpResult)): ?>
-        <h2>Résultat de la connexion TCP :</h2>
-        <pre><?php echo htmlspecialchars($tcpResult); ?></pre>
+    <?php if (!empty($error)): ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: <?php echo json_encode($error); ?>
+            });
+        </script>
+
+    <?php elseif (!empty($pingResult)): ?>
+        <h2>Résultat de la connection TCP :</h2>
+        <pre><?php echo htmlspecialchars($pingResult); ?></pre>
     <?php endif; ?>
 
