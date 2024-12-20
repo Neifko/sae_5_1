@@ -44,7 +44,7 @@ def create_ethernet_frame_from_json(json_file):
             else:
                 print("Action non supporté ou erreur")
 
-        return frame
+        return frame, interface
 
     except Exception as e:
         print(f"Erreur lors de la création de la trame Ethernet : {e}")
