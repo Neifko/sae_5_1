@@ -1,83 +1,85 @@
 # Manuel d'installation de l'Application Web Réseau
+## Réalisé par Victor, Ostap, Alexis, Yassine et Xavier
 
 ## Table des Matières
-1. Introduction 
-2. Installation sur Debian
+1. [Introduction](#Introduction) 
+2. [Installation sur Debian](#Installation-sur-Debian)
    * Prérequis
-   * Script d'installation automatique
-   * Détails des étapes du script
-   * Installation manuelle
-
-3. Installation sur Windows
+   * Etapes d'installation
+   * Installation customisée
+3. [Installation sur Windows](#Installation-sur-Windows)
    * Prérequis
    * Instructions
-4. Accès à l'Application
+4. [Accès à l'Application](#Accès-à-l'Application)
 
 
-
-## Introduction 
+# Introduction 
 
 Cette application web propose plusieurs modules pour explorer les notions de réseau informatique, tels que :
 
-* Identification de la classe d’une adresse IPv4 et son écriture CIDR.
-* Traduction entre les formats d’adresse IPv4 (hexadécimal, binaire, décimal pointé).
-* Sous-réseaux logiques (notation CIDR, technique VLSM).
-* Composition d'une trame Ethernet avec la librairie Python Scapy.
-* Simplification d’adresses IPv6.
-* Affichage et explication des paramètres d'une interface réseau.
+* L'identification de la classe d’une adresse IPv4 et son écriture CIDR.
+* La traduction entre les formats d’adresse IPv4 (hexadécimal, binaire, décimal pointé).
+* La décomposition d'un réseau en sous-réseaux logiques (notation CIDR, technique VLSM).
+* La composition d'une trame Ethernet avec la librairie Python Scapy.
+* La simplification d’adresses IPv6.
+* L'affichage et explication des paramètres d'une interface réseau.
 
-## Installation sur Debian
+# Installation sur Debian
 
 ### Prérequis
 * Un système Debian à jour.
-* Accès root pour les opérations d’installation. (machines debian : adminetu /   3tudiant@1nfo-)
+* Accès root pour les opérations d’installation. 
 * Connexion internet active.
 
-### Script d'installation automatique
+### Etapes d'installation
 
 Un script Bash est fourni pour automatiser les étapes d'installation du projet (`script_installation.sh`).
-
-### Instructions installation automatique 
+ 
 <span style="color: #FF8000">ATTENTION : le script fais déjà tout le travail nécessaire du clonage du projet git (il faudra juste utiliser la manuel et le script d'installation).</span>
 
 Ainsi, pour installer sur debian, il faut : 
-1. Créez un fichier local pour le script d'installation (touch install_app.sh):
+1. Faire une copie du script d'installation **script_installation.sh** nommée **install_app.sh** :
+```shell
+cp script_installation.sh install_app.sh
 ```
-nano install_app.sh
-```
-2. Collez le contenu du script fourni dans le zip.
-3. Rendez le script exécutable si besoin :
-```
+2. Rendez le script exécutable si besoin :
+```shell
 chmod +x install_app.sh
 ```
-4. Exécutez le script :
-``` 
-sudo ./install_app.sh
+3. Exécutez le script :
+```shell
+source install_app.sh
 ```
-5. Suivre les instructions à l’écran, notamment pour saisir les mots de passe requis.
+3. Deux possibilités vont s'ouvrir à  vous :
+    * Entrez ```ALL``` pour tout installer (compatible également avec ```sudo ./install_app.sh```)
+    * Entrez ```N``` (ou autre - ce que vous voulez) pour faire une installation customisée (voir categorie en dessous)
+4. Suivre les instructions à l’écran, notamment pour saisir les mots de passe requis.
 
-### Instructions installation plus manuelle
+***Note : Il est préférable d'entrer ALL pour réussir l'installation***
 
-Le script d'installation contient des fonctions qu'il faut executer dans l'ordre, on peut choisir une option `installation fonction par fonction` pour une installation plus manuelle : 
-* `update_system`
-* `install_web_server`
-* `install_mariadb`
-* `install_pip`
-* `clone_project`
-* `configure_database`
-* `install_composer`
-* `configure_apache`
-* `configure_permissions`
-* `install_scapy`
+### Instruction customisée
 
-les fonctions `install_mariadb` et  `configure_database` utilisent des variables pour stocker les mot de passes, SI BESOIN il faut eventuellement modifier cette partie pour les saisir directement.
+Si vous avez choisi une installation customisée, il faut entrer le nom des fonctions suivantes une à une et dans l'ordre indiqué.
+
+* `update_system` : Mise à jour du système
+* `install_web_server` : Installation du serveur web Apache et PHP
+* `install_mariadb` : Installation de MariaDB
+* `install_pip` : Installation de pip pour Python 3
+* `clone_project` : Clonage du projet depuis GitHub
+* `configure_database` : Configuration de la base de données
+* `install_composer` : Installation de Composer
+* `configure_apache` : Configuration d'Apache
+* `configure_permissions` : Configuration des permissions des fichiers
+* `install_scapy` : Installation de Scapy
+
+les fonctions `install_mariadb` et  `configure_database` vont demander de choisir des mots de passes.
 
 
 ## Installation sur Windows
 
 ### Prérequis
 * Installer XAMPP.
-* Installer Python 3.x avec pip et Scapy et de pouvoir executer winpcap, scapy, etc ... en admin(`pip install ...`).
+* Installer Python 3.x avec pip et Scapy et de pouvoir executer winpcap, scapy, etc ... en admin(```pip install ...```).
 * Cloner le projet GitHub.
 
 ### Instructions
@@ -154,8 +156,8 @@ Accédez au projet via `localhost` en s'assurant que XAMPP tourne bien `Apache` 
     http://adresse_ip_machine_debian
     ```
     Pour connaître l'adresse IP de la machine, exécutez la commande suivante :
-    ```
-    ip a
+    ```shell
+    ip a s
     ```
 
 2. Sur Windows :
