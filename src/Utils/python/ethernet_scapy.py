@@ -3,14 +3,14 @@ import os
 from scapy.all import Ether, sendp, srp, sniff, IP, ICMP, ARP
 
 
-def create_ethernet_frame_from_json(json_file, interface="eth0"):
+def create_ethernet_frame_from_json(json_file):
     try:
         # Lecture du fichier JSON
         with open(json_file, 'r') as file:
             data = json.load(file)
 
         # Validation des champs essentiels
-        required_fields = ["preambule", "sfd", "destination_mac", "source_mac", "ethertype", "data"]
+        required_fields = ["preambule", "sfd", "destination_mac", "source_mac", "ethertype", "data", "interface", "action", "havepayload"]
         for field in required_fields:
             if field not in data:
                 raise ValueError(f"Le champ '{field}' est manquant dans le fichier JSON.")
@@ -21,8 +21,7 @@ def create_ethernet_frame_from_json(json_file, interface="eth0"):
         ethertype = int(data['ethertype'], 16)  # Conversion de l'EtherType en entier
         havepayload = bool(data['havepayload'])
         payload = data['data']  # Les données (payload)
-        interface_json = data['data']
-        interface = interface_json
+        interface =  data['interface']
 
         if (havepayload):
             frame = Ether(dst=destination_mac, src=source_mac, type=ethertype) / bytes(payload, 'utf-8')
@@ -62,7 +61,7 @@ def convert_mac_format(mac_address):
         return mac_address.replace("-", ":").lower()
     return mac_address.lower()
 
-def get_mac(ip, iface="eth0"):
+def get_mac(ip, iface):
     """
     Résout l'adresse MAC d'une IP donnée via une requête ARP.
 
@@ -86,11 +85,9 @@ def get_mac(ip, iface="eth0"):
     return None
 
 def main(directory):
-    # Spécifiez l'interface réseau pour l'envoi de la trame
-    interface = "eth0"  # Remplacez par le nom de votre interface réseau
 
     # Création de la trame Ethernet depuis le fichier JSON
-    ethernet_frame = create_ethernet_frame_from_json(directory, interface)
+    ethernet_frame, interface = create_ethernet_frame_from_json(directory)
 
     if ethernet_frame:
         # Affichage de la trame Ethernet
