@@ -22,6 +22,10 @@
                     <textarea name="data1" id="data1" required></textarea>
                     <label for="data2">Données 2 :</label>
                     <textarea name="data2" id="data2" required></textarea>
+                `,
+                pcap: `
+                    <label for="file">Télécharger un fichier .pcap :</label>
+                    <input type="file" name="file" id="file" accept=".pcap" required>
                 `
             };
 
@@ -41,7 +45,7 @@
         <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
     <?php endif; ?>
 
-    <form method="POST" action="/hexdump/process">
+    <form method="POST" action="/hexdump/process" enctype="multipart/form-data">
         <label for="action">Action :</label>
         <select name="action" id="action">
             <?php foreach ($actions as $key => $label): ?>

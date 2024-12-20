@@ -35,7 +35,8 @@ class HexdumpController
                 'capture' => 'Capturer un paquet réseau',
                 'analyze' => 'Analyser des données brutes',
                 'sample' => 'Créer un exemple de paquet',
-                'compare' => 'Comparer deux ensembles de données'
+                'compare' => 'Comparer deux ensembles de données',
+                'pcap' => 'Analyser un fichier .pcap'  // Ajout d'une option pour analyser un fichier .pcap
             ]
         ]);
     }
@@ -52,11 +53,7 @@ class HexdumpController
         try {
             switch ($action) {
                 case 'capture':
-                    $interface = $_POST['interface'] ?? null;
-                    if (!$interface) {
-                        throw new \Exception('Veuillez spécifier une interface réseau.');
-                    }
-                    $command = "python3 " . escapeshellarg($this->pythonScript) . " capture --interface " . escapeshellarg($interface);
+                    // Logique pour capturer des paquets
                     break;
 
                 case 'analyze':
@@ -82,6 +79,15 @@ class HexdumpController
                         throw new \Exception('Veuillez fournir deux ensembles de données.');
                     }
                     $command = "python3 " . escapeshellarg($this->pythonScript) . " compare --data1 " . escapeshellarg($data1) . " --data2 " . escapeshellarg($data2);
+                    break;
+
+                case 'pcap':  // Analyser un fichier .pcap
+                    if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+                        throw new \Exception('Veuillez télécharger un fichier .pcap valide.');
+                    }
+
+                    $fileTmpPath = $_FILES['file']['tmp_name'];
+                    $command = "python3 " . escapeshellarg($this->pythonScript) . " analyze_pcap --file " . escapeshellarg($fileTmpPath);
                     break;
 
                 default:
@@ -112,7 +118,8 @@ class HexdumpController
                 'capture' => 'Capturer un paquet réseau',
                 'analyze' => 'Analyser des données brutes',
                 'sample' => 'Créer un exemple de paquet',
-                'compare' => 'Comparer deux ensembles de données'
+                'compare' => 'Comparer deux ensembles de données',
+                'pcap' => 'Analyser un fichier .pcap'
             ],
             'selected_action' => $action
         ]);

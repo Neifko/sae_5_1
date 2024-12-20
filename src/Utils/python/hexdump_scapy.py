@@ -35,6 +35,23 @@ def analyze_data(raw_data):
         error_message = {"error": f"Erreur lors de l'analyse des données : {str(e)}"}
         print(json.dumps(error_message, indent=4))
 
+def analyze_pcap(file_path):
+    """
+    Analyse un fichier .pcap et affiche les résultats sous forme de hexdump.
+    """
+    try:
+        packets = rdpcap(file_path)
+        results = []
+        for packet in packets:
+            results.append({
+                "summary": packet.summary(),
+                "hexdump": hexdump(packet, dump=True)
+            })
+        print(json.dumps(results, indent=4))
+    except Exception as e:
+        error_message = {"error": f"Erreur lors de l'analyse du fichier pcap : {str(e)}"}
+        print(json.dumps(error_message, indent=4))
+
 def create_sample_packet(dst_ip):
     """
     Crée un exemple de paquet IP vers une adresse donnée et affiche les résultats.
@@ -102,6 +119,8 @@ if __name__ == "__main__":
         capture_packets(args.interface)
     elif args.command == "analyze":
         analyze_data(args.data)
+    elif args.command == "analyze_pcap":
+        analyze_pcap(args.file)
     elif args.command == "sample":
         create_sample_packet(args.dst_ip)
     elif args.command == "compare":
