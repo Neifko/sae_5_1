@@ -8,7 +8,7 @@
         <button id="classify-button">Classifier</button>
     </form>
     
-    <div id="resultDiv"></div>
+    <div class="ipv6Extend" id="resultDiv"></div>
 
 
     <script src="/javascript/classe_ipv6.js"></script>
