@@ -4,13 +4,30 @@ let verifHosts = true;
 
 function applySubnets() {
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
+    const ip_address = document.getElementById('ip_address').value.trim();
+    const cidr = document.getElementById('cidr').value.trim();
 
     // Vérifier si le nombre de sous-réseaux est valide
     if (isNaN(numSubnets) || numSubnets <= 0) {
         alert("Veuillez entrer un nombre valide de sous-réseaux.");
         return;
     }
-    //test
+
+    if (!validateIP(ip_address)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Adresse IP invalide'
+        });
+        return;
+    } else if (!validateCIDR(cidr)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Masque invalide'
+        });
+        return;
+    }
 
     // Récupérer le conteneur où les nouveaux formulaires seront ajoutés
     const subnetFormsContainer = document.getElementById('subnetFormsContainer');
@@ -48,14 +65,7 @@ function calculateSubnets() {
     const cidr = document.getElementById('cidr').value.trim();
 
     calculateTotalHosts(cidr);
-
-    if (!validateIP(ip_address)) {
-        window.alert("Adresse IP invalide");
-        return;
-    } else if (!validateCIDR(cidr)) {
-        window.alert("Masque invalide");
-        return;
-    }
+    nbTotHosts = 0;
 
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
     const dataSubnet = [];
@@ -80,7 +90,11 @@ function calculateSubnets() {
         const nbMachines = tableCroissant[i].machines;
 
         if (!nameSubnet || isNaN(nbMachines) || parseInt(nbMachines) <= 0) {
-            window.alert(`Nombre de machines invalide pour le sous-réseau ${i + 1}`);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'Nombre de machines invalide pour le sous-réseau ' +  (i+1)
+            });
             return;
         }
 
@@ -97,7 +111,11 @@ function calculateSubnets() {
         const hostsAvailable = Math.pow(2, bitsForHosts) - 2;
 
         if (machines > hostsAvailable) {
-            window.alert(`Le sous-réseau ${nameSubnet}  ne peut pas contenir autant de machines. Hôtes disponibles : ${hostsAvailable}`);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'Le sous-réseau ' + nameSubnet + ' ne peut pas contenir autant de machines. Hôtes disponibles : ' + hostsAvailable
+            });
             return;
         }
 
@@ -142,6 +160,7 @@ function calculateSubnets() {
 
 // Fonction pour afficher les sous-réseaux et les informations réseau
 function displaySubnets(dataSubnet) {
+    const cidr = document.getElementById('cidr').value.trim();
     const resultContainer = document.getElementById('result');
     resultContainer.innerHTML = ""; // Réinitialiser les résultats précédents
 
@@ -171,6 +190,11 @@ function displaySubnets(dataSubnet) {
 
     // Vérifier si les hôtes demandés dépassent les hôtes disponibles
     if (verifHosts === false) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Les nombres de machines entrés sont trop grands pour le masque réseau /'  + cidr + '. Une solution alternative est affichée.'
+        });
         const errorRow = document.createElement('tr');
         errorRow.innerHTML = `
             <td colspan="9" style="color: red;"><strong>Les nombres de machines entrés ne sont pas adaptés à ce réseau. Voici une solution possible :</strong></td>
