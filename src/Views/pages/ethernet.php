@@ -34,7 +34,7 @@ $server_mac = getServerMacAddress();
     <form action="" method="post">
         <div class="field">
             <label for="preamble">Préambule</label>
-            <input type="text" id="preamble" name="preamble" value="10101010101010101010101010101010101010101010101010101010" required pattern="^(10101010){7}$" title="Le préambule doit être composé de 7 octets (10101010 répété 7 fois).">
+            <input type="text" id="preamble" name="preambule" value="<?= str_repeat('10101010', 7) ?>" required pattern="^(10101010){7}$" title="Le préambule doit être composé de 7 octets (10101010 répété 7 fois).">
             <p class="description">7 octets - Synchronisation de l’envoi. Chaque octet vaut 10101010.</p>
         </div>
         <div class="field">
@@ -44,17 +44,17 @@ $server_mac = getServerMacAddress();
         </div>
         <div class="field">
             <label for="dst_mac">Adresse destination</label>
-            <input type="text" id="dst_mac" name="dst_mac" value="FF-FF-FF-FF-FF-FF" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$" title="L'adresse MAC doit être au format XX-XX-XX-XX-XX-XX où X est une valeur hexadécimale.">
+            <input type="text" id="dst_mac" name="destination_mac" value="FF-FF-FF-FF-FF-FF" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$" title="L'adresse MAC doit être au format XX-XX-XX-XX-XX-XX où X est une valeur hexadécimale.">
             <p class="description">6 octets - Adresse MAC du destinataire ou adresse de broadcast.</p>
         </div>
         <div class="field">
             <label for="src_mac">Adresse source</label>
-            <input type="text" id="src_mac" name="src_mac" value="<?php echo $server_mac; ?>" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$">
+            <input type="text" id="src_mac" name="source_mac" value="<?php echo $server_mac; ?>" required pattern="^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$">
             <p class="description">6 octets - Adresse MAC du serveur qui héberge cette page.</p>
         </div>
         <div class="field">
             <label for="ether_type">Ether Type</label>
-            <select id="ether_type" name="ether_type" required>
+            <select id="ether_type" name="ethertype" required>
                 <option value="0x6000">DEC (0x6000)</option>
                 <option value="0x0609">DEC (0x0609)</option>
                 <option value="0x0600">XNS (0x0600)</option>
@@ -69,7 +69,7 @@ $server_mac = getServerMacAddress();
         </div>
         <div class="field">
             <label for="data">Données</label>
-            <textarea id="data" name="data" minlength="46" maxlength="1500" placeholder="Entrez ici les données à transmettre..." ></textarea>
+            <textarea id="data" name="data" maxlength="1500" placeholder="Entrez ici les données à transmettre..." ></textarea>
             <p class="description">46–1500 octets - Contient les données de la couche 3 (exemple : datagramme IP). Complétez avec du padding si nécessaire.</p>
         </div>
         <div class="field">

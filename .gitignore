@@ -5,3 +5,4 @@
 composer.phar
 
 /src/Views/data/*.json
+/public/trame_data.json
