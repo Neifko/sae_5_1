@@ -74,6 +74,17 @@ function calculateSubnets() {
     const numSubnets = parseInt(document.getElementById('nb_subnets').value.trim());
     const dataSubnet = [];
 
+    limite = numSubnets * 2;
+
+    if (limite > totalHostsAvailable){
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Trop de sous-réseaux'
+        });
+        return;
+    }
+
     // Adresse réseau initiale en binaire
     let networkBinary = calculate_networkAddress(ipToBinary(ip_address), ipToBinary(getSubnetMask(cidr)));
 
