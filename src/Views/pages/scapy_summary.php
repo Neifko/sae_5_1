@@ -28,6 +28,11 @@
                     <li><a href="/hexdump">Module Hexdump</a></li>
                 </ul>
             </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/ethernet">Module ethernet</a></li>
+                </ul>
+            </div>
         </div>
 
 
