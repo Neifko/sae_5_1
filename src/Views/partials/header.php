@@ -7,6 +7,7 @@
     <title>Application Web Pédagogique</title>
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="icon" type="image/png" href="/images/logoProcrastinateursTransparent.png">
 </head>
 <body>
 

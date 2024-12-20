@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/informations.css">
+
 <h2><?php echo htmlspecialchars($title); ?></h2>
 
 <?php if ($step === 1): ?>
@@ -41,6 +43,40 @@
     <?php endif; ?>
 <?php endif; ?>
 
+
+</div>
+    <!-- Hint Information, fixed on the right -->
+    <label for="hint-click">
+        <input type="checkbox" id="hint-click">
+        <div class="hint">
+            <span class="fa-info">i</span>
+            <p>
+                Le module permet de convertir une adresse IPv4 entre plusieurs formats : décimal pointé, hexadécimal et binaire.<br>
+                
+                Fonctionnement :<br>
+                - L'utilisateur entre une adresse IPv4 au format décimal pointé.<br>
+                - Le module effectue la conversion vers le format hexadécimal et/ou binaire selon le choix de l'utilisateur.<br>
+                - Il est également possible de convertir une adresse en hexadécimal ou binaire en adresse décimale pointée.<br>
+                - Le module vérifie la validité des données avant de procéder à la conversion.<br>
+                
+                Étapes :<br>
+                1. **Saisie de l'adresse IPv4** : L'utilisateur entre l'adresse en format décimal pointé.<br>
+                2. **Choix du format de sortie** : L'utilisateur sélectionne le format(s) de conversion (hexadécimal et/ou binaire).<br>
+                3. **Conversion** : Le module effectue la conversion dans le ou les formats choisis.<br>
+                4. **Affichage des résultats** : Le module affiche l'adresse convertie dans les formats sélectionnés.<br>
+                
+                Exemple :<br>
+                - Adresse : <code>192.168.1.30</code>, Conversion vers hexadécimal et binaire.<br>
+                
+                Détails :<br>
+                - **Hexadécimal** : Adresse convertie en hexadécimal.<br>
+                - **Binaire** : Adresse convertie en binaire.<br>
+                
+                **Note** : Le module assure la validité des formats avant toute conversion.<br>
+            </p>
+        </div>
+    </label>
+
 <?php if (isset($_SESSION['flash_message'])): ?>
     <script>
         Swal.fire({
@@ -52,6 +88,7 @@
     <?php unset($_SESSION['flash_message']); ?>
 <?php endif; ?>
 
+
 <div>
 
     <?php if ($step !== 1): ?>
@@ -59,3 +96,4 @@
     <?php endif; ?>
 
 </div>
+
