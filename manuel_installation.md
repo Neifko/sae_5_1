@@ -91,6 +91,9 @@ les fonctions `install_mariadb` et  `configure_database` utilisent des variables
         ```
         composer install
         ```
+        ```
+        composer require realrashid/sweet-alert
+        ```
 
 2. Ensuite, il est nécessaire de configurer XAMPP :
 
