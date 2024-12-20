@@ -56,4 +56,14 @@
         <pre><?php echo htmlspecialchars(json_encode($result, JSON_PRETTY_PRINT)); ?></pre>
     <?php endif; ?>
     </div>
+
+    <?php if (!empty($error)): ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: <?php echo json_encode($error); ?>
+            });
+        </script>
+    <?php endif; ?>
 </div>
