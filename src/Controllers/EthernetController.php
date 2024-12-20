@@ -83,7 +83,9 @@ class EthernetController
         }
 
         if (!isset($_POST['ip_ping']) || !preg_match('/^(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])$/', $_POST['ip_ping'])) {
-            //$errors['ip_ping'] = "Adresse IPv4 de destination invalide.";
+            if (!$data['havepayload']) {
+                $errors['ip_ping'] = "Adresse IPv4 de destination invalide.";
+            }
         } else {
             $data['ip_ping'] = $_POST['ip_ping'];
         }
