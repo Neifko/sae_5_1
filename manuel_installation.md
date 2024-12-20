@@ -47,11 +47,11 @@ chmod +x install_app.sh
 ```
 3. Exécutez le script :
 ```shell
-sudo ./install_app.sh
+source install_app.sh
 ```
 3. Deux possibilités vont s'ouvrir à  vous :
-    * Entrez ```ALL``` pour tout installer 
-    * Entrez ```N``` (ou autre - ce que vous voulez) pour faire une installation customisée (voir [ici](#Installation-customisée))
+    * Entrez ```ALL``` pour tout installer (compatible également avec ```sudo ./install_app.sh```)
+    * Entrez ```N``` (ou autre - ce que vous voulez) pour faire une installation customisée (voir categorie en dessous)
 4. Suivre les instructions à l’écran, notamment pour saisir les mots de passe requis.
 
 ### Instruction customisée
@@ -75,7 +75,7 @@ les fonctions `install_mariadb` et  `configure_database` utilisent des variables
 
 ### Prérequis
 * Installer XAMPP.
-* Installer Python 3.x avec pip et Scapy et de pouvoir executer winpcap, scapy, etc ... en admin(`pip install ...`).
+* Installer Python 3.x avec pip et Scapy et de pouvoir executer winpcap, scapy, etc ... en admin(```pip install ...```).
 * Cloner le projet GitHub.
 
 ### Instructions
