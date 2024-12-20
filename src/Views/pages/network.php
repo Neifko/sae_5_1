@@ -42,19 +42,19 @@
             <span class="fa-info">i</span>
             <p>
                 Le module permet d'afficher les configurations réseau d'une machine, similaire à la commande <code>ip a</code> en ligne de commande.<br>
-                
+                <br>
                 Fonctionnement :<br>
                 - Le module récupère les informations réseau de la machine et affiche les différentes interfaces réseau avec leurs adresses IP, masques de sous-réseau, et autres informations pertinentes.<br>
                 - Il permet ainsi de visualiser rapidement les configurations des interfaces réseau actives et de vérifier les paramètres de chaque connexion réseau.<br>
-                
+                <br>
                 Étapes :<br>
-                1. **Récupération des informations réseau** : Le module interroge la machine pour obtenir les détails des interfaces réseau.<br>
-                2. **Affichage des configurations** : Le module affiche les adresses IP, masques de sous-réseau, et autres informations relatives à chaque interface réseau disponible.<br>
-                
+                1. Récupération des informations réseau : Le module interroge la machine pour obtenir les détails des interfaces réseau.<br>
+                2. Affichage des configurations : Le module affiche les adresses IP, masques de sous-réseau, et autres informations relatives à chaque interface réseau disponible.<br>
+                <br>
                 Exemple :<br>
                 - Le module peut afficher une interface <code>eth0</code> avec une adresse IP <code>192.168.1.10</code>, un masque <code>/24</code>, et une interface <code>wlan0</code> avec une adresse IP <code>10.0.0.5</code>.<br>
-                
-                **Note** : Ce module fournit un aperçu des configurations réseau actuelles de la machine, permettant de vérifier facilement les adresses IP assignées à chaque interface active.<br>
+                <br>
+                Note : Ce module fournit un aperçu des configurations réseau actuelles de la machine, permettant de vérifier facilement les adresses IP assignées à chaque interface active.<br>
             </p>
         </div>
     </label>
