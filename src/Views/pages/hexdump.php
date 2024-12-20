@@ -1,3 +1,8 @@
+<?php
+
+$result = $_SESSION['result_hexdump'];
+?>
+
 <div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -67,3 +72,8 @@
         </script>
     <?php endif; ?>
 </div>
+
+<div style="padding-bottom: 10%">
+<?php
+$_SESSION["result_hexdump"]  = null;
+?>
