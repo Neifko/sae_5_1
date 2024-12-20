@@ -34,12 +34,17 @@ def create_sample_packet(dst_ip):
     """
     Crée un exemple de paquet IP vers une adresse donnée et affiche les résultats.
     """
-    packet = IP(dst=dst_ip) / b"Exemple de données"
-    result = {
-        "summary": packet.summary(),
-        "hexdump": hexdump(packet, dump=True)
-    }
-    print(json.dumps(result, indent=4))
+    try:
+        packet = IP(dst=dst_ip) / b"Example data"  # Remplacer par des caractères compatibles ASCII
+        result = {
+            "summary": packet.summary(),
+            "hexdump": hexdump(packet, dump=True)
+        }
+        print(json.dumps(result, indent=4))
+    except Exception as e:
+        error_message = {"error": f"Erreur lors de la création du paquet : {str(e)}"}
+        print(json.dumps(error_message, indent=4))
+
 
 def compare_data(data1, data2):
     """

@@ -7,16 +7,13 @@ use Procrastinateur\Sae51\Utils\View;
 class HexdumpController
 {
     private $pythonScript;
-    private $jsonDir;
 
     public function __construct()
     {
-        // Résolution des chemins
         $this->pythonScript = realpath(__DIR__ . '/../Utils/python/hexdump_scapy.py');
-        $this->jsonDir = realpath(__DIR__ . '/../Views/data/hexdumpFiles');
 
-        if (!$this->pythonScript || !$this->jsonDir) {
-            throw new \Exception('Impossible de résoudre les chemins pour le script ou le répertoire JSON.');
+        if (!$this->pythonScript) {
+            throw new \Exception('Impossible de résoudre le chemin du script Python.');
         }
     }
 
@@ -93,15 +90,16 @@ class HexdumpController
 
             $command .= " 2>&1";
             $output = shell_exec($command);
-            var_dump($command);
-            var_dump($output);
 
-            $resultFile = $this->jsonDir . '/' . $this->getResultFileName($action);
-            if (!file_exists($resultFile)) {
-                throw new \Exception('Le fichier de résultat attendu est introuvable.');
+            if (!$output) {
+                throw new \Exception('Le script Python n’a pas retourné de résultat.');
             }
 
-            $result = json_decode(file_get_contents($resultFile), true);
+            $result = json_decode($output, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new \Exception('Erreur lors de l’interprétation des résultats JSON : ' . json_last_error_msg());
+            }
 
         } catch (\Exception $e) {
             View::render('hexdump', ['error' => $e->getMessage()]);
@@ -118,17 +116,5 @@ class HexdumpController
             ],
             'selected_action' => $action
         ]);
-    }
-
-    private function getResultFileName(string $action): string
-    {
-        $actionMap = [
-            'capture' => 'capture.json',
-            'analyze' => 'simple_analyze.json',
-            'sample' => 'packet.json',
-            'compare' => 'double_analyze.json'
-        ];
-
-        return $actionMap[$action] ?? '';
     }
 }

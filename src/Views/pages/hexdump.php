@@ -30,11 +30,11 @@
                 additionalFields.innerHTML = fieldTemplates[selectedAction] || '';
             };
 
-            // Mettre à jour les champs au chargement de la page et lors du changement de sélection
             updateFields();
             actionSelect.addEventListener('change', updateFields);
         });
     </script>
+
     <h2>Hexdump Tool</h2>
 
     <?php if (!empty($error)): ?>
@@ -67,7 +67,4 @@
     <div>
         <a href="/scapy">Retour</a>
     </div>
-
 </div>
-
-

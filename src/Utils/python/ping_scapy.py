@@ -14,7 +14,7 @@ def ping(ip):
 
         if reply:
             ttl = reply.ttl
-            time_ms = reply.time * 1000
+            time_ms = reply.time 
             return f"TTL={ttl}, Temps={time_ms:.2f} ms"
         else:
             return "Aucune réponse. Le ping a échoué."
