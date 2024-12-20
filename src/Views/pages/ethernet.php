@@ -73,10 +73,22 @@ $server_mac = getServerMacAddress();
             <p class="description">46–1500 octets - Contient les données de la couche 3 (exemple : datagramme IP). Complétez avec du padding si nécessaire.</p>
         </div>
         <div class="field">
+            <label for="havepayload">Données personnalisées</label>
+            <input type="checkbox" id="havepayload" name="havepayload" value="true">
+        </div>
+        <div class="field">
+            <label for="ip-ping">IPv4 pour le ping</label>
+            <input type="text" id="ip-ping" name="ip_ping"
+                   pattern="^(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])$"
+            >
+            <p>Ne pas cocher havepayload</p>
+        </div>
+        <div class="field">
             <label for="fcs">FCS</label>
             <input type="text" id="fcs" name="fcs" pattern="^[0-9A-Fa-f]{8}$" title="Le FCS doit être une séquence hexadécimale de 4 octets (8 caractères).">
             <p class="description">4 octets - Séquence de contrôle de trame (calcul polynomial CRC).</p>
         </div>
+
         <button type="submit">Créer Trame Ethernet</button>
     </form>
     <div>

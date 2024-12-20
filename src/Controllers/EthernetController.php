@@ -72,6 +72,18 @@ class EthernetController
             $data['data'] = $_POST['data'];
         }
 
+        if (!isset($_POST['havepaylaoad']) && $_POST['havepaylaoad']){
+            $data['havepaylaoad'] = true;
+        } else {
+            $data['havepaylaoad'] = false;
+        }
+
+        if (!isset($_POST['ip_ping']) || !preg_match('/^(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])$/', $_POST['ip_ping'])) {
+            $errors['ip_ping'] = "Adresse IPv4 de destination invalide.";
+        } else {
+            $data['ip_ping'] = $_POST['ip_ping'];
+        }
+
         // FCS (4 octets, généré ou laissé vide pour Scapy)
         $data['fcs'] = $_POST['fcs'] ?? ''; // Peut être vide, Scapy le générera automatiquement si nécessaire
 
