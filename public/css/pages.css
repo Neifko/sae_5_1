@@ -19,7 +19,6 @@ form {
     transform: translate(-50%, -50%);
 }
 label {
-    display: block;
     margin-bottom: 8px;
     color: #06708E;
 }

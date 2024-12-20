@@ -124,7 +124,6 @@ input:focus, textarea:focus, select:focus {
 
 label {
     font-weight: bold;
-    display: block;
     margin-bottom: 5px;
 }
 
