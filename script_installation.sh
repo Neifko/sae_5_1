@@ -72,6 +72,7 @@ install_composer() {
     echo -e "\033[34mInstallation de Composer...\033[0m"
     apt-get install -y composer
     composer install
+    composer require realrashid/sweet-alert
 }
 
 # Fonction pour configurer Apache

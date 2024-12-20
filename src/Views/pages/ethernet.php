@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/informations.css">
+
 <?php
 function getServerMacAddress()
 {
@@ -115,6 +117,31 @@ Si vous cochez la case données personnalisées alors le contenu de trame ethern
         <?php unset($_SESSION['flash_message']); ?>
     <?php endif; ?>
 </div>
+<!-- Hint Information, fixed on the right -->
+<label for="hint-click">
+    <input type="checkbox" id="hint-click">
+    <div class="hint">
+        <span class="fa-info">i</span>
+        <p>
+            Le module <strong>Trame Ethernet</strong> permet de créer une trame Ethernet personnalisée en utilisant la librairie Python <a href="https://scapy.net/" target="_blank">Scapy</a>. Ce module offre deux modes de création de trame : <strong>mode basique</strong> et <strong>mode avancé avec données personnalisées</strong>.<br>
+            <br>
+            Dans le <strong>mode basique</strong>, l'utilisateur renseigne simplement une adresse IPv4 dans le champ "IPv4 pour le ping". Le script génère automatiquement l'adresse MAC de destination via une requête ARP, puis crée la trame Ethernet pour effectuer un ping vers l'adresse spécifiée.<br>
+            <br>
+            Dans le <strong>mode avancé</strong>, lorsque la case "Données personnalisées" est activée, l'utilisateur peut remplir manuellement les champs de la trame Ethernet, y compris les données à transmettre.<br>
+            <br>
+            La trame Ethernet est composée des éléments suivants :<br>
+            - <strong>Préambule</strong> (7 octets) : Synchronisation de l’envoi, chaque octet vaut <code>10101010</code>.<br>
+            - <strong>SFD</strong> (1 octet) : Indique le début de la trame avec la valeur <code>10101011</code>.<br>
+            - <strong>Adresse de destination</strong> (6 octets) : Adresse MAC du destinataire ou adresse de broadcast, exemple <code>FF-FF-FF-FF-FF-FF</code>.<br>
+            - <strong>Adresse source</strong> (6 octets) : Adresse MAC du serveur qui envoie la trame, exemple <code>E4-54-E8-5C-3B-BA</code>.<br>
+            - <strong>Ether Type</strong> (2 octets) : Sélection du protocole, par exemple <code>0x0800</code> pour IPv4.<br>
+            - <strong>Données</strong> (46–1500 octets) : Contient les données à transmettre, comme un datagramme IP. Du padding est ajouté si nécessaire.<br>
+            - <strong>FCS</strong> (4 octets) : Séquence de contrôle de trame, qui permet de vérifier l'intégrité des données grâce à un calcul polynomial CRC.<br>
+            <br>
+            Le module permet également de tester la connectivité en envoyant un ping avec l'adresse IPv4 renseignée. Cela est effectué en utilisant les adresses MAC obtenues grâce à une requête ARP. Pour ceux qui préfèrent personnaliser le contenu de la trame, le champ "Données personnalisées" offre une flexibilité totale dans la création de trames Ethernet.
+        </p>
+    </div>
+</label>
 <div><?php if (!empty($result)): ?>
         <p><?= $success_msg ?></p>
     <?php endif; ?>
