@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/pages.css">
+
 <div>
     <table>
         <tr><th>Id</th><th>Nom d'utilisateur</th><th>Supprimer</th></tr>
@@ -9,7 +11,13 @@
     </table>
     <div>
         <?php if (isset($_SESSION['flash_message'])): ?>
-            <?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>
+            <script>
+                Swal.fire({
+                    icon: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>",
+                    type: "<?php echo htmlspecialchars($_SESSION['flash_message']['type']); ?>", // 'success', 'error', etc.
+                    text: "<?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>"
+                })
+            </script>
             <?php unset($_SESSION['flash_message']); ?>
         <?php endif; ?>
     </div>

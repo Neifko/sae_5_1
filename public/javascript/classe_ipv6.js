@@ -12,7 +12,10 @@ function containsIPv4(ipv6) {
 
 function classifyIPv6(ipv6) {
     if (!verifyIPv6(ipv6)) {
-        return "Adresse IPv6 non valide.";
+        let textContent = "Adresse IPv6 invalide";
+        let className = 'error';
+        let title = "Erreur"
+        showError(textContent, className, title)
     }
 
     let classifications = "";
@@ -40,7 +43,11 @@ function classifyIPv6(ipv6) {
     }
 
     if (!classifications) {
-        classifications = "Adresse IPv6 non classifiable (ou autre).";
+        let textContent = "Adresse IPv6 non classifiable (ou autre)";
+        let className = 'info';
+        let title = "Info"
+        showError(textContent, className, title)
+
     }
 
     return classifications.trim();
@@ -157,7 +164,10 @@ function init(){
             const { simplifiedIPv6, classification } = simplifyIPv6(ipv6);
             resultDiv.innerHTML = `<p>Adresse IPv6 simplifiée : ${simplifiedIPv6}</p><p>${classification}</p>`;
         } else {
-            resultDiv.innerHTML = `<p>L'adresse IPv6 n'est pas valide. </p>`;
+            let textContent = "Adresse IPv6 invalide";
+            let className = 'error';
+            let title = "Erreur"
+            showError(textContent, className, title)
         }
     });
 
@@ -171,7 +181,10 @@ function init(){
             const { extendedIPv6, classification } = extendIPv6(ipv6);
             resultDiv.innerHTML = `<p>Adresse IPv6 étendue : ${extendedIPv6}</p><p>${classification}</p>`;
         } else {
-            resultDiv.innerHTML = `<p>L'adresse IPv6 n'est pas valide. </p>`;
+            let textContent = "Adresse IPv6 invalide";
+            let className = 'error';
+            let title = "Erreur"
+            showError(textContent, className, title)
         }
     });
 
@@ -186,3 +199,12 @@ function init(){
 }
 
 window.onload = init;
+
+function showError(textContent, className, title){
+    Swal.fire({
+        icon: className,
+        title: title,
+        text: textContent
+    });
+}
+

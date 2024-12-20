@@ -1,11 +1,33 @@
+<link rel="stylesheet" href="/css/scapyDashboard.css">
 <link rel="stylesheet" href="/css/pages.css">
+<h2>Sommaire module scapy</h2>
+<div class="dashboard-container">
 
-<div>
-    <h2>Sommaire module scapy</h2>
-    <div id="centerVertical">
-        <a href="/ping">Module Ping</a><br>
-        <a href="/tcp">Module TCP</a><br>
-        <a href="/network">Module Configuration Réseau</a><br>
-        <a href="/hexdump">Module Hexdump</a>
+
+    <!-- Colonne de droite -->
+    <div class="right-column">
+        <div class="modules-grid">
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/ping">Module Ping</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/tcp">Module TCP</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/network">Module Configuration Réseau</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-block">
+                <ul class="dashboard-links">
+                    <li><a href="/hexdump">Module Hexdump</a></li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 </div>
