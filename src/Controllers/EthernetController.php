@@ -88,6 +88,12 @@ class EthernetController
             $data['ip_ping'] = $_POST['ip_ping'];
         }
 
+        if (!isset($_POST['interface']) ) {
+            $errors['interface'] = "L'interface est invalide";
+        } else {
+            $data['interface'] = $_POST['interface'];
+        }
+
         $data['action'] = $_POST['action'] ?? 'ping';
 
         // FCS (4 octets, généré ou laissé vide pour Scapy)

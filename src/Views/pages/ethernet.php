@@ -89,6 +89,10 @@ $server_mac = getServerMacAddress();
             <input type="text" id="fcs" name="fcs" pattern="^[0-9A-Fa-f]{8}$" title="Le FCS doit être une séquence hexadécimale de 4 octets (8 caractères).">
             <p class="description">4 octets - Séquence de contrôle de trame (calcul polynomial CRC).</p>
         </div>
+        <div class="field">
+            <label for="interface">Interface</label>
+            <input type="text" id="interface" name="interface" required value="eth0">
+        </div>
 
         <button type="submit">Créer Trame Ethernet</button>
     </form>

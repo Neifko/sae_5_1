@@ -21,6 +21,8 @@ def create_ethernet_frame_from_json(json_file, interface="eth0"):
         ethertype = int(data['ethertype'], 16)  # Conversion de l'EtherType en entier
         havepayload = bool(data['havepayload'])
         payload = data['data']  # Les données (payload)
+        interface_json = data['data']
+        interface = interface_json
 
         if (havepayload):
             frame = Ether(dst=destination_mac, src=source_mac, type=ethertype) / bytes(payload, 'utf-8')
