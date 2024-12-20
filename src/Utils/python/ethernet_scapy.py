@@ -3,7 +3,7 @@ import os
 from scapy.all import Ether, sendp, srp, sniff, IP, ICMP, ARP
 
 
-def create_ethernet_frame_from_json(json_file):
+def create_ethernet_frame_from_json(json_file, interface="eth0"):
     try:
         # Lecture du fichier JSON
         with open(json_file, 'r') as file:
