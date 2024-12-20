@@ -1,3 +1,7 @@
+<?php
+$result = $_SESSION['result_hexdump'];
+?>
+
 <link rel="stylesheet" href="/css/informations.css">
 
 <div>
@@ -91,3 +95,8 @@
         </script>
     <?php endif; ?>
 </div>
+
+<div style="padding-bottom: 10%">
+<?php
+$_SESSION["result_hexdump"]  = null;
+?>

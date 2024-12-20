@@ -3,6 +3,7 @@
 namespace Procrastinateur\Sae51\Controllers;
 
 use Procrastinateur\Sae51\Utils\View;
+use Procrastinateur\Sae51\Utils\Redirect;
 
 class HexdumpController
 {
@@ -23,7 +24,7 @@ class HexdumpController
     {
 
         $error = $_SESSION['error'] ?? null;
-        $result = $_SESSION['result'] ?? null;
+        $result = $_SESSION['result_hexdump'] ?? null;
         $selected_action = $_SESSION['selected_action'] ?? null;
 
         unset($_SESSION['error'], $_SESSION['result'], $_SESSION['selected_action']);
@@ -98,14 +99,26 @@ class HexdumpController
             return;
         }
 
-        View::render('hexdump', [
-            'result' => $result,
-            'actions' => [
-                'capture' => 'Capturer un paquet réseau',
-                'sample' => 'Créer un exemple de paquet',
-            ],
-            'selected_action' => $action
-        ]);
+        // View::render('hexdump', [
+        //     'result' => $result,
+        //     'actions' => [
+        //         'capture' => 'Capturer un paquet réseau',
+        //         'sample' => 'Créer un exemple de paquet',
+        //     ],
+        //     'selected_action' => $action
+        // ]);
+
+
+        
+        $_SESSION['result_hexdump'] = [
+                                'result' => $result,
+                                // 'actions' => [
+                                //             'capture' => 'Capturer un paquet réseau',
+                                //             'sample' => 'Créer un exemple de paquet',],
+                                // 'selected_action' => $action];
+        ];
+        Redirect::to('/hexdump');
+        
     }
     
     
