@@ -39,18 +39,21 @@ class EthernetController
             $data['sfd'] = $_POST['sfd'];
         }
 
+        $destination_mac = str_replace(":", "-", $_POST['destination_mac']);
+        $source_mac = str_replace(":", "-", $_POST['source_mac']);
+
         // Adresse MAC de destination (6 octets)
-        if (!isset($_POST['destination_mac']) || !preg_match('/^([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}$/', $_POST['destination_mac'])) {
+        if (empty($destination_mac) || !preg_match('/^([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}$/', $destination_mac)) {
             $errors['destination_mac'] = "Adresse MAC de destination invalide.";
         } else {
-            $data['destination_mac'] = $_POST['destination_mac'];
+            $data['destination_mac'] = $destination_mac;
         }
 
         // Adresse MAC source (6 octets)
-        if (!isset($_POST['source_mac']) || !preg_match('/^([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}$/', $_POST['source_mac'])) {
+        if (empty($source_mac) || !preg_match('/^([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}$/', $source_mac)) {
             $errors['source_mac'] = "Adresse MAC source invalide.";
         } else {
-            $data['source_mac'] = $_POST['source_mac'];
+            $data['source_mac'] = $source_mac;
         }
 
         // EtherType (2 octets)
