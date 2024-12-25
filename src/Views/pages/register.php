@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/global.css">
+<h2>S'inscrire</h2>
 <form action="" method="post">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" id="username" name="username">

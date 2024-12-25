@@ -2,12 +2,25 @@
 .dashboard-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto;
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
-    margin: 10% auto;
+    margin: 5% auto;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container-scapy {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 5% auto;
     box-sizing: border-box;
     background-color: white;
     border-radius: 10px;
@@ -24,35 +37,6 @@
     align-items: center;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-/* Profil */
-.profil h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.profil a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profil a:hover {
-    color: #0056b3;
-}
-
-.profil img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    border: 2px solid #ddd;
 }
 
 /* Liste des liens */
@@ -133,10 +117,6 @@
 
 /* Styles pour les boutons dans les modules */
 .modules-grid .dashboard-links a {
-    text-decoration: none;
-    font-size: 1rem;
-    color: #333;
-    background-color: #f1f1f1;
     padding: 15px; /* Ajustement du padding pour une taille uniforme */
     height: 50px; /* Hauteur fixe pour tous les boutons */
     border-radius: 5px;
@@ -152,4 +132,32 @@
     background-color: #007bff;
     color: #fff;
     background-image: linear-gradient(to right, #007bff, #0056b3); /* Ajout du gradient */
+}
+
+/* Profil */
+.profil h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.profil a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profil a:hover {
+    color: #0056b3;
+}
+
+.profil img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
 }

@@ -1,13 +1,11 @@
-<link rel="stylesheet" href="/css/pages.css">
-<div>
-    <p style="color: white">Vous êtes connecté <?= htmlspecialchars($username) ?></p>
+<link rel="stylesheet" href="/css/global.css">
+<div class="centerVertical">
+    Vous êtes connecté <?= htmlspecialchars($username) ?>
 </div>
 
 <?php if ($username === 'admin'):?>
-<div class="boutonSeDecoEtListeEtu">
-    <p>
-        <a href="/list-users">Voir la liste des utilisateurs</a>
-    </p>
+<div class="centerVertical">
+    <a href="/list-users">Voir la liste des utilisateurs</a>
 </div>
 <?php endif ?>
 <form action="" method="post">
@@ -32,7 +30,7 @@
 
     <input type="submit" value="Changer de mot de passe">
 </form>
-<div class="boutonSeDecoEtListeEtu">
+<div class="centerVertical">
     <p>
         <a href="/logout">Se déconnecter</a>
     </p>

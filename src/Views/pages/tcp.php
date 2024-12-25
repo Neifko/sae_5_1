@@ -3,7 +3,7 @@
 
     
 
-<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/global.css">
     <h2>Test de Connexion TCP</h2>
 
 

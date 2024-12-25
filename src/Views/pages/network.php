@@ -31,7 +31,7 @@
         </tbody>
     </table>
 <?php else : ?>
-    <p>Aucune donnée réseau disponible. Veuillez mettre à jour les informations.</p>
+    <div class="centerVertical">Aucune donnée réseau disponible. Veuillez mettre à jour les informations.</div>
 <?php endif; ?>
 
 

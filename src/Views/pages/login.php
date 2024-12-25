@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="/css/pages.css">
+
+<h2>Se connecter</h2>
 <form action="" method="post">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" id="username" name="username">

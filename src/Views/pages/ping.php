@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/global.css">
 <link rel="stylesheet" href="/css/informations.css">
 
 <h2>Ping avec Scapy</h2>
@@ -51,7 +51,7 @@
 
 <div class="pingTcpResult">
     <?php if (!empty($pingResult)): ?>
-        <h2>Résultat du ping :</h2>
+        <h3>Résultat du ping :</h3>
         <pre><?php echo htmlspecialchars($pingResult); ?></pre>
     <?php endif; ?>
 </div>
