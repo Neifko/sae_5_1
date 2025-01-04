@@ -15,7 +15,7 @@
     <input type="checkbox" id="hint-click">
     <div class="hint">
         <span class="fa-info">i</span>
-        <p>
+        <p style="height: 80%">
             L’IPv4 (Internet Protocol version 4) est un protocole utilisé pour identifier les appareils sur un réseau
             via une adresse composée de quatre nombres séparés par des points (ex. : <code>192.168.1.1</code>).<br>
             <br>

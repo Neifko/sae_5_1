@@ -17,7 +17,7 @@
         <input type="checkbox" id="hint-click">
         <div class="hint">
             <span class="fa-info">i</span>
-            <p>
+            <p style="height: 80%">
                 Le module permet de tester la connectivité réseau en envoyant une requête ping à une URL ou à une adresse IP cible.<br>
                 <br>
                 Fonctionnement :<br>

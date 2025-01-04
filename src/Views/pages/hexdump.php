@@ -60,7 +60,7 @@ $result = $_SESSION['result_hexdump'] ?? '';
         <input type="checkbox" id="hint-click">
         <div class="hint">
             <span class="fa-info">i</span>
-            <p>
+            <p style="height: 80%">
                 Le module Hexdump est un outil d'analyse et de création de paquets réseau utilisant la librairie Scapy. Ce module propose trois fonctionnalités principales : capturer, analyser et créer des paquets.<br>
                 <br>
                 Fonctionnalités :<br>

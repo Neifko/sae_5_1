@@ -26,7 +26,7 @@
     <input type="checkbox" id="hint-click">
     <div class="hint">
         <span class="fa-info">i</span>
-        <p>
+        <p style="height: 80%">
             Le module permet de diviser un réseau IP en sous-réseaux pour une gestion optimisée des adresses IP.<br>
             <br>
             Fonctionnement :<br>

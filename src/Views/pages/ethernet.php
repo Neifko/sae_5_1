@@ -121,7 +121,7 @@ Si vous cochez la case <code>données personnalisées</code> alors le contenu de
     <input type="checkbox" id="hint-click">
     <div class="hint">
         <span class="fa-info">i</span>
-        <p>
+        <p style="height: 80%">
             Le module <strong>Trame Ethernet</strong> permet de créer une trame Ethernet personnalisée en utilisant la librairie Python <a href="https://scapy.net/" target="_blank">Scapy</a>. Ce module offre deux modes de création de trame : <strong>mode basique</strong> et <strong>mode avancé avec données personnalisées</strong>.<br>
             <br>
             Dans le <strong>mode basique</strong>, l'utilisateur renseigne simplement une adresse IPv4 dans le champ "IPv4 pour le ping". Le script génère automatiquement l'adresse MAC de destination via une requête ARP, puis crée la trame Ethernet pour effectuer un ping vers l'adresse spécifiée.<br>

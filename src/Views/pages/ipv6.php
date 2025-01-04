@@ -15,7 +15,7 @@
     <input type="checkbox" id="hint-click">
     <div class="hint">
         <span class="fa-info">i</span>
-        <p>
+        <p style="height: 80%">
             L’IPv6 (Internet Protocol version 6) est une version du protocole Internet qui permet d’identifier les
             appareils sur un réseau à l'aide d'adresses plus longues et plus complexes que celles de l'IPv4. Une adresse
             IPv6 se compose de huit groupes de quatre chiffres hexadécimaux, séparés par des deux-points (ex. : <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>).<br>

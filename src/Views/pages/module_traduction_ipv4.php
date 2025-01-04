@@ -59,7 +59,7 @@
     <input type="checkbox" id="hint-click">
     <div class="hint">
         <span class="fa-info">i</span>
-        <p>
+        <p style="height: 80%">
             Le module permet de convertir une adresse IPv4 entre plusieurs formats : décimal pointé, hexadécimal et
             binaire.<br>
             <br>
