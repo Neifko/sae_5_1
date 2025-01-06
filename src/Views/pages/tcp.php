@@ -3,7 +3,7 @@
 
     
 
-<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/global.css">
     <h2>Test de Connexion TCP</h2>
 
 
@@ -22,7 +22,7 @@
         <input type="checkbox" id="hint-click">
         <div class="hint">
             <span class="fa-info">i</span>
-            <p>
+            <p style="height: 80%">
                 Le module permet de tester la connectivité TCP entre l'utilisateur et une adresse IP ou une URL spécifique en spécifiant un port cible.<br>
                 <br>
                 Fonctionnement :<br>

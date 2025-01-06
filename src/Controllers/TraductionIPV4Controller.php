@@ -71,7 +71,7 @@ class TraductionIPV4Controller
     {
         $adresse_separee = explode('.', $adresse);
 
-        if ($choix === 'binary'){
+        if ($choix === 'binaire'){
             if ($this->is_decimal($adresse_separee[0])) {
                 return implode('.', array_map([$this, 'dec_to_bin'], $adresse_separee));
             }
@@ -87,7 +87,7 @@ class TraductionIPV4Controller
                 return implode('.', array_map([$this, 'bin_to_hex'], $adresse_separee));
             }
         }
-        elseif ($choix === 'decimal'){
+        elseif ($choix === 'décimal'){
             if ($this->is_binary($adresse_separee[0])) {
                 return implode('.', array_map([$this, 'bin_to_dec'], $adresse_separee));
             }
@@ -114,8 +114,8 @@ class TraductionIPV4Controller
             }, true);
 
             if ($is_dec && $is_hex) return 'Format Non Unique';
-            if ($is_dec) return 'decimal';
-            if ($is_bin) return 'binary';
+            if ($is_dec) return 'décimal';
+            if ($is_bin) return 'binaire';
             if ($is_hex) return 'hexadecimal';
         }
         return "Adresse invalide";
@@ -123,8 +123,8 @@ class TraductionIPV4Controller
     public function obtenir_formats_sortie($format_detecte): array
     {
         $formats = [
-            'decimal' => 'Décimal',
-            'binary' => 'Binaire',
+            'décimal' => 'Décimal',
+            'binaire' => 'Binaire',
             'hexadecimal' => 'Hexadécimal',
         ];
         if ($format_detecte !== 'Format Non Unique') {

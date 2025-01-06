@@ -3,10 +3,10 @@
     --primary-color: #03C490;
     --secondary-color: #06708E;
     --accent-color: #01A98D;
-    --light-bg: #F4EBD6;
+    --light-bg: #e4f8e6;
     --dark-bg: #00334A;
     --text-color: #124660;
-    --muted-color: #CEDDDE;
+    --muted-color: rgb(189, 202, 203);
     --highlight-color: #F2F3C1;
     --success-color: #8BD59E;
     --warning-color: #F2A93B;
@@ -16,7 +16,7 @@
     --font-code: 'Fira Code', monospace;
 
     --padding: 16px;
-    --border-radius: 8px;
+    --border-radius: 10px;
 }
 
 /* --- Global --- */
@@ -28,22 +28,11 @@ body {
     line-height: 1.6;
 }
 
-div p {
-  text-align: center;
-  background-color: var(--dark-bg);
-  margin: 10px auto 10px auto;
-  width: 25%;
-}
-
-.footerPInvisible {
-    background-color: var(--dark-bg);
-}
-
-h2 {
+h2, h3{
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     color: #06708E;
-    margin-bottom: 20px;
+    margin-bottom: 1%;
     text-align: center;
 }
 
@@ -54,7 +43,6 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
     color: var(--primary-color);
-    text-decoration: none;
 }
 
 a:hover {
@@ -65,7 +53,8 @@ button {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 10px 20px;
+    margin: 2px;
+    padding: 10px 200px;
     font-family: var(--font-primary);
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -97,11 +86,7 @@ footer {
     background-color: var(--dark-bg);
     color: var(--muted-color);
     text-align: center;
-    padding: var(--padding);
-    font-size: 0.9rem;
-    position: fixed;
-    bottom: 0;
-    width: 130em;
+    padding: 1% 0;
 }
 
 /* --- Formulaires --- */
@@ -109,10 +94,11 @@ form {
     background-color: white;
     display: flex;
     flex-direction: column;
-    padding: var(--padding);
     border-radius: var(--border-radius);
-    margin-top: 30px;
-    margin-bottom: 50px;
+    align-items: center;
+    margin: 1%;
+    padding: 1%;
+    border: solid var(--dark-bg) 1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -121,6 +107,7 @@ input, textarea, select {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid var(--muted-color);
+    background-color: var(--light-bg);
     border-radius: var(--border-radius);
     font-family: var(--font-primary);
 }
@@ -184,3 +171,25 @@ pre {
 .btn-danger:hover {
     background-color: var(--accent-color);
 }
+
+.centerVertical {
+    text-align: center;
+    color: var(--dark-bg);
+    background-color: var(--light-bg);
+    margin: 2% 30%;
+    border-radius: 10px;
+}
+
+
+/* home image Accueil */
+.imgAccueil {
+    text-align: center;
+}
+
+.imgAccueil img {
+    max-width: 50%;
+    border-radius: 10px;
+    margin: 2% 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+

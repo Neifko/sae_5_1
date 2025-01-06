@@ -3,13 +3,8 @@ label {
 }
 
 input, button {
-    padding: 8px;
+    padding: 10px;
     margin: 10px 0;
-}
-
-/* Limiter la largeur des champs input */
-input, button {
-    width: 250px; /* Ajustez cette largeur selon vos besoins */
 }
 
 /* Formulaire avec champ IP / CIDR côte à côte */
@@ -52,13 +47,4 @@ th, td {
     padding: 10px;
     border: 1px solid #ccc;
     margin-bottom: 10px;
-}
-
-.voirEnDessous {
-    margin-bottom: 25%;
-}
-
-div p {
-    color: white;
-    border-radius: 10px;
 }

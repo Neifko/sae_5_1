@@ -27,7 +27,7 @@
 }
 
 #boutonRetourHeader {
-    button {
+    :is(button) {
         color: var(--primary-color);
         border: none;
         font-family: sans-serif;
@@ -39,32 +39,11 @@
         box-shadow: none;
         cursor: auto;
     }
-
-    button a {
-        text-decoration: none;
-        border-radius: 10px;
-        font-size: 22px;
-        color: white;
-        padding: 10px;
-    }
-
-    a {
-        border: var(--primary-color) 2px solid;
-
-
-    }
-
-    a:hover {
-        background-color: var(--accent-color);
-        color: white;
-        cursor: pointer;
-    }
 }
 
 #boutonconnexion {
 
-
-    button {
+    :is(button) {
         border: none;
         font-family: sans-serif;
         font-size: medium;
@@ -76,27 +55,26 @@
         cursor: auto;
         color: white;
     }
+}
 
-    button a {
+#boutonRetourHeader, #boutonconnexion {
+    :is(button) a {
         text-decoration: none;
         border-radius: 10px;
         font-size: 22px;
         color: white;
         padding: 10px;
     }
-
-    a {
+    :is(a) {
         border: var(--primary-color) 2px solid;
 
 
     }
-
-    a:hover {
+    :is(a:hover) {
         background-color: var(--accent-color);
         color: white;
         cursor: pointer;
+        text-decoration: underline;
     }
 }
-
-
 

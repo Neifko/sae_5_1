@@ -31,7 +31,7 @@
         </tbody>
     </table>
 <?php else : ?>
-    <p>Aucune donnée réseau disponible. Veuillez mettre à jour les informations.</p>
+    <div class="centerVertical">Aucune donnée réseau disponible. Veuillez mettre à jour les informations.</div>
 <?php endif; ?>
 
 
@@ -40,7 +40,7 @@
         <input type="checkbox" id="hint-click">
         <div class="hint">
             <span class="fa-info">i</span>
-            <p>
+            <p style="height: 80%">
                 Le module permet d'afficher les configurations réseau d'une machine, similaire à la commande <code>ip a</code> en ligne de commande.<br>
                 <br>
                 Fonctionnement :<br>

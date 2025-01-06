@@ -1,8 +1,8 @@
 
-<link rel="stylesheet" href="/css/scapyDashboard.css">
-<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/dashboard.css">
+<link rel="stylesheet" href="/css/global.css">
 <h2>Sommaire module scapy</h2>
-<div class="dashboard-container">
+<div class="dashboard-container-scapy">
 
 
     <!-- Colonne de droite -->

@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/informations.css">
-
+<link rel="stylesheet" href="/css/ethernet.css">
 <?php
 function getServerMacAddress()
 {
@@ -33,12 +33,11 @@ function getServerMacAddress()
 // Exemple d'utilisation
 $server_mac = getServerMacAddress();
 ?>
-<link rel="stylesheet" href="/css/ethernet.css">
 <h2>Créer une trame Ethernet</h2>
-<p>Les valeurs par défaut permette de créer une trame ethernet basic. Si vous ne cochez pas la case <code>Données personnalisées</code>
+<p>Les valeurs par défaut permettent de créer une trame ethernet basic. Si vous ne cochez pas la case <code>Données personnalisées</code>
 Vous devez mettre une adresse ipv4 dans <code>IPv4 pour le ping</code> et le script va effectuer un ping avec ce que vous avez
-renseigné. L'adresse mac destination sera recuperer a l'aide de l'adresse ipv4 grace à un arp.
-Si vous cochez la case données personnalisées alors le contenu de trame ethernet doit être remplie manuellement.</p>
+renseigné. L'adresse mac destination sera récupérée à l'aide de l'adresse ipv4 grace à un arp.
+Si vous cochez la case <code>données personnalisées</code> alors le contenu de trame ethernet doit être remplie manuellement.</p>
 <form action="" method="post">
     <div class="field">
         <label for="preamble">Préambule</label>
@@ -111,7 +110,7 @@ Si vous cochez la case données personnalisées alors le contenu de trame ethern
 
     <button type="submit">Créer Trame Ethernet</button>
 </form>
-<div>
+<div class="centerVertical">
     <?php if (isset($_SESSION['flash_message'])): ?>
         <?php echo htmlspecialchars($_SESSION['flash_message']['content']); ?>
         <?php unset($_SESSION['flash_message']); ?>
@@ -122,7 +121,7 @@ Si vous cochez la case données personnalisées alors le contenu de trame ethern
     <input type="checkbox" id="hint-click">
     <div class="hint">
         <span class="fa-info">i</span>
-        <p>
+        <p style="height: 80%">
             Le module <strong>Trame Ethernet</strong> permet de créer une trame Ethernet personnalisée en utilisant la librairie Python <a href="https://scapy.net/" target="_blank">Scapy</a>. Ce module offre deux modes de création de trame : <strong>mode basique</strong> et <strong>mode avancé avec données personnalisées</strong>.<br>
             <br>
             Dans le <strong>mode basique</strong>, l'utilisateur renseigne simplement une adresse IPv4 dans le champ "IPv4 pour le ping". Le script génère automatiquement l'adresse MAC de destination via une requête ARP, puis crée la trame Ethernet pour effectuer un ping vers l'adresse spécifiée.<br>
@@ -142,16 +141,13 @@ Si vous cochez la case données personnalisées alors le contenu de trame ethern
         </p>
     </div>
 </label>
-<div><?php if (!empty($result)): ?>
-        <p><?= $success_msg ?></p>
+<div class="centerVertical"><?php if (!empty($result)): ?>
+        <?= $success_msg ?>
     <?php endif; ?>
 </div>
 <?php if (!empty($result)): ?>
-    <div>
-        <h3>Retour python</h3>
-        <p>
-        <?= $result ?>
-        </p>
+<div class="centerVertical">
+    <h3>Retour python</h3>
+    <?= $result ?>
     </div>
 <?php endif; ?>
-<hr class="voirEnDessous">
